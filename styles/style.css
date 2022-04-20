@@ -23,6 +23,7 @@ body {
     #030509,
     #131E38,
     #20DC49,
+    #D93F21
 
   );
 }
@@ -38,6 +39,7 @@ body {
 *
 {
 background: #131E38;
+color: #fff;
 margin: 0;
 padding: 0;
 box-sizing: border-box;
@@ -127,11 +129,15 @@ border-radius: 30px;
 section .contentBx .formBx .inputBx input[type="submit"]
 {
   background: #20DC49;
+  margin-top: 20px;
   color: #131E38;
   outline: none;
   border: none;
   font-weight: 500;
+  font-weight: bolder;
   cursor: pointer;
+  
+ 
 }
 section .contentBx .formBx .inputBx input[type="submit"]:hover
 {
@@ -140,7 +146,7 @@ section .contentBx .formBx .inputBx input[type="submit"]:hover
 section .contentBx .formBx .remember
 {
   margin-bottom: 10px;
-  color: #131E38;
+  color: #fff;
   font-weight: 400;
   font-size: 14px;
 }
@@ -152,12 +158,17 @@ section .contentBx .formBx .inputBx p a
 {
   color: #20DC49;
 }
+section .contentBx .formBx .inputBx p b
+{
+  color: #D93F21;
+}
 section .contentBx .formBx h3
 {
   color: #20DC49;
   text-align: center;
   margin: 30px 0 10;
   font-weight: 500;
+  
 }
 section .contentBx .formBx .sci
 {
@@ -185,7 +196,7 @@ section .contentBx .formBx .sci li:hover
 section .contentBx .formBx .sci li
 {
   transform: scale(0.5);
-  filter: invert(1);
+  filter:brightness(20);
 }
 @media (max-width: 768px)
 {
@@ -210,7 +221,7 @@ section .contentBx .formBx .sci li
   {
     width: 100%;
     padding: 40px;
-    background: rgb(255 255 255 / 0.9);
+    background: #131E38;
     margin: 50px;
   }
   section .contentBx .formBx h3
@@ -220,4 +231,8 @@ section .contentBx .formBx .sci li
   margin: 30px 0 10;
   font-weight: 500;
 }
+}
+a {
+  color: #D93F21;
+  text-decoration: underline;
 }
