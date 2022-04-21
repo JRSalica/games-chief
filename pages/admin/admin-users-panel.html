@@ -15,10 +15,194 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="../../styles/style.css">
+    <script src="../../scripts/script.js" defer></script>
     <link rel="stylesheet" href="../../styles/style.css" />
     <title>Admin - Usuarios</title>
   </head>
   <body>
-		
+		<header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Game Store</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Panel de admin</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="games-panel-section">
+				<div class="container games-panel-container">
+          <div class="row">
+            <div class="col col-2 p-0">
+              <div class="admin-info-block">
+                <div class="d-flex flex-row align-items-center py-4 px-3">
+                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=400&d=robohash&r=x" alt="admin avatar" class="w-25 rounded-circle bg-dark">
+                  <h4 class="ps-3 mb-0">Hola Jorge!</h4>
+                </div>
+              </div>
+              <div class="admin-menu-block d-flex flex-column justify-content-between pt-3 px-2">
+                <div class="d-flex flex-column">
+                  <a class="btn btn-primary text-start m-1" href=""><i class="bi bi-controller"></i> Juegos</a>
+                  <a class="btn btn-primary text-start m-1" href=""><i class="bi bi-people"></i> Usuarios</a>
+                </div>
+                <div class="d-flex flex-column mb-3">
+                  <a class="btn btn-warning text-start text-white m-1" href=""><i class="bi bi-box-arrow-left"></i> Soporte</a>
+                  <a class="btn btn-danger text-start m-1" href=""><i class="bi bi-box-arrow-left"></i> Salir</a>
+                </div>
+              </div>
+            </div>
+            <div class="col col-10 p-0">
+              <div class="games-header-block px-3">
+                <div class="d-flex justify-content-between py-4 px-2">
+                  <h1 class="fw-bold">Juegos</h1>
+                  <button type="button" class="btn btn-success fw-bold fs-5" data-bs-toggle="modal" data-bs-target="#addGameModal"><i class="bi bi-plus-lg"></i> Agregar Juego</button>
+                  <!-- MODAL PARA AGREGAR JUEGO -->
+                  <div class="modal fade" id="addGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Agregar juego</h5>
+                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="addGameForm">
+                            <div class="mb-3">
+                              <label for="name" class="form-label">Nombre:</label>
+                              <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="description" class="form-label">Descripcion</label>
+                              <input type="text" id="description" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                              <label for="category" class="form-label">Categoria:</label>
+                              <select name="category" id="category" class="form-select" required>
+                                <option selected value="survival">Supervivencia</option>
+                                <option value="shooter">Disparos</option>
+                                <option value="strategy">Estrategia</option>
+                                <option value="simulation">Simulacion</option>
+                              </select>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" form="addGameForm" class="btn btn-success" data-bs-dismiss="modal">Agregar</button>
+                          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="games-list-block px-4 py-3">
+                <div class="d-flex justify-content-between pb-3">
+                  <h3 class="align-self-center fs-5">13 juegos en el catalogo</h3>
+                  <div>
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Nombre del juego" oninput="renderGamesTableSearch(this.value)">
+                      <button class="btn btn-outline-primary text-white"><i class="bi bi-search"></i></button>
+                    </form>
+                  </div>
+                  <div class="search-types">
+                    <button class="btn btn-outline-primary text-white"><i class="bi bi-funnel"></i></button>
+                    <button class="btn btn-outline-primary text-white"><i class="bi bi-sort-down"></i></button>
+                  </div>
+                </div>
+                <table id="games-table" class="table table-bordered table-light table-striped table-hover text-center">
+                  <thead class="table-dark">
+                    <tr>
+                      <th>Codigo</th>
+                      <th>Nombre</th>
+                      <th>Categoria</th>
+                      <th>Calificacion</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="games-table-body">
+                  </tbody>
+                </table>
+                <!-- MODAL PARA ELIMINAR JUEGO -->
+                <div class="modal fade" id="deleteGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Eliminar juego</h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Desea eliminar el juego?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" id="confirmDelete" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                        <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- MODAL PARA MODIFICAR JUEGO -->
+                <div class="modal fade" id="modifyGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Modificar juego</h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="modifyGameForm">
+                          <div class="mb-3">
+                            <label for="name" class="form-label">Nombre:</label>
+                            <input type="text" id="name" class="form-control" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="description" class="form-label">Descripcion</label>
+                            <input type="text" id="description" class="form-control" required>
+                          </div>
+                          <div class="mb-3">
+                            <label for="category" class="form-label">Categoria:</label>
+                            <select name="category" id="category" class="form-select" required>
+                              <option selected value="Survival">Supervivencia</option>
+                              <option value="Shooter">Disparos</option>
+                              <option value="Strategy">Estrategia</option>
+                              <option value="Simulation">Simulacion</option>
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" form="modifyGameForm" class="btn btn-warning" data-bs-dismiss="modal">Modificar</button>
+                        <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+			</section>
+    </main>
+    <footer>
+    </footer>
 	</body>
 </html>

@@ -22,10 +22,38 @@ body {
   );
 }
 
+/* ADMIN SECTION STYLES */
+
 .games-panel-container{
-  border-radius: 0px;
+  border-radius: 1px;
   background: #0f172a;
   box-shadow: -6px 6px 12px #0d1425, 6px -6px 12px #111a2f;
   color: var(--primary-light);
   text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.33);
+  
 }
+
+.admin-info-block{
+  background-color: #182134;
+}
+
+.admin-menu-block{
+  background-color: #192334;
+}
+
+.games-header-block, .games-list-block{
+  background-color: #212C3D;
+}
+.games-header-block{
+  border-bottom: 1px solid white;
+}
+
+.modal-dialog-centered .modal-content{
+  background-color: #192334;
+}
+
+
+
+
+
+
