@@ -24,7 +24,7 @@ body {
 
 /* ADMIN SECTION STYLES */
 
-.games-panel-container{
+.admin-panel-container{
   border-radius: 1px;
   background: #0f172a;
   box-shadow: -6px 6px 12px #0d1425, 6px -6px 12px #111a2f;
@@ -41,7 +41,7 @@ body {
   background-color: #192334;
 }
 
-.games-header-block, .games-list-block{
+.admin-content-col{
   background-color: #212C3D;
 }
 .games-header-block{
@@ -51,6 +51,9 @@ body {
 .modal-dialog-centered .modal-content{
   background-color: #192334;
 }
+
+
+
 
 
 
