@@ -170,34 +170,45 @@ section .contentBx .formBx h3
   font-weight: 500;
   
 }
-section .contentBx .formBx .sci
-{
- display: flex;
- justify-content: center;
- align-items: center;
+.social-login {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  cursor: pointer;
+  
+
 }
-section .contentBx .formBx .sci li
-{
-  list-style: none;
-  width: 50px;
-  height: 50px;
+
+.social-login-element {
+  width: 12.5rem;
+  height: 3.75rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border-radius: 5px;
+  border: 1px solid var(--button-bg);
   display: flex;
   justify-content: center;
   align-items: center;
-  background:#fff;
-  border-radius: 50%;
-  margin: 0 7px;
-  cursor: pointer;
 }
-section .contentBx .formBx .sci li:hover
-{
-  background: #20DC49;
+
+.social-login-element img {
+  width: 1.875rem;
+  height: 1.875rem;
+  position: relative;
+  top: 0;
+  left: -0.625rem;
 }
-section .contentBx .formBx .sci li
-{
-  transform: scale(0.5);
-  filter:brightness(20);
+
+/* .social-login-element:hover {
+  background-color: #fff;
+} */
+
+.login-info-container > p {
+  font-size: 1.25em;
+  margin-top: 1.5em;
 }
+
 @media (max-width: 768px)
 {
   section .imgBx
