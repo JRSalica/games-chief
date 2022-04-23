@@ -86,17 +86,16 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Agregar juego</h5>
-                            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
                           </div>
                           <div class="modal-body">
                             <form id="addGameForm">
                               <div class="mb-3">
                                 <label for="name" class="form-label">Nombre:</label>
-                                <input type="text" id="name" class="form-control" required>
+                                <input type="text" id="name" class="form-control" minlength="2" maxlength="20" autofocus required>
                               </div>
                               <div class="mb-3">
                                 <label for="description" class="form-label">Descripcion</label>
-                                <input type="text" id="description" class="form-control" required>
+                                <input type="text" id="description" class="form-control" minlength="0" maxlength="20" required>
                               </div>
                               <div class="mb-3">
                                 <label for="category" class="form-label">Categoria:</label>
@@ -106,6 +105,16 @@
                                   <option value="strategy">Estrategia</option>
                                   <option value="simulation">Simulacion</option>
                                 </select>
+                              </div>
+                              <div class="mb-3">
+                                <label for="trailer-url" class="form-label">URL del trailer</label>
+                                <input type="text" id="trailerUrl" class="form-control" pattern="^(https?\:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$" required>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="checkPublished">
+                                <label class="form-check-label" for="checkPublished">
+                                  Publicar juego.
+                                </label>
                               </div>
                             </form>
                           </div>
@@ -120,32 +129,54 @@
                   <!-- GAMES LIST MAIN -->
                   <div>
                     <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h3 class="align-self-center fs-5">13 juegos en el catalogo</h3>
+                      <h3 class="align-self-center fs-3 mb-0 ps-1" id="table-info-text">13 juegos en el catalogo</h3>
                       <div>
                         <form class="d-flex">
-                          <input class="form-control me-2" type="search" placeholder="Nombre del juego" oninput="renderGamesTableSearch(this.value)">
-                          <button class="btn btn-outline-primary text-white"><i class="bi bi-search"></i></button>
+                          <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
+                            <input class="form-control me-2" type="search" placeholder="Buscar" oninput="renderGamesTableSearch(this.value)" aria-describedby="addon-wrapping" />
+                            <select class="form-select" name="search-option" id="search-option">
+                              <option value="name">Nombre</option>
+                              <option value="category">Categoria</option>
+                            </select>
+                          </div>
                         </form>
                       </div>
-                      <div class="search-types">
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-funnel"></i></button>
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-sort-down"></i></button>
-                      </div>
                     </div>
+                    <!-- GAMES TABLE -->
                     <div class="px-4 py-3">
                       <table id="games-table" class="table table-bordered table-light table-striped table-hover text-center">
                         <thead class="table-dark">
                           <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Calificacion</th>
+                            <th onclick="sortTable(0)">Codigo <i class="bi bi-chevron-expand"></i></th>
+                            <th onclick="sortTable(1)">Nombre <i class="bi bi-chevron-expand"></i></th>
+                            <th onclick="sortTable(2)">Categoria <i class="bi bi-chevron-expand"></i></th>
+                            <th onclick="sortTable(3)">Calificacion <i class="bi bi-chevron-expand"></i></th>
+                            <th>Publicado</th>
                             <th>Opciones</th>
                           </tr>
                         </thead>
                         <tbody id="games-table-body">
                         </tbody>
                       </table>
+                      <!-- MODAL PARA DESTACAR JUEGO -->
+                      <div class="modal fade" id="starGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">DESTACAR JUEGO</h5>
+                              <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <p>Esta a punto de destacar un juego en la pagina de inicio, esta seguro?</p>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" id="confirmStar" class="btn btn-success" data-bs-dismiss="modal">Destacar</button>
+                              <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <!-- MODAL PARA ELIMINAR JUEGO -->
                       <div class="modal fade" id="deleteGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
