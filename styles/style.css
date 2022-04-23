@@ -43,6 +43,7 @@ section
   width: 100%;
   height: 100vh;
   display: flex;
+  font-size: 12px;
 }
 section .imgBx
 { 
@@ -91,7 +92,7 @@ section .contentBx .formBx h2
   border-bottom: 4px solid #20DC49;
   display: inline-block;
   letter-spacing: 1px;
-}
+ }
 section .contentBx .formBx .inputBx
 {
   margin-bottom: 20px;
@@ -136,12 +137,12 @@ section .contentBx .formBx .inputBx input[type="submit"]:hover
   background: #28bc48;
 }
 section .contentBx .formBx .remember
-{
+/* {
   margin-bottom: 10px;
   color: #fff;
   font-weight: 400;
   font-size: 14px;
-}
+} */
 section .contentBx .formBx .inputBx p
 {
   color: #ffffff;
@@ -149,11 +150,12 @@ section .contentBx .formBx .inputBx p
 section .contentBx .formBx .inputBx p a
 {
   color: #20DC49;
+  font-size: 12px;
 }
 section .contentBx .formBx .inputBx p b
 {
   color: #D93F21;
-}
+  }
 section .contentBx .formBx h3
 {
   color: #20DC49;
