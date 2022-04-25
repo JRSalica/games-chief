@@ -50,7 +50,7 @@ body {
 .admin-content-col{
   background-color: #212C3D;
 }
-.games-header-block{
+.games-header-block, .users-header-block{
   border-bottom: 1px solid white;
 }
 

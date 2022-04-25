@@ -1,13 +1,10 @@
-const addGameForm = document.getElementById("addGameForm");
-const gamesTableBody = document.getElementById("games-table-body");
-
 renderGamesTable();
 
 // Agregar juego
 function addGame() {
-  const addGameForm = document.getElementById("addGameForm");
+  const addGameForm = document.getElementById('addGameForm');
   var addGameModal = new bootstrap.Modal(
-    document.getElementById("addGameModal")
+    document.getElementById('addGameModal')
   );
   addGameModal.show();
   addGameForm.onsubmit = function (e) {
@@ -20,6 +17,8 @@ function addGame() {
     const published = gameElements.checkPublished.checked;
     const videoUrl = gameElements.trailerUrl.value;
 
+    checkNameAvaibility(name);
+
     const game = {
       code: generateGameCode(),
       name: name,
@@ -31,13 +30,22 @@ function addGame() {
       starred: false,
     };
 
-    let games = JSON.parse(localStorage.getItem("games")) || [];
+    let games = JSON.parse(localStorage.getItem('games')) || [];
     games.push(game);
 
-    localStorage.setItem("games", JSON.stringify(games));
+    localStorage.setItem('games', JSON.stringify(games));
     renderGamesTable();
     addGameModal.hide();
   };
+}
+
+function checkNameAvaibility(incomingName){
+  let games = JSON.parse(localStorage.getItem('games')) || [];
+  games.forEach(game => {
+    if(game.name == incomingName){
+
+    }
+  });
 }
 
 // function validateName(){
@@ -53,9 +61,9 @@ function addGame() {
 
 // Elimina un juego
 function deleteGame(code) {
-  const confirmDeleteButton = document.getElementById("confirmDelete");
+  const confirmDeleteButton = document.getElementById('confirmDelete');
   var modalDeleteConfirm = new bootstrap.Modal(
-    document.getElementById("deleteGameModal")
+    document.getElementById('deleteGameModal')
   );
   modalDeleteConfirm.show();
   confirmDeleteButton.onclick = () => {
@@ -72,13 +80,13 @@ function deleteGame(code) {
 
 // Modifica un juego
 function modifyGame(code) {
-  const modifyGameForm = document.getElementById("modifyGameForm");
+  const modifyGameForm = document.getElementById('modifyGameForm');
   var modifyGameModal = new bootstrap.Modal(
-    document.getElementById("modifyGameModal")
+    document.getElementById('modifyGameModal')
   );
   modifyGameModal.show();
   modifyGameForm.onsubmit = function (e) {
-    const games = JSON.parse(localStorage.getItem("games")) || [];
+    const games = JSON.parse(localStorage.getItem('games')) || [];
     games.forEach((game) => {
       if (game.code == code) {
         e.preventDefault();
@@ -96,7 +104,7 @@ function modifyGame(code) {
         game.published = published;
         game.videoUrl = videoUrl;
         games[game.code] = game;
-        localStorage.setItem("games", JSON.stringify(games));
+        localStorage.setItem('games', JSON.stringify(games));
       }
     });
     renderGamesTable();
@@ -109,20 +117,20 @@ function starGame(code) {
   if (isStarred(code)) {
     return;
   }
-  const confirmStarButton = document.getElementById("confirmStar");
+  const confirmStarButton = document.getElementById('confirmStar');
   var starGameModal = new bootstrap.Modal(
-    document.getElementById("starGameModal")
+    document.getElementById('starGameModal')
   );
   starGameModal.show();
   confirmStarButton.onclick = () => {
-    const games = JSON.parse(localStorage.getItem("games")) || [];
+    const games = JSON.parse(localStorage.getItem('games')) || [];
     games.forEach((game) => {
       game.starred = false;
       if (game.code == code) {
         game.starred = true;
         games[game.code] = game;
       }
-      localStorage.setItem("games", JSON.stringify(games));
+      localStorage.setItem('games', JSON.stringify(games));
       renderGamesTable();
     });
   };
@@ -130,7 +138,7 @@ function starGame(code) {
 
 // Comprueba si el juego a destacar, ya se encuentra destacado y termina el proceso
 function isStarred(code) {
-  const games = JSON.parse(localStorage.getItem("games")) || [];
+  const games = JSON.parse(localStorage.getItem('games')) || [];
   games.forEach((game) => {
     if (game.code == code) {
       if (game.starred) {
@@ -142,7 +150,7 @@ function isStarred(code) {
 
 // Genera un codigo al crear un juego
 function generateGameCode() {
-  const games = JSON.parse(localStorage.getItem("games")) || [];
+  const games = JSON.parse(localStorage.getItem('games')) || [];
   if (games.length) {
     gameCodes = games.map((game) => game.code);
     return Math.max(...gameCodes) + 1;
@@ -152,13 +160,13 @@ function generateGameCode() {
 
 // Busca un juego segun el dato elegido y lo carga en la tabla
 function renderGamesTableSearch(searchTerm) {
-  const games = JSON.parse(localStorage.getItem("games")) || [];
-  const searchOption = document.getElementById("search-option").value;
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  const searchOption = document.getElementById('search-option').value;
   var foundGames = 0;
 
-  gamesTableBody.innerHTML = "";
+  gamesTableBody.innerHTML = '';
   games.forEach((game) => {
-    if (searchOption == "name") {
+    if (searchOption == 'name') {
       if (game.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
         renderGame(game);
         foundGames++;
@@ -172,35 +180,38 @@ function renderGamesTableSearch(searchTerm) {
   });
 
   if (foundGames != games.length) {
-    changeGameListInfo(`${foundGames} juegos encontrados.`);
-  } else changeGameListInfo(`${games.length} juegos en el catalogo.`);
+    changeGamesListInfo(`${foundGames} juegos encontrados.`);
+  } else changeGamesListInfo(`${games.length} juegos en el catalogo.`);
 }
 
 // Carga la tabla con TODOS los juegos
 function renderGamesTable() {
-  const games = JSON.parse(localStorage.getItem("games")) || [];
-  gamesTableBody.innerHTML = "";
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  const gamesTableBody = document.getElementById('games-table-body');
+  gamesTableBody.innerHTML = '';
   games.forEach((game) => {
     renderGame(game);
   });
+  changeGamesListInfo(`${games.length} juegos en el catalogo.`);
 }
 
 // Pinta un juego en la tabla
 function renderGame(game) {
+  const gamesTableBody = document.getElementById('games-table-body');
   gamesTableBody.innerHTML += `
       <tr>
-      <td>${game.code}</td>
-      <td>${game.name}</td>
-      ${getCategoryColorName(game)}
-      <td>${game.rating}</td>
-      <td>${getGameIsPublished(game)}</td>
-      <td>
-        <div class="d-flex justify-content-evenly">
-          <button class="btn p-0" onclick="modifyGame(${game.code})"><i class="bi bi-pencil text-warning"></i></button>
-          <button class="btn p-0" onclick="deleteGame(${game.code})"><i class="bi bi-trash text-danger"></i></button>
-          <button class="btn p-0" onclick="starGame(${game.code})">${getGameIsStarred(game)}</button>
-        </div>
-      </td>
+        <td>${game.code}</td>
+        <td>${game.name}</td>
+        ${getCategoryColorName(game)}
+        <td>${game.rating}</td>
+        <td>${getGameIsPublished(game)}</td>
+        <td>
+          <div class="d-flex justify-content-evenly">
+            <button class="btn p-0" onclick="modifyGame(${game.code})"><i class="bi bi-pencil text-warning"></i></button>
+            <button class="btn p-0" onclick="deleteGame(${game.code})"><i class="bi bi-trash text-danger"></i></button>
+            <button class="btn p-0" onclick="starGame(${game.code})">${getGameIsStarred(game)}</button>
+          </div>
+        </td>
       </tr>
       `;
 }
@@ -236,8 +247,8 @@ function getCategoryColorName(game){
 }
 
 // Cambia el texto de informacion de la tabla
-function changeGameListInfo(text) {
-  let tableInfoText = document.getElementById("table-info-text");
+function changeGamesListInfo(text) {
+  let tableInfoText = document.getElementById('games-table-info-text');
   tableInfoText.innerHTML = text;
 }
 
@@ -252,10 +263,10 @@ function sortTable(n) {
     shouldSwitch,
     dir,
     switchcount = 0;
-  table = document.getElementById("games-table");
+  table = document.getElementById('games-table');
   switching = true;
   // Set the sorting direction to ascending:
-  dir = "asc";
+  dir = 'asc';
   /* Make a loop that will continue until
   no switching has been done: */
   while (switching) {
@@ -269,17 +280,17 @@ function sortTable(n) {
       shouldSwitch = false;
       /* Get the two elements you want to compare,
       one from current row and one from the next: */
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
+      x = rows[i].getElementsByTagName('TD')[n];
+      y = rows[i + 1].getElementsByTagName('TD')[n];
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
-      if (dir == "asc") {
+      if (dir == 'asc') {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
         }
-      } else if (dir == "desc") {
+      } else if (dir == 'desc') {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
           // If so, mark as a switch and break the loop:
           shouldSwitch = true;
@@ -297,10 +308,13 @@ function sortTable(n) {
     } else {
       /* If no switching has been done AND the direction is "asc",
       set the direction to "desc" and run the while loop again. */
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
+      if (switchcount == 0 && dir == 'asc') {
+        dir = 'desc';
         switching = true;
       }
     }
   }
 }
+
+
+

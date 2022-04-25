@@ -17,6 +17,7 @@
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <script src="../../scripts/admin/games-scripts.js" defer></script>
+    <script src="../../scripts/admin/users-scripts.js" defer></script>
     <link rel="stylesheet" href="../../styles/admin-styles.css" />
     <title>Administracion</title>
   </head>
@@ -24,7 +25,7 @@
 		<header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Game Store</a>
+          <a class="navbar-brand" href="#">Games Chief</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -59,7 +60,7 @@
               <div class="admin-info-block p-1 ">
                 <div class="d-flex flex-column flex-lg-row align-items-center py-4 px-2">
                   <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=400&d=robohash&r=x" alt="admin avatar" class="w-25 rounded-circle bg-dark">
-                  <h4 class="mb-0 mt-3 mt-lg-0 ps-lg-3">Hola Jorge!</h4>
+                  <h2 class="mb-0 mt-3 mt-lg-0 ps-lg-3 fs-5" id="admin-info-text"></h2>
                 </div>
               </div>
               <!-- ADMIN TABS BUTTONS -->
@@ -130,7 +131,7 @@
                   <!-- GAMES LIST MAIN -->
                   <div>
                     <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h3 class="align-self-center fs-lg-3 mb-0 ps-1" id="table-info-text">13 juegos en el catalogo</h3>
+                      <h2 class="align-self-center fs-lg-3 mb-0 ps-1" id="games-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
                           <div class="input-group flex-nowrap">
@@ -252,13 +253,13 @@
                 <!-- USERS TAB CONTENT -->
                 <div class="users-tab tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                   <!-- USER LIST HEADER -->
-                  <div class="games-header-block d-flex justify-content-between py-4 px-4">
+                  <div class="users-header-block d-flex justify-content-between py-4 px-4">
                     <h1 class="fw-bold">Usuarios</h1>
                   </div>
                   <!-- USERS LIST MAIN -->
                   <div>
                     <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h3 class="align-self-center fs-5">13 usuarios registrados</h3>
+                      <h2 class="align-self-center fs-5" id="users-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
                           <input class="form-control me-2" type="search" placeholder="Nombre del usuario" oninput="renderGamesTableSearch(this.value)">
@@ -271,19 +272,21 @@
                       </div>
                     </div>
                     <div class="px-4 py-3">
-                      <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
-                        <thead class="table-dark">
-                          <tr>
-                            <th>Codigo</th>
-                            <th>Nombre</th>
-                            <th>Categoria</th>
-                            <th>Calificacion</th>
-                            <th>Opciones</th>
-                          </tr>
-                        </thead>
-                        <tbody id="games-table-body">
-                        </tbody>
-                      </table>
+                      <div class="table-responsive">
+                        <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
+                          <thead class="table-dark">
+                            <tr>
+                              <th>Avatar</th>
+                              <th>Usuario</th>
+                              <th>Email</th>
+                              <th>Rol</th>
+                              <th>Estado</th>
+                            </tr>
+                          </thead>
+                          <tbody id="users-table-body" class="align-middle">
+                          </tbody>
+                        </table>
+                      </div>
                       <!-- MODAL PARA ELIMINAR JUEGO -->
                       <div class="modal fade" id="deleteGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
