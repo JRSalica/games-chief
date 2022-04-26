@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="../../styles/admin-styles.css" />
     <title>Administracion</title>
   </head>
-  <body class="min-vh-100">
+  <body>
 		<header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -92,16 +92,12 @@
                               <div class="mb-3">
                                 <label for="name" class="form-label">Nombre:</label>
                                 <input type="text" id="name" class="form-control" oninput="validateName()" minlength="2" maxlength="20" required>
-                                <div class="d-none text-success" id="valid-name-text">
-                                  Nombre disponible!
-                                </div>
-                                <div class="d-none text-danger" id="invalid-name-text">
-                                  Nombre no disponible o invalido
-                                </div>
+                                <div class="d-none text-success" id="valid-name-text"></div>
+                                <div class="d-none text-danger" id="invalid-name-text"></div>
                               </div>
                               <div class="mb-3">
                                 <label for="description" class="form-label">Descripcion</label>
-                                <input type="text" id="description" class="form-control" minlength="1" maxlength="20" required>
+                                <input type="text" id="description" class="form-control" minlength="1" maxlength="50" required>
                               </div>
                               <div class="mb-3">
                                 <label for="category" class="form-label">Categoria:</label>
@@ -240,7 +236,7 @@
                                   </select>
                                 </div>
                                 <div class="mb-3">
-                                  <label for="trailerUrlModify" class="form-label">URL del trailer</label>
+                                  <label for="trailerUrlModify" class="form-label">URL del Trailer</label>
                                   <input type="text" id="trailerUrlModify" class="form-control" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required>
                                 </div>
                                 <div class="form-check">
@@ -297,60 +293,6 @@
                           <tbody id="users-table-body" class="align-middle">
                           </tbody>
                         </table>
-                      </div>
-                      <!-- MODAL PARA ELIMINAR JUEGO -->
-                      <div class="modal fade" id="deleteGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Eliminar juego</h5>
-                              <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <p>Desea eliminar el juego?</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" id="confirmDelete" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
-                              <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- MODAL PARA MODIFICAR JUEGO -->
-                      <div class="modal fade" id="modifyGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Modificar juego</h5>
-                              <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form id="modifyGameForm">
-                                <div class="mb-3">
-                                  <label for="name" class="form-label">Nombre:</label>
-                                  <input type="text" id="name" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="description" class="form-label">Descripcion</label>
-                                  <input type="text" id="description" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                  <label for="category" class="form-label">Categoria:</label>
-                                  <select name="category" id="category" class="form-select" required>
-                                    <option selected value="Survival">Supervivencia</option>
-                                    <option value="Shooter">Disparos</option>
-                                    <option value="Strategy">Estrategia</option>
-                                    <option value="Simulation">Simulacion</option>
-                                  </select>
-                                </div>
-                              </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="submit" form="modifyGameForm" class="btn btn-warning" data-bs-dismiss="modal">Modificar</button>
-                              <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>

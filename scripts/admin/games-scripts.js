@@ -65,8 +65,17 @@ function validateName(){
     nameInput.classList.remove('is-valid');
     nameInput.classList.add('is-invalid');
     invalidNameText.classList.remove('d-none');
+    invalidNameText.innerHTML = 'Un juego con el nombre ingresado ya existe.'
     validNameText.classList.add('d-none');
-  } else {
+  }else if(nameInput.value.length <= 1){
+    addGameButton.setAttribute('disabled', '');
+    nameInput.classList.remove('is-valid');
+    nameInput.classList.add('is-invalid');
+    invalidNameText.classList.remove('d-none');
+    invalidNameText.innerHTML = 'Nombre demasiado corto.'
+    validNameText.classList.add('d-none');
+  }
+  else {
     addGameButton.removeAttribute('disabled');
     nameInput.classList.remove('is-invalid');
     nameInput.classList.add('is-valid');
