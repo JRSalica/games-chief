@@ -12,8 +12,15 @@
     < link rel = "stylesheet"
     href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" / >
   </script>
-  <link rel="stylesheet" href="../styles/style.css" />
-  <title>Ingreso/Registro</title>
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v13.0"
+    nonce="0ltoUWjp"></script>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="MY_CLIENT_ID_ON_GOOGLE_DEV.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <link rel="stylesheet" href="../styles/login-register-style.css" />
+  <title>Registro</title>
 </head>
 
 <body>
@@ -21,8 +28,8 @@
     <div class="imgBx">
       <img src="/assets/images/lol.jpg">
     </div>
-    <div class="contentBx">
-      <div class="formBx">
+    <div class="contentBx justify-content-center">
+      <div class="formBx align-content-center">
         <h2>Completá tus datos para registrarte</h2>
         <form>
           <div class="inputBx">
@@ -39,7 +46,7 @@
             <span>Confirmar Contraseña</span>
             <input type="password" name="" required>
           </div>
-         
+
           <!-- <div class="remember">
             <label><input type="checkbox" name=""> Recuérdame</label>
           </div>
@@ -56,20 +63,18 @@
         </form>
         <h3>o Registrate con</h3>
         <div class="login-container">
-              <div class="login-container">
-          <div class="login-info-container">
-            <div class="social-login">
-              <div class="social-login-element">
-                <img src="/assets/images/google.svg" alt="google-image">
-                <span>Google</span>
-              </div>
-              <div class="social-login-element">
-                <img src="/assets/images/facebook.svg" alt="facebook-image">
-                <span>Facebook</span>
+          <div class="login-container">
+            <div class="login-info-container">
+              <div class="social-login">
+                <div class="social-login-element">
+                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                </div>
+                <div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with"
+                  data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
               </div>
             </div>
           </div>
-             </div>
+        </div>
       </div>
   </section>
 
