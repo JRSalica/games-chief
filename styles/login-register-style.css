@@ -7,34 +7,38 @@
 }
 
 body {
-  background-image: linear-gradient(to bottom,
-      #1e293b,
-      #1b2538,
-      #182234,
-      #161e31,
-      #131b2e,
-      #11192a,
-      #0f1727,
-      #0d1423,
-      #0b111d,
-      #080e18,
-      #050a12,
-      #030509,
-      #131E38,
-      #20DC49,
-      #D93F21);
+  background-image: linear-gradient(
+    to bottom,
+    #1e293b,
+    #1b2538,
+    #182234,
+    #161e31,
+    #131b2e,
+    #11192a,
+    #0f1727,
+    #0d1423,
+    #0b111d,
+    #080e18,
+    #050a12,
+    #030509,
+    #131E38,
+    #20DC49,
+    #D93F21
+
+  );
 }
 
-* {
-  background: #131E38;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+*
+{
+background: #131E38;
+color: #fff;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
 }
-
-section {
+section
+{
   position: relative;
   width: 100%;
   height: 100vh;
