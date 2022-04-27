@@ -7,6 +7,8 @@ function addGame() {
     document.getElementById('addGameModal')
   );
   addGameModal.show();
+  cleanInputs();
+
   addGameForm.onsubmit = function (e) {
     e.preventDefault();
 
@@ -16,8 +18,6 @@ function addGame() {
     const category = gameElements.category.value;
     const published = gameElements.checkPublished.checked;
     const videoUrl = gameElements.trailerUrl.value;
-
-    checkNameAvaibility(name);
 
     const game = {
       code: generateGameCode(),
@@ -39,25 +39,50 @@ function addGame() {
   };
 }
 
-function checkNameAvaibility(incomingName){
-  let games = JSON.parse(localStorage.getItem('games')) || [];
-  games.forEach(game => {
-    if(game.name == incomingName){
-
-    }
-  });
+// Vacia los campos al agregar un juego
+function cleanInputs(){
+  document.getElementById('name').value = '';
+  document.getElementById('description').value = '';
+  document.getElementById('trailerUrl').value = '';
+  document.getElementById('checkPublished').checked = false;
 }
 
-// function validateName(){
-//   let nameInput = document.getElementById('name');
-//   const games = JSON.parse(localStorage.getItem('games')) || [];
-//   games.forEach(game =>{
-//     if(game.name == nameInput.value){
-//       nameInput.setCustomValidity('Ya existe un juego con este nombre');
-//     } 
-//     nameInput.setCustomValidity('');
-//   });
-// }
+// Valida que el nombre no este usado
+function validateName(){
+  let nameInput = document.getElementById('name');
+  let addGameButton = document.getElementById('add-game-confirm');
+  let validNameText = document.getElementById('valid-name-text');
+  let invalidNameText = document.getElementById('invalid-name-text');
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  let gameExists = false;
+  games.forEach(game =>{
+    if(game.name.toLowerCase() == nameInput.value.toLowerCase()){
+      gameExists = true;
+    } 
+  });
+  if(gameExists){
+    addGameButton.setAttribute('disabled', '');
+    nameInput.classList.remove('is-valid');
+    nameInput.classList.add('is-invalid');
+    invalidNameText.classList.remove('d-none');
+    invalidNameText.innerHTML = 'Un juego con el nombre ingresado ya existe.'
+    validNameText.classList.add('d-none');
+  }else if(nameInput.value.length <= 1){
+    addGameButton.setAttribute('disabled', '');
+    nameInput.classList.remove('is-valid');
+    nameInput.classList.add('is-invalid');
+    invalidNameText.classList.remove('d-none');
+    invalidNameText.innerHTML = 'Nombre demasiado corto.'
+    validNameText.classList.add('d-none');
+  }
+  else {
+    addGameButton.removeAttribute('disabled');
+    nameInput.classList.remove('is-invalid');
+    nameInput.classList.add('is-valid');
+    validNameText.classList.remove('d-none');
+    invalidNameText.classList.add('d-none');
+  }
+}
 
 // Elimina un juego
 function deleteGame(code) {
@@ -84,6 +109,7 @@ function modifyGame(code) {
   var modifyGameModal = new bootstrap.Modal(
     document.getElementById('modifyGameModal')
   );
+  loadModifyInputs(code);
   modifyGameModal.show();
   modifyGameForm.onsubmit = function (e) {
     const games = JSON.parse(localStorage.getItem('games')) || [];
@@ -92,17 +118,17 @@ function modifyGame(code) {
         e.preventDefault();
 
         const gameElements = e.target.elements;
-        const name = gameElements.name.value;
-        const description = gameElements.description.value;
-        const category = gameElements.category.value;
-        const published = gameElements.checkPublished.checked;
-        const videoUrl = gameElements.trailerUrl.value;
+        const name = gameElements.nameModify.value;
+        const description = gameElements.descriptionModify.value;
+        const category = gameElements.categoryModify.value;
+        const videoUrl = gameElements.trailerUrlModify.value;
+        const published = gameElements.checkPublishedModify.checked;
 
         game.name = name;
         game.description = description;
         game.category = category;
-        game.published = published;
         game.videoUrl = videoUrl;
+        game.published = published;
         games[game.code] = game;
         localStorage.setItem('games', JSON.stringify(games));
       }
@@ -112,9 +138,29 @@ function modifyGame(code) {
   };
 }
 
-// Destacar un juego
+function loadModifyInputs(code){
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  let nameInput = document.getElementById('nameModify');
+  let descriptionInput = document.getElementById('descriptionModify');
+  let categoryInput = document.getElementById('categoryModify');
+  let trailerUrlInput = document.getElementById('trailerUrlModify');
+  let checkPublishedInput = document.getElementById('checkPublishedModify');
+
+  games.forEach(game =>{
+    if(game.code == code){
+      nameInput.value = game.name;
+      descriptionInput.value = game.description;
+      categoryInput.value = game.category;
+      trailerUrlInput.value = game.videoUrl;
+      checkPublishedInput.checked = game.published;
+    }
+  });
+}
+
+// Destaca un juego
 function starGame(code) {
-  if (isStarred(code)) {
+  if (isStarred(code) === true) {
+    console.log('hola4');
     return;
   }
   const confirmStarButton = document.getElementById('confirmStar');
@@ -158,25 +204,24 @@ function generateGameCode() {
   return 0;
 }
 
-// Busca un juego segun el dato elegido y lo carga en la tabla
-function renderGamesTableSearch(searchTerm) {
+// Busca juegos por su nombre
+function searchGames() {
   const games = JSON.parse(localStorage.getItem('games')) || [];
-  const searchOption = document.getElementById('search-option').value;
+  const gameCategory = document.getElementById('category-option-search').value;
+  const gameName = document.getElementById('game-name-search').value;
+  var gamesTableBody = document.getElementById('games-table-body');
   var foundGames = 0;
 
   gamesTableBody.innerHTML = '';
   games.forEach((game) => {
-    if (searchOption == 'name') {
-      if (game.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-        renderGame(game);
-        foundGames++;
-      }
-    } else {
-      if (game.category.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-        renderGame(game);
-        foundGames++;
-      }
+    if ((game.name.toLowerCase().indexOf(gameName.toLowerCase()) > -1) && gameCategory == 'all') {
+      renderGame(game);
+      foundGames++;
+    }else if((game.name.toLowerCase().indexOf(gameName.toLowerCase()) > -1) && (game.category.toLowerCase().indexOf(gameCategory.toLowerCase()) > -1)){
+      renderGame(game);
+      foundGames++;
     }
+    
   });
 
   if (foundGames != games.length) {
@@ -193,6 +238,7 @@ function renderGamesTable() {
     renderGame(game);
   });
   changeGamesListInfo(`${games.length} juegos en el catalogo.`);
+
 }
 
 // Pinta un juego en la tabla
@@ -209,21 +255,24 @@ function renderGame(game) {
           <div class="d-flex justify-content-evenly">
             <button class="btn p-0" onclick="modifyGame(${game.code})"><i class="bi bi-pencil text-warning"></i></button>
             <button class="btn p-0" onclick="deleteGame(${game.code})"><i class="bi bi-trash text-danger"></i></button>
-            <button class="btn p-0" onclick="starGame(${game.code})">${getGameIsStarred(game)}</button>
+            ${getGameIsStarred(game)}
           </div>
         </td>
       </tr>
       `;
 }
 
+// Comprueba si un juego esta publicado y retorna su componente grafico
 function getGameIsPublished(game){
   return (game.published) ? '<i class="bi bi-check-circle-fill text-primary"></i>' : '<i class="bi bi-check-circle text-primary"></i>';
 }
 
+// Comprueba si un juego esta publicado y retorna su componente grafico
 function getGameIsStarred(game){
-  return (game.starred) ? '<i class="bi bi-patch-check-fill text-success text-success "></i>' : '<i class="bi bi-patch-check text-success"></i>'; 
+  return (game.starred) ? `<button class="btn p-0"><i class="bi bi-patch-check-fill text-success text-success"></i></button>` : `<button class="btn p-0" onclick="starGame(${game.code})"><i class="bi bi-patch-check text-success"></i></button>`; 
 }
 
+// Comprueba la categoria del juego y retorna su componente grafico
 function getCategoryColorName(game){
   switch(game.category){
     case 'survival':
@@ -265,7 +314,7 @@ function sortTable(n) {
     switchcount = 0;
   table = document.getElementById('games-table');
   switching = true;
-  // Set the sorting direction to ascending:
+  // Establecemos la direccion de ordenado ASCENDENTE
   dir = 'asc';
   /* Make a loop that will continue until
   no switching has been done: */
@@ -315,6 +364,3 @@ function sortTable(n) {
     }
   }
 }
-
-
-
