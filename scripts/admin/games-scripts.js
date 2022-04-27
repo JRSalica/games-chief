@@ -1,43 +1,37 @@
+let games = JSON.parse(localStorage.getItem('games')) || [];
+
 renderGamesTable();
 
 // Agregar juego
-function addGame() {
-  const addGameForm = document.getElementById('addGameForm');
-  var addGameModal = new bootstrap.Modal(
-    document.getElementById('addGameModal')
-  );
-  addGameModal.show();
+function addGame(){
   cleanInputs();
+  const addGameForm = document.getElementById('addGameForm');
+  var addGameModal = new bootstrap.Modal(document.getElementById('addGameModal'));
+  addGameModal.show();
 
-  addGameForm.onsubmit = function (e) {
+  addGameForm.onsubmit = (e) =>{
     e.preventDefault();
+    if(addGameValidation()){
+      const gameElements = e.target.elements;
+      const game = {
+        code: generateGameCode(),
+        name: gameElements.name.value,
+        description: gameElements.description.value,
+        category: gameElements.category.value,
+        rating: 5,
+        published: gameElements.checkPublished.checked,
+        videoUrl: gameElements.trailerUrl.value,
+        starred: false,
+      };  
 
-    const gameElements = e.target.elements;
-    const name = gameElements.name.value;
-    const description = gameElements.description.value;
-    const category = gameElements.category.value;
-    const published = gameElements.checkPublished.checked;
-    const videoUrl = gameElements.trailerUrl.value;
-
-    const game = {
-      code: generateGameCode(),
-      name: name,
-      description: description,
-      category: category,
-      rating: 5,
-      published: published,
-      videoUrl: videoUrl,
-      starred: false,
-    };
-
-    let games = JSON.parse(localStorage.getItem('games')) || [];
-    games.push(game);
-
-    localStorage.setItem('games', JSON.stringify(games));
-    renderGamesTable();
-    addGameModal.hide();
-  };
+      games.push(game);
+      localStorage.setItem('games', JSON.stringify(games));
+      renderGamesTable();
+      addGameModal.hide();
+    }
+  } 
 }
+
 
 // Vacia los campos al agregar un juego
 function cleanInputs(){
@@ -47,42 +41,6 @@ function cleanInputs(){
   document.getElementById('checkPublished').checked = false;
 }
 
-// Valida que el nombre no este usado
-function validateName(){
-  let nameInput = document.getElementById('name');
-  let addGameButton = document.getElementById('add-game-confirm');
-  let validNameText = document.getElementById('valid-name-text');
-  let invalidNameText = document.getElementById('invalid-name-text');
-  const games = JSON.parse(localStorage.getItem('games')) || [];
-  let gameExists = false;
-  games.forEach(game =>{
-    if(game.name.toLowerCase() == nameInput.value.toLowerCase()){
-      gameExists = true;
-    } 
-  });
-  if(gameExists){
-    addGameButton.setAttribute('disabled', '');
-    nameInput.classList.remove('is-valid');
-    nameInput.classList.add('is-invalid');
-    invalidNameText.classList.remove('d-none');
-    invalidNameText.innerHTML = 'Un juego con el nombre ingresado ya existe.'
-    validNameText.classList.add('d-none');
-  }else if(nameInput.value.length <= 1){
-    addGameButton.setAttribute('disabled', '');
-    nameInput.classList.remove('is-valid');
-    nameInput.classList.add('is-invalid');
-    invalidNameText.classList.remove('d-none');
-    invalidNameText.innerHTML = 'Nombre demasiado corto.'
-    validNameText.classList.add('d-none');
-  }
-  else {
-    addGameButton.removeAttribute('disabled');
-    nameInput.classList.remove('is-invalid');
-    nameInput.classList.add('is-valid');
-    validNameText.classList.remove('d-none');
-    invalidNameText.classList.add('d-none');
-  }
-}
 
 // Elimina un juego
 function deleteGame(code) {
@@ -92,7 +50,6 @@ function deleteGame(code) {
   );
   modalDeleteConfirm.show();
   confirmDeleteButton.onclick = () => {
-    const games = JSON.parse(localStorage.getItem("games")) || [];
     games.forEach((game) => {
       if (game.code == code) {
         const gamesFiltered = games.filter((game) => game.code != code);
@@ -112,7 +69,6 @@ function modifyGame(code) {
   loadModifyInputs(code);
   modifyGameModal.show();
   modifyGameForm.onsubmit = function (e) {
-    const games = JSON.parse(localStorage.getItem('games')) || [];
     games.forEach((game) => {
       if (game.code == code) {
         e.preventDefault();
@@ -159,17 +115,13 @@ function loadModifyInputs(code){
 
 // Destaca un juego
 function starGame(code) {
-  if (isStarred(code) === true) {
-    console.log('hola4');
-    return;
-  }
+
   const confirmStarButton = document.getElementById('confirmStar');
   var starGameModal = new bootstrap.Modal(
     document.getElementById('starGameModal')
   );
   starGameModal.show();
   confirmStarButton.onclick = () => {
-    const games = JSON.parse(localStorage.getItem('games')) || [];
     games.forEach((game) => {
       game.starred = false;
       if (game.code == code) {
@@ -182,21 +134,8 @@ function starGame(code) {
   };
 }
 
-// Comprueba si el juego a destacar, ya se encuentra destacado y termina el proceso
-function isStarred(code) {
-  const games = JSON.parse(localStorage.getItem('games')) || [];
-  games.forEach((game) => {
-    if (game.code == code) {
-      if (game.starred) {
-        return true;
-      } else return false;
-    }
-  });
-}
-
 // Genera un codigo al crear un juego
 function generateGameCode() {
-  const games = JSON.parse(localStorage.getItem('games')) || [];
   if (games.length) {
     gameCodes = games.map((game) => game.code);
     return Math.max(...gameCodes) + 1;
@@ -206,7 +145,6 @@ function generateGameCode() {
 
 // Busca juegos por su nombre
 function searchGames() {
-  const games = JSON.parse(localStorage.getItem('games')) || [];
   const gameCategory = document.getElementById('category-option-search').value;
   const gameName = document.getElementById('game-name-search').value;
   var gamesTableBody = document.getElementById('games-table-body');
@@ -231,7 +169,6 @@ function searchGames() {
 
 // Carga la tabla con TODOS los juegos
 function renderGamesTable() {
-  const games = JSON.parse(localStorage.getItem('games')) || [];
   const gamesTableBody = document.getElementById('games-table-body');
   gamesTableBody.innerHTML = '';
   games.forEach((game) => {
@@ -316,51 +253,138 @@ function sortTable(n) {
   switching = true;
   // Establecemos la direccion de ordenado ASCENDENTE
   dir = 'asc';
-  /* Make a loop that will continue until
-  no switching has been done: */
+  /* El bucle se repite hasta que no se registren intercambios */
   while (switching) {
-    // Start by saying: no switching is done:
+    // Empezamos sin intercambios
     switching = false;
     rows = table.rows;
-    /* Loop through all table rows (except the
-    first, which contains table headers): */
+    /* Iteramos las filas de las tablas, excepto las cabeceras */ 
     for (i = 1; i < rows.length - 1; i++) {
-      // Start by saying there should be no switching:
+      // Empezamos diciendo que no deberia haber intercambios
       shouldSwitch = false;
-      /* Get the two elements you want to compare,
-      one from current row and one from the next: */
+      /* Tomamos dos elementos para comparar, uno de la fila actual y el otro de la siguiente */
       x = rows[i].getElementsByTagName('TD')[n];
       y = rows[i + 1].getElementsByTagName('TD')[n];
-      /* Check if the two rows should switch place,
-      based on the direction, asc or desc: */
+      /* Verificamos si las dos filas deben intercambiarse, segun direccion ascendente o descendente */
       if (dir == 'asc') {
         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
+          // Declaramos que deben intercambiar lugar
           shouldSwitch = true;
           break;
         }
       } else if (dir == 'desc') {
         if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          // If so, mark as a switch and break the loop:
+          // Declaramos que deben intercambiar lugar
           shouldSwitch = true;
           break;
         }
       }
     }
     if (shouldSwitch) {
-      /* If a switch has been marked, make the switch
-      and mark that a switch has been done: */
+      /* Si deben intercambiar lugar, realiza el intercambio y se declara que se estan realizando intercambios */
       rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
       switching = true;
-      // Each time a switch is done, increase this count by 1:
+      // Cada vez que un intercambio se realiza, aumenta el contador en 1
       switchcount++;
     } else {
-      /* If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again. */
+      /* Si no se realizaron intercambios y la direccion es ascendente, se invierte la direccion y se continua con el bucle */
       if (switchcount == 0 && dir == 'asc') {
         dir = 'desc';
         switching = true;
       }
     }
   }
+}
+
+function addGameValidation(){
+  return (validateName() && validateDescription() && validateTrailerUrl()) ? true : false;
+}
+
+function validateName(){
+  const gameName = document.getElementById('name');
+  let nameValidated = false;
+  let gameExists = false;
+
+  games.forEach(game =>{
+    if(game.name.toLowerCase() == gameName.value.toLowerCase()){
+      gameExists = true;
+    }
+  });
+
+  if(gameExists){
+    setError(gameName, 'Ya existe un juego con ese nombre.');
+    nameValidated = false;
+  } else if(gameName.value === ''){
+    setError(gameName, 'Debe ingresar un nombre');
+    nameValidated = false;
+  } else if(gameName.value.length < 2){
+    setError(gameName, 'El nombre debe ser mas largo.');
+    nameValidated = false;
+  } else {
+    setSuccess(gameName);
+    nameValidated = true;
+  }
+
+  return nameValidated;
+}
+
+function validateDescription(){
+  const gameDescription = document.getElementById('description');
+  let descriptionValidated = false;
+
+  if(gameDescription.value === ''){
+    setError(gameDescription, 'Ingrese una descripcion.');
+    descriptionValidated = false;
+  } else if(gameDescription.value.length < 10){
+    setError(gameDescription, 'Ingrese una descripcion mas larga.');
+    descriptionValidated = false;
+  } else {
+    setSuccess(gameDescription);
+    descriptionValidated = true;
+  }
+  console.log('desc: ' + descriptionValidated);
+  return descriptionValidated;
+}
+
+function validateTrailerUrl(){
+  const gameURL = document.getElementById('trailerUrl');
+  const regexForYT = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+  let urlValidated = false;
+
+  if(gameURL.value === ''){
+    setError(gameURL, 'Ingrese un enlace.');
+    urlValidated = false;
+  } else if(!(regexForYT.test(String(gameURL.value.toLowerCase())))){
+    setError(gameURL, 'No ingreso un enlace valido.');
+    urlValidated = false;
+  } else {
+    setSuccess(gameURL);
+    urlValidated = true;
+  } 
+  console.log('url: ' + urlValidated);
+  return urlValidated;
+}
+
+function setError(element, message){
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector('.error');
+  const addGameButton = document.getElementById('add-game-confirm');
+
+  errorDisplay.innerText = message;
+  errorDisplay.classList.add('invalid-feedback');
+  element.classList.remove('is-valid');
+  element.classList.add('is-invalid');
+  addGameButton.setAttribute('disabled', '');
+}
+
+function setSuccess(element){
+  const inputControl = element.parentElement;
+  const errorDisplay = inputControl.querySelector('.error');
+  const addGameButton = document.getElementById('add-game-confirm');
+
+  errorDisplay.innerText = '';
+  errorDisplay.classList.remove('invalid-feedback');
+  element.classList.remove('is-invalid');
+  element.classList.add('is-valid');
+  addGameButton.removeAttribute('disabled');
 }
