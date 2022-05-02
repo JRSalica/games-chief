@@ -36,7 +36,7 @@ function changeUsersListInfo(text) {
 function renderAdminInfo(){
   let adminInfoText = document.getElementById('admin-info-text');
   let currentAdmin = JSON.parse(localStorage.getItem('currentUser')) || {};
-  adminInfoText.innerHTML = `Hola ${currentAdmin.userName}`;
+  adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.userName}</span>`;
 }
 
 // Crea usuarios de forma provisional

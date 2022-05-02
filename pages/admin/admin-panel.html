@@ -16,6 +16,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../scripts/admin/games-scripts.js" defer></script>
     <script src="../../scripts/admin/users-scripts.js" defer></script>
     <link rel="stylesheet" href="../../styles/admin-styles.css" />
@@ -23,9 +24,12 @@
   </head>
   <body>
 		<header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-lg navbar-dark py-0">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Games Chief</a>
+          <div class="d-flex border-end py-3">
+            <img src="../../assets/images/icons/game-chief-icon.svg" alt="" width="45" height="" class="d-inline-block align-text-top">
+            <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
+          </div>
           <button
             class="navbar-toggler"
             type="button"
@@ -37,14 +41,16 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="#">Ingresar</a></li>
+              <li class="nav-item active"><a class="nav-link text-success" href="#">Admin</a></li>
+              <li class="nav-item"><a class="nav-link text-danger" href="#">Salir</a></li>
             </ul>
           </div>
         </div>
@@ -57,14 +63,14 @@
             <!-- ADMIN PANEL OPTIONS -->
             <div class="admin-aside-col col col-sm-12 col-lg-2 p-0 pb-4 pb-lg-0">
               <!-- ADMIN PROFILE -->
-              <div class="admin-info-block p-1 ">
-                <div class="d-flex flex-column flex-lg-row align-items-center py-4 px-2">
-                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=400&d=robohash&r=x" alt="admin avatar" class="w-25 rounded-circle bg-dark">
-                  <h2 class="mb-0 mt-3 mt-lg-0 ps-lg-3 fs-5" id="admin-info-text"></h2>
+              <div class="admin-info-block">
+                <div class="d-flex flex-column align-items-center py-4 px-2">
+                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=400&d=robohash&r=x" alt="admin avatar" class="w-50 rounded-circle bg-dark">
+                  <h2 class="mb-0 mt-3 fs-4" id="admin-info-text"></h2>
                 </div>
               </div>
               <!-- ADMIN TABS BUTTONS -->
-              <div class="admin-menu-block p-2">
+              <div class="admin-menu-block px-2">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   <button class="active btn btn-outline-success text-sm-center text-lg-start m-1" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="bi bi-controller"></i> Juegos</button>
                   <button class="btn btn-outline-primary text-sm-center text-lg-start m-1" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="bi bi-people"></i> Usuarios</button>
@@ -77,31 +83,31 @@
                 <!-- GAMES TAB CONTENT -->
                 <div class="games-tab tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                   <!-- GAMES LIST HEADER -->
-                  <div class="games-header-block d-flex justify-content-between py-4 px-4">
+                  <div class="games-header-block d-flex justify-content-between py-4 px-4 border-white border-bottom">
                     <h1 class="fw-bold">Juegos</h1>
-                    <button type="button" class="btn btn-success fw-bold fs-5" onclick="addGame()"><i class="bi bi-plus-lg"></i> Agregar Juego</button>
+                    <button type="button" class="btn btn-success fw-bold fs-5" onclick="addGame()"><i class="bi bi-plus-lg" ></i> Agregar Juego</button>
                     <!-- MODAL PARA AGREGAR JUEGO -->
                     <div class="modal fade" id="addGameModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Agregar Juego</h5>
+                            <h5 class="modal-title fs-4 fw-bold">Agregar Juego</h5>
                           </div>
                           <div class="modal-body">
                             <form id="addGameForm">
-                              <div class="mb-3">
+                              <div class="input-control mb-3">
                                 <label for="name" class="form-label">Nombre:</label>
-                                <input type="text" id="name" class="form-control" oninput="validateName()" minlength="2" maxlength="20" required>
-                                <div class="d-none text-success" id="valid-name-text"></div>
-                                <div class="d-none text-danger" id="invalid-name-text"></div>
+                                <input type="text" name="nameAdd" id="name" class="form-control name-add" oninput="validateName('add')" minlength="2" maxlength="20" required>
+                                <div class="error"></div>
                               </div>
-                              <div class="mb-3">
+                              <div class="input-control mb-3">
                                 <label for="description" class="form-label">Descripcion</label>
-                                <input type="text" id="description" class="form-control" minlength="1" maxlength="50" required>
+                                <textarea name="descriptionAdd" id="description" class="form-control description-add" oninput="validateDescription('add')" minlength="10" maxlength="100" required></textarea>
+                                <div class="error"></div>
                               </div>
-                              <div class="mb-3">
+                              <div class="input-control mb-3">
                                 <label for="category" class="form-label">Categoria:</label>
-                                <select name="category" id="category" class="form-select" required>
+                                <select id="category" class="form-select" required>
                                   <option value="survival">Supervivencia</option>
                                   <option value="shooter">Disparos</option>
                                   <option value="strategy">Estrategia</option>
@@ -110,20 +116,19 @@
                                   <option selected value="other">Otro</option>
                                 </select>
                               </div>
-                              <div class="mb-3">
-                                <label for="trailerUrl" class="form-label">URL del trailer</label>
-                                <input type="text" id="trailerUrl" class="form-control" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required>
+                              <div class="input-control mb-3">
+                                <label for="trailerUrl" class="form-label">URL del Trailer</label>
+                                <input type="text" name="trailerUrlAdd" id="trailerUrl" class="form-control trailer-url-add" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" oninput="validateTrailerUrl('add')" required>
+                                <div class="error"></div>
                               </div>
-                              <div class="form-check">
+                              <div class="input-control form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="checkPublished">
-                                <label class="form-check-label" for="checkPublished">
-                                  Publicar juego.
-                                </label>
+                                <label class="form-check-label" for="checkPublished">Publicar juego.</label>
                               </div>
                             </form>
                           </div>
                           <div class="modal-footer">
-                            <button type="submit" form="addGameForm" class="btn btn-success" id="add-game-confirm">Agregar</button>
+                            <button type="submit" form="addGameForm" class="btn btn-success add-game-button" id="add-game-confirm" disabled>Agregar</button>
                             <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
                           </div>
                         </div>
@@ -216,15 +221,21 @@
                             </div>
                             <div class="modal-body">
                               <form id="modifyGameForm"">
-                                <div class="mb-3">
+                                <div class="input-control mb-3">
+                                  <label for="code" class="form-label">Codigo:</label>
+                                  <input type="text" id="code" class="form-control" disabled>
+                                </div>
+                                <div class="input-control mb-3">
                                   <label for="name-modify" class="form-label">Nombre:</label>
-                                  <input type="text" id="nameModify" class="form-control" minlength="2" maxlength="20" required>
+                                  <input type="text" id="nameModify" class="form-control name-modify" oninput="validateName('modify')" minlength="2" maxlength="20" required>
+                                  <div class="error"></div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="input-control mb-3">
                                   <label for="descriptionModify" class="form-label">Descripcion</label>
-                                  <input type="text" id="descriptionModify" class="form-control" required>
+                                  <input type="text" id="descriptionModify" class="form-control description-modify" oninput="validateDescription('modify')" required>
+                                  <div class="error"></div>
                                 </div>
-                                <div class="mb-3">
+                                <div class="input-control mb-3">
                                   <label for="categoryModify" class="form-label">Categoria:</label>
                                   <select name="category" id="categoryModify" class="form-select" required>
                                     <option selected value="survival">Supervivencia</option>
@@ -235,20 +246,19 @@
                                     <option value="other">Otro</option>
                                   </select>
                                 </div>
-                                <div class="mb-3">
+                                <div class="input-control mb-3">
                                   <label for="trailerUrlModify" class="form-label">URL del Trailer</label>
-                                  <input type="text" id="trailerUrlModify" class="form-control" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required>
+                                  <input type="text" id="trailerUrlModify" class="form-control trailer-url-modify" oninput="validateTrailerUrl('modify')" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required>
+                                  <div class="error"></div>
                                 </div>
-                                <div class="form-check">
+                                <div class="input-control form-check">
                                   <input class="form-check-input" type="checkbox" value="" id="checkPublishedModify">
-                                  <label class="form-check-label" for="checkPublishedModify">
-                                    Publicar juego.
-                                  </label>
+                                  <label class="form-check-label" for="checkPublishedModify">Publicar juego.</label>
                                 </div>
                               </form>
                             </div>
                             <div class="modal-footer">
-                              <button type="submit" id="confirmModify" form="modifyGameForm" class="btn btn-warning">Modificar</button>
+                              <button type="submit" id="confirmModify" form="modifyGameForm" class="btn btn-warning modify-game-button">Modificar</button>
                               <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
                             </div>
                           </div>
@@ -260,7 +270,7 @@
                 <!-- USERS TAB CONTENT -->
                 <div class="users-tab tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                   <!-- USER LIST HEADER -->
-                  <div class="users-header-block d-flex justify-content-between py-4 px-4">
+                  <div class="users-header-block d-flex justify-content-between py-4 px-4 border-white border-bottom">
                     <h1 class="fw-bold">Usuarios</h1>
                   </div>
                   <!-- USERS LIST MAIN -->
@@ -303,12 +313,12 @@
         </div>
 			</section>
     </main>
-    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3 border-top bg-dark">
+    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
       <div class="col-md-3 ms-3 d-flex align-items-center">
         <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="" class="link-dark text-decoration-none"><i class="bi bi-controller fs-1 text-white"></i></a>
+        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-icon.svg" alt="" width="100"></a>
       </div>
       <div class="nav col-md-3 me-3 justify-content-end">
         <ul class="d-flex flex-row mb-0 list-unstyled">
