@@ -1,4 +1,4 @@
-let games = JSON.parse(localStorage.getItem('games')) || [];
+const games = JSON.parse(localStorage.getItem('games')) || [];
 
 renderGamesTable();
 
@@ -11,7 +11,7 @@ function addGame(){
 
   addGameForm.onsubmit = (e) =>{
     e.preventDefault();
-    if(addGameValidation()){
+    if(gameValidation('add')){
       const gameElements = e.target.elements;
       const game = {
         code: generateGameCode(),
@@ -32,16 +32,6 @@ function addGame(){
   } 
 }
 
-
-// Vacia los campos al agregar un juego
-function cleanInputs(){
-  document.getElementById('name').value = '';
-  document.getElementById('description').value = '';
-  document.getElementById('trailerUrl').value = '';
-  document.getElementById('checkPublished').checked = false;
-}
-
-
 // Elimina un juego
 function deleteGame(code) {
   const confirmDeleteButton = document.getElementById('confirmDelete');
@@ -53,7 +43,7 @@ function deleteGame(code) {
     games.forEach((game) => {
       if (game.code == code) {
         const gamesFiltered = games.filter((game) => game.code != code);
-        localStorage.setItem("games", JSON.stringify(gamesFiltered));
+        localStorage.setItem('games', JSON.stringify(gamesFiltered));
       }
     });
     renderGamesTable();
@@ -62,55 +52,31 @@ function deleteGame(code) {
 
 // Modifica un juego
 function modifyGame(code) {
+  loadModifyInputs(code);
   const modifyGameForm = document.getElementById('modifyGameForm');
   var modifyGameModal = new bootstrap.Modal(
     document.getElementById('modifyGameModal')
   );
-  loadModifyInputs(code);
   modifyGameModal.show();
   modifyGameForm.onsubmit = function (e) {
+    e.preventDefault();
     games.forEach((game) => {
-      if (game.code == code) {
-        e.preventDefault();
-
-        const gameElements = e.target.elements;
-        const name = gameElements.nameModify.value;
-        const description = gameElements.descriptionModify.value;
-        const category = gameElements.categoryModify.value;
-        const videoUrl = gameElements.trailerUrlModify.value;
-        const published = gameElements.checkPublishedModify.checked;
-
-        game.name = name;
-        game.description = description;
-        game.category = category;
-        game.videoUrl = videoUrl;
-        game.published = published;
-        games[game.code] = game;
-        localStorage.setItem('games', JSON.stringify(games));
+      if(gameValidation('modify')){
+        if (game.code == code) {
+          const gameElements = e.target.elements;
+          game.name = gameElements.nameModify.value;
+          game.description = gameElements.descriptionModify.value;
+          game.category = gameElements.categoryModify.value;
+          game.videoUrl = gameElements.trailerUrlModify.value;
+          game.published = gameElements.checkPublishedModify.checked;
+          games[game.code] = game;
+          localStorage.setItem('games', JSON.stringify(games));
+        }
       }
     });
     renderGamesTable();
     modifyGameModal.hide();
   };
-}
-
-function loadModifyInputs(code){
-  const games = JSON.parse(localStorage.getItem('games')) || [];
-  let nameInput = document.getElementById('nameModify');
-  let descriptionInput = document.getElementById('descriptionModify');
-  let categoryInput = document.getElementById('categoryModify');
-  let trailerUrlInput = document.getElementById('trailerUrlModify');
-  let checkPublishedInput = document.getElementById('checkPublishedModify');
-
-  games.forEach(game =>{
-    if(game.code == code){
-      nameInput.value = game.name;
-      descriptionInput.value = game.description;
-      categoryInput.value = game.category;
-      trailerUrlInput.value = game.videoUrl;
-      checkPublishedInput.checked = game.published;
-    }
-  });
 }
 
 // Destaca un juego
@@ -170,12 +136,12 @@ function searchGames() {
 // Carga la tabla con TODOS los juegos
 function renderGamesTable() {
   const gamesTableBody = document.getElementById('games-table-body');
+  const games = JSON.parse(localStorage.getItem('games')) || [];
   gamesTableBody.innerHTML = '';
   games.forEach((game) => {
     renderGame(game);
   });
   changeGamesListInfo(`${games.length} juegos en el catalogo.`);
-
 }
 
 // Pinta un juego en la tabla
@@ -296,95 +262,138 @@ function sortTable(n) {
   }
 }
 
-function addGameValidation(){
-  return (validateName() && validateDescription() && validateTrailerUrl()) ? true : false;
+//Confirma que los inputs esten validados para agregar un juego
+function gameValidation(operationType){
+  return (validateName(operationType) && validateDescription(operationType) && validateTrailerUrl(operationType)) ? true : false;
 }
 
-function validateName(){
-  const gameName = document.getElementById('name');
+//Valida el input para el nombre
+function validateName(operationType){
+  
+  const gameName = (operationType == 'add') ? document.querySelector('.name-add') : document.querySelector('.name-modify')
+  const gameCode = (operationType == 'modify') ? document.getElementById('code').value : null;
+  const actualGame = (operationType == 'modify') ? games.find(game => game.code == gameCode) : null;
   let nameValidated = false;
   let gameExists = false;
 
   games.forEach(game =>{
-    if(game.name.toLowerCase() == gameName.value.toLowerCase()){
-      gameExists = true;
-    }
-  });
+      if(game.name.toLowerCase() == gameName.value.toLowerCase()){
+        gameExists = true;
+        if(operationType == 'modify' && game.code == actualGame.code){
+          gameExists = false;
+        }
+      }
+    });
 
   if(gameExists){
-    setError(gameName, 'Ya existe un juego con ese nombre.');
+    setError(operationType, gameName, 'Ya existe un juego con ese nombre.');
     nameValidated = false;
   } else if(gameName.value === ''){
-    setError(gameName, 'Debe ingresar un nombre');
+    setError(operationType, gameName, 'Debe ingresar un nombre');
     nameValidated = false;
   } else if(gameName.value.length < 2){
-    setError(gameName, 'El nombre debe ser mas largo.');
+    setError(operationType, gameName, 'El nombre debe ser mas largo.');
     nameValidated = false;
   } else {
-    setSuccess(gameName);
+    setSuccess(operationType, gameName);
     nameValidated = true;
   }
 
   return nameValidated;
 }
 
-function validateDescription(){
-  const gameDescription = document.getElementById('description');
+//Valida el input para la descripcion
+function validateDescription(operationType){
+  const gameDescription = (operationType == 'add') ? document.querySelector('.description-add') : document.querySelector('.description-modify');
   let descriptionValidated = false;
 
   if(gameDescription.value === ''){
-    setError(gameDescription, 'Ingrese una descripcion.');
+    setError(operationType, gameDescription, 'Ingrese una descripcion.');
     descriptionValidated = false;
   } else if(gameDescription.value.length < 10){
-    setError(gameDescription, 'Ingrese una descripcion mas larga.');
+    setError(operationType, gameDescription, 'Ingrese una descripcion mas larga.');
     descriptionValidated = false;
   } else {
-    setSuccess(gameDescription);
+    setSuccess(operationType, gameDescription);
     descriptionValidated = true;
   }
-  console.log('desc: ' + descriptionValidated);
   return descriptionValidated;
 }
 
-function validateTrailerUrl(){
-  const gameURL = document.getElementById('trailerUrl');
+//Valida el input para el URL
+function validateTrailerUrl(operationType){
+  const gameURL = (operationType == 'add') ? document.querySelector('.trailer-url-add') : document.querySelector('.trailer-url-modify');
   const regexForYT = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
   let urlValidated = false;
 
   if(gameURL.value === ''){
-    setError(gameURL, 'Ingrese un enlace.');
+    setError(operationType, gameURL, 'Ingrese un enlace.');
     urlValidated = false;
   } else if(!(regexForYT.test(String(gameURL.value.toLowerCase())))){
-    setError(gameURL, 'No ingreso un enlace valido.');
+    setError(operationType, gameURL, 'No ingreso un enlace valido.');
     urlValidated = false;
   } else {
-    setSuccess(gameURL);
+    setSuccess(operationType, gameURL);
     urlValidated = true;
   } 
-  console.log('url: ' + urlValidated);
   return urlValidated;
 }
 
-function setError(element, message){
+// Cambia el estado del elemento a no validado
+function setError(operationType,element, message){
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
-  const addGameButton = document.getElementById('add-game-confirm');
+  const operationButton = (operationType == 'add') ? document.querySelector('.add-game-button') : document.querySelector('.modify-game-button');
 
   errorDisplay.innerText = message;
   errorDisplay.classList.add('invalid-feedback');
   element.classList.remove('is-valid');
   element.classList.add('is-invalid');
-  addGameButton.setAttribute('disabled', '');
+  operationButton.setAttribute('disabled', '');
 }
 
-function setSuccess(element){
+// Cambia el estado del elemento a validado
+function setSuccess(operationType, element){
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
-  const addGameButton = document.getElementById('add-game-confirm');
+  const operationButton = (operationType == 'add') ? document.querySelector('.add-game-button') : document.querySelector('.modify-game-button');
 
   errorDisplay.innerText = '';
   errorDisplay.classList.remove('invalid-feedback');
   element.classList.remove('is-invalid');
   element.classList.add('is-valid');
-  addGameButton.removeAttribute('disabled');
+  operationButton.removeAttribute('disabled');
+}
+
+// Vacia los campos al agregar un juego
+function cleanInputs(){
+  document.getElementById('name').value = '';
+  document.getElementById('name').classList.remove('is-valid');
+  document.getElementById('description').value = '';
+  document.getElementById('description').classList.remove('is-valid');
+  document.getElementById('trailerUrl').value = '';
+  document.getElementById('trailerUrl').classList.remove('is-valid');
+  document.getElementById('checkPublished').checked = false;
+}
+
+// Carga los campos con los valores del juego a modificar
+function loadModifyInputs(code){
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  let codeInput = document.getElementById('code');
+  let nameInput = document.getElementById('nameModify');
+  let descriptionInput = document.getElementById('descriptionModify');
+  let categoryInput = document.getElementById('categoryModify');
+  let trailerUrlInput = document.getElementById('trailerUrlModify');
+  let checkPublishedInput = document.getElementById('checkPublishedModify');
+
+  games.forEach(game =>{
+    if(game.code == code){
+      codeInput.value = game.code;
+      nameInput.value = game.name;
+      descriptionInput.value = game.description;
+      categoryInput.value = game.category;
+      trailerUrlInput.value = game.videoUrl;
+      checkPublishedInput.checked = game.published;
+    }
+  });
 }
