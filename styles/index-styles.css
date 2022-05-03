@@ -12,10 +12,11 @@
 
 *{
   font-family: 'Mina', sans-serif;
+  color: var(--primary-light);
 }
 
 header, footer{
-  background-color: var(--secondary-dark)
+  background-color: var(--secondary-dark);
 }
 
 body {
@@ -34,27 +35,20 @@ main{
   font-weight: bolder;
 }
 
+/* HERO SECTION STYLES */
 
-/* ADMIN SECTION STYLES */
+.caption-back{
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+}
 
-.admin-panel-container{
-  border: 1px solid var(--primary-gray);
+/* GAMES SECTION STYLES */
+
+.games-container, .game-card, .services-container{
+  border: 2px solid var(--primary-gray);
   box-shadow: 0px 0px 32px 0px rgba(41,48,55,0.45);
-  color: var(--primary-light);
   text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.23);
 }
 
-.admin-aside-col, .modal-content{
+.game-card{
   background-color: var(--primary-gray);
 }
-
-.admin-content-col{
-  background-color: var(--primary-dark);
-}
-
-
-
-
-
-
-
