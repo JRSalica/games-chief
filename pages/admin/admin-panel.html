@@ -167,7 +167,6 @@
                               <th onclick="sortTable(0)">Codigo <i class="bi bi-chevron-expand"></i></th>
                               <th onclick="sortTable(1)">Nombre <i class="bi bi-chevron-expand"></i></th>
                               <th onclick="sortTable(2)">Categoria <i class="bi bi-chevron-expand"></i></th>
-                              <th onclick="sortTable(3)">Calificacion <i class="bi bi-chevron-expand"></i></th>
                               <th>Publicado</th>
                               <th>Opciones</th>
                             </tr>
@@ -294,16 +293,68 @@
                         <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
                             <tr>
-                              <th>Avatar</th>
                               <th>Usuario</th>
                               <th>Email</th>
                               <th>Rol</th>
                               <th>Estado</th>
+                              <th>Opciones</th>
                             </tr>
                           </thead>
                           <tbody id="users-table-body" class="align-middle">
                           </tbody>
                         </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- MODAL PARA ELIMINAR JUEGO -->
+                  <div class="modal fade" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Eliminar usuario</h5>
+                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Desea eliminar el usuario?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="confirmDeleteUser" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- MODAL PARA MODIFICAR USUARIO -->
+                  <div class="modal fade" id="modifyUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Modificar usuario</h5>
+                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="modifyUserForm"">
+                            <div class="input-control mb-3">
+                              <label for="roleModify" class="form-label">Categoria:</label>
+                                  <select name="user-role" id="roleModify" class="form-select" required>
+                                    <option selected value="user">Usuario</option>
+                                    <option value="admin">Administrador</option>
+                                  </select>
+                            </div>
+                            <div class="input-control mb-3">
+                              <label for="statusModify" class="form-label">Estado de la cuenta:</label>
+                                  <select name="user-status" id="statusModify" class="form-select" required>
+                                    <option selected value="approved">Aprobado</option>
+                                    <option value="pending">Pendiente</option>
+                                    <option value="suspended">Suspendido</option>
+                                  </select>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" id="confirmModifyUser" form="modifyUserForm" class="btn btn-warning modify-user-button">Modificar</button>
+                          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
                       </div>
                     </div>
                   </div>

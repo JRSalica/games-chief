@@ -43,12 +43,12 @@
           </button>
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" href="#">Ingresar</a></li>
+              <li class="nav-item"><a class="nav-link active" href="#">Ingresar</a></li>
               <li class="nav-item"><a class="nav-link text-success" href="#">Admin</a></li>
               <li class="nav-item"><a class="nav-link text-danger" href="#">Salir</a></li>
             </ul>
@@ -61,19 +61,19 @@
         <div class="access-row row d-flex justify-content-center align-items-center">
           <div class="login-section col col-4 px-5 py-4 d-block" id="login-section">
             <h2 class="mb-3 mt-2">Acceder:</h2>
-            <form class="login-form mb-4">
+            <form class="mb-4" id="login-form">
               <div class="mb-3">
                 <label for="email-login" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
               </div>
               <div class="mb-3">
                 <label for="password-login" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="password-login">
+                <input type="password" class="form-control" id="passwordLogin">
               </div>
               <div class="mb-3 form-check d-flex justify-content-between">
                 <div>
                   <input type="checkbox" class="form-check-input" id="check-remember">
-                  <label class="form-check-label" for="check-remember">Recordarme</label>
+                  <label class="form-check-label" for="checkRemember">Recordarme</label>
                 </div>
                 <a href="">Olvide mi contraseña</a>
               </div>
@@ -83,28 +83,35 @@
           </div>
           <div class="register-section col col-4 px-5 pt-4 pb-3 d-none" id="register-section">
             <h2 class="mb-3 mt-2">Registrate:</h2>
-            <form class="register-form mb-4">
-              <div class="mb-3">
+            <form class="mb-4" id="register-form">
+              <div class="input-control mb-3">
                 <label for="username-register" class="form-label">Nombre de usuario:</label>
-                <input type="text" class="form-control" id="username-register">
+                <input type="text" class="form-control" id="userNameRegister">
+                <div class="error"></div>
               </div>
-              <div class="mb-3">
+              <div class="input-control mb-3">
                 <label for="email-register" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="email-register" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp">
+                <div class="error"></div>
               </div>
-              <div class="mb-3">
+              <div class="input-control mb-3">
                 <label for="password-register" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="password-register">
+                <input type="password" class="form-control" id="passwordRegister">
+                <div class="error"></div>
               </div>
-              <div class="mb-3">
-                <label for="password2-register" class="form-label">Repita su contraseña:</label>
-                <input type="password" class="form-control" id="password2-register">
+              <div class="input-control mb-3">
+                <label for="password2-register" class="form-label">Repite tu contraseña:</label>
+                <input type="password" class="form-control" id="password2Register">
+                <div class="error"></div>
               </div>
-              <div class="mb-3 form-check ">
-                <input type="checkbox" class="form-check-input" id="check-remember">
-                <label class="form-check-label" for="check-remember">He leido y acepto los terminos y condiciones.</label>
+              <div class="input-control mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="checkTerms">
+                <label class="form-check-label" for="checkTerms">Acepto los terminos y condiciones.</label>
+                <div class="error"></div>
               </div>
-              <button type="submit" class="btn btn-success">Registrarme</button>
+              <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-success">Registrarme</button>
+              </div>
             </form>
             <p class="text-center mb-0">Ya tienes cuenta?<button class="btn btn-link px-1" id="login-link">Accede aqui.</button></p>
           </div>
