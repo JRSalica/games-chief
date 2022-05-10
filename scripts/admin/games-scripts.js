@@ -18,7 +18,6 @@ function addGame(){
         name: gameElements.name.value,
         description: gameElements.description.value,
         category: gameElements.category.value,
-        rating: 5,
         published: gameElements.checkPublished.checked,
         videoUrl: gameElements.trailerUrl.value,
         starred: false,
@@ -152,7 +151,6 @@ function renderGame(game) {
         <td>${game.code}</td>
         <td>${game.name}</td>
         ${getCategoryColorName(game)}
-        <td>${game.rating}</td>
         <td>${getGameIsPublished(game)}</td>
         <td>
           <div class="d-flex justify-content-evenly">
@@ -340,7 +338,7 @@ function validateTrailerUrl(operationType){
 }
 
 // Cambia el estado del elemento a no validado
-function setError(operationType,element, message){
+function setError(operationType, element, message){
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
   const operationButton = (operationType == 'add') ? document.querySelector('.add-game-button') : document.querySelector('.modify-game-button');

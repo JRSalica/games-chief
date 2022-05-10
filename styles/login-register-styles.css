@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Mina&display=swap');
+
+:root {
+	--primary-light: #E2E8F0;
+  --primary-gray: #252935;
+  --primary-dark: #1B202B;
+  --secondary-dark: #202634;
+}
+
+
+/* GENERAL STYLES */
+
+*{
+  font-family: 'Mina', sans-serif;
+  color: var(--primary-light);
+}
+
+header, footer{
+  background-color: var(--secondary-dark);
+}
+
+body {
+  background-image: linear-gradient(to bottom, #161a24, #181b26, #191c27, #1b1e29, #1d1f2a);
+}
+
+main{
+  min-height: calc(100vh - 270px);
+}
+
+
+/* NAVBAR STYLES */
+
+.navbar .active{
+  border-bottom: 1px solid var(--primary-light);
+  font-weight: bolder;
+}
+
+/* LOGIN/REGISTER STYLES */
+
+
+.login-section, .register-section{
+  border: 1px solid var(--primary-gray);
+  box-shadow: 0px 0px 32px 0px rgba(41,48,55,0.45);
+  color: var(--primary-light);
+  text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.23);
+}

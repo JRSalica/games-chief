@@ -16,9 +16,9 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../scripts/admin/games-scripts.js" defer></script>
-    <script src="../../scripts/admin/users-scripts.js" defer></script>
+    <script type="module" src="../../scripts/admin/users-scripts.js" defer></script>
+    <script src="../../scripts/general-scripts/logoutUser.js" defer></script>
     <link rel="stylesheet" href="../../styles/admin-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Administracion</title>
@@ -43,15 +43,21 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+            <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="../contact.html">Contacto</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" href="#">Ingresar</a></li>
-              <li class="nav-item active"><a class="nav-link text-success active" href="#">Admin</a></li>
-              <li class="nav-item"><a class="nav-link text-danger" href="#">Salir</a></li>
+              <div id="admin-item">
+                <li class="nav-item"><a class="nav-link active text-success" href="./admin-panel.html">Admin</a></li>
+              </div>
+              <div id="logout-item">
+                <li class="nav-item"><a href="../../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+              </div>
+              <div id="login-item">
+                <li class="nav-item"><a class="nav-link" href="#">Ingresar</a></li>
+              </div>
             </ul>
           </div>
         </div>
@@ -167,7 +173,6 @@
                               <th onclick="sortTable(0)">Codigo <i class="bi bi-chevron-expand"></i></th>
                               <th onclick="sortTable(1)">Nombre <i class="bi bi-chevron-expand"></i></th>
                               <th onclick="sortTable(2)">Categoria <i class="bi bi-chevron-expand"></i></th>
-                              <th onclick="sortTable(3)">Calificacion <i class="bi bi-chevron-expand"></i></th>
                               <th>Publicado</th>
                               <th>Opciones</th>
                             </tr>
@@ -294,16 +299,68 @@
                         <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
                             <tr>
-                              <th>Avatar</th>
                               <th>Usuario</th>
                               <th>Email</th>
                               <th>Rol</th>
                               <th>Estado</th>
+                              <th>Opciones</th>
                             </tr>
                           </thead>
                           <tbody id="users-table-body" class="align-middle">
                           </tbody>
                         </table>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- MODAL PARA ELIMINAR JUEGO -->
+                  <div class="modal fade" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Eliminar usuario</h5>
+                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <p>Desea eliminar el usuario?</p>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" id="confirmDeleteUser" class="btn btn-danger" data-bs-dismiss="modal">Eliminar</button>
+                          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- MODAL PARA MODIFICAR USUARIO -->
+                  <div class="modal fade" id="modifyUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title fs-4 fw-bold" id="staticBackdropLabel">Modificar usuario</h5>
+                          <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form id="modifyUserForm"">
+                            <div class="input-control mb-3">
+                              <label for="roleModify" class="form-label">Categoria:</label>
+                                  <select name="user-role" id="roleModify" class="form-select" required>
+                                    <option selected value="user">Usuario</option>
+                                    <option value="admin">Administrador</option>
+                                  </select>
+                            </div>
+                            <div class="input-control mb-3">
+                              <label for="statusModify" class="form-label">Estado de la cuenta:</label>
+                                  <select name="user-status" id="statusModify" class="form-select" required>
+                                    <option selected value="approved">Aprobado</option>
+                                    <option value="pending">Pendiente</option>
+                                    <option value="suspended">Suspendido</option>
+                                  </select>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" id="confirmModifyUser" form="modifyUserForm" class="btn btn-warning modify-user-button">Modificar</button>
+                          <button type="button" class="btn btn-outline-secondary text-white" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
                       </div>
                     </div>
                   </div>
