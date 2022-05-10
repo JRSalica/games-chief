@@ -1,3 +1,6 @@
+import{checkIsAuth} from '../general-scripts/sessionChecks.js';
+
+checkIsAuth();
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 // createUsers();
@@ -86,7 +89,7 @@ function changeUsersListInfo(text) {
 function renderAdminInfo(){
   let adminInfoText = document.getElementById('admin-info-text');
   let currentAdmin = JSON.parse(localStorage.getItem('currentUser')) || {};
-  adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.userName}</span>`;
+  adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.username}</span>`;
 }
 
 // Crea usuarios de forma provisional

@@ -1,33 +1,7 @@
-const loginSection = document.getElementById('login-section');
-const registerSection = document.getElementById('register-section');
-const loginLink = document.getElementById('login-link');
-const registerLink = document.getElementById('register-link');
-const loginForm = document.getElementById('login-form');
-const registerForm = document.getElementById('register-form');
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
-registerForm.addEventListener('submit', registerUser);
-
-function registerUser(ev){
-  ev.preventDefault();
-  if(!registerValidation()){
-    return false;
-  } else{
-    const registerElements = ev.target.elements;
-      const user = {
-        username: registerElements.userNameRegister.value,
-        email: registerElements.emailRegister.value,
-        password: registerElements.passwordRegister.value,
-        status: 'pending',
-        role: 'user',
-      }
-      users.push(user);
-      localStorage.setItem('users', JSON.stringify(users));
-      cleanInputs();
-  } 
-}
-
-function cleanInputs(){
+// Vacia los campos del formulario de registro
+function cleanRegisterInputs(){
   document.getElementById('userNameRegister').value = '';
   document.getElementById('userNameRegister').classList.remove('is-valid');
   document.getElementById('emailRegister').value = '';
@@ -39,8 +13,9 @@ function cleanInputs(){
   document.getElementById('checkTerms').checked = false;
 }
   
+// Realiza la validacion del formulario de registro.
 function registerValidation(){
-  return (validateUserName() && validateEmail() && validatePassword() && validateTerms()) ? true : false;
+  return (validateUserName() && validateEmailRegister() && validatePasswordRegister() && validateTerms()) ? true : false;
 }
 
 function validateUserName(){
@@ -72,15 +47,16 @@ function validateUserName(){
   return userNameValidated;
 }
 
-function validateEmail(){
+function validateEmailRegister(){
   const email = document.getElementById('emailRegister');
   const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
   let emailValidated = false;
   let emailExists = false;
 
   users.forEach(user =>{
-    if(user.email.toLowerCase() == email.value.toLowerCase())
-    emailExists = true;
+    if(user.email.toLowerCase() == email.value.toLowerCase()){
+      emailExists = true;
+    }
   });
 
   if(emailExists){
@@ -99,7 +75,7 @@ function validateEmail(){
   return emailValidated;
 }
 
-function validatePassword(){
+function validatePasswordRegister(){
   const password = document.getElementById('passwordRegister');
   const password2 = document.getElementById('password2Register');
   let passwordValidated = false;
@@ -140,6 +116,60 @@ function validateTerms(){
   return termsValidated;
 }
 
+// Vacia los campos del formulario de login
+function cleanLoginInputs(){
+  document.getElementById('emailLogin').value = '';
+  document.getElementById('emailLogin').classList.remove('is-valid');
+  document.getElementById('passwordLogin').value = '';
+  document.getElementById('passwordLogin').classList.remove('is-valid');
+}
+  
+function loginValidation(){
+  return validateLogin() ? true : false;
+}
+
+function validateLogin(){
+  const email = document.getElementById('emailLogin');
+  const password = document.getElementById('passwordLogin');
+  const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  let loginValidated = false;
+  let emailExists = false;
+  let validPassword = false;
+
+  users.forEach(user =>{
+    if(user.email.toLowerCase() == email.value.toLowerCase() && user.status == 'approved'){
+      emailExists = true;
+    }
+    if(user.password == password.value){
+      validPassword = true;
+    }
+  });
+
+  if(email.value === ''){
+    setError(email, 'Ingrese un correo electronico.');
+    loginValidated = false;
+  } else if(!emailRegex.test(String(email.value.toLowerCase()))){
+    setError(email, 'No ingreso un correo electronico valido.');
+    loginValidated = false;
+  } else if (!emailExists){
+    setError(email, 'El correo ingresado no corresponde a ninguna cuenta activa');
+    loginValidated = false;
+  } else if(password.value === ''){
+    setSuccess(email)
+    setError(password, 'Ingrese una contraseña.');
+    loginValidated = false;
+  } else if(!validPassword){
+    setSuccess(email)
+    setError(password, 'Contraseña incorrecta.');
+    loginValidated = false;
+  } else{
+    setSuccess(email);
+    setSuccess(password);
+    loginValidated = true;
+  }
+  return loginValidated;
+}
+
 function setError(element, message){
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
@@ -161,38 +191,4 @@ function setSuccess(element){
   element.classList.add('is-valid');
 }
 
-
-
-
-
-
-// Cambia entre los formularios
-registerLink.addEventListener('click', () =>{
-  loginSection.classList.remove('d-block');
-  loginSection.classList.add('d-none');
-  registerSection.classList.remove('d-none');
-  registerSection.classList.add('d-block');
-});
-
-loginLink.addEventListener('click', () =>{
-  loginSection.classList.remove('d-none');
-  loginSection.classList.add('d-block');
-  registerSection.classList.remove('d-block');
-  registerSection.classList.add('d-none');
-});
-
-// Comprueba si hay un usuario logeado
-
-function checkIsAuth(){
-  user = JSON.parse(localStorage.getItem('currentUser'));
-  if(!user) redirectToLogin();
-}
-
-function logout(){
-  localStorage.removeItem('currentUser');
-}
-
-function redirectToLogin(){
-  
-}
-
+export{cleanRegisterInputs, cleanLoginInputs, registerValidation, loginValidation};

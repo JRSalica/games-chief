@@ -16,10 +16,10 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="/scripts/login-register/login-register.js" defer></script>
+    <script src="../scripts/general-scripts/logoutUser.js" defer></script>
     <link rel="stylesheet" href="../styles/login-register-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
-    <script src="/scripts/login-register.js" defer></script>
     <title>Acceder</title>
   </head>
   <body>
@@ -43,14 +43,20 @@
           </button>
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="/index.html">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link active" href="#">Ingresar</a></li>
-              <li class="nav-item"><a class="nav-link text-success" href="#">Admin</a></li>
-              <li class="nav-item"><a class="nav-link text-danger" href="#">Salir</a></li>
+              <div id="admin-item">
+                <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+              </div>
+              <div id="logout-item">
+                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+              </div>
+              <div id="login-item">
+                <li class="nav-item"><a class="nav-link active" href="#">Ingresar</a></li>
+              </div>
             </ul>
           </div>
         </div>
@@ -62,17 +68,19 @@
           <div class="login-section col col-4 px-5 py-4 d-block" id="login-section">
             <h2 class="mb-3 mt-2">Acceder:</h2>
             <form class="mb-4" id="login-form">
-              <div class="mb-3">
+              <div class="input-control mb-3">
                 <label for="email-login" class="form-label">Email:</label>
                 <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+                <div class="error"></div>
               </div>
-              <div class="mb-3">
+              <div class="input-control mb-3">
                 <label for="password-login" class="form-label">Contraseña:</label>
                 <input type="password" class="form-control" id="passwordLogin">
+                <div class="error"></div>
               </div>
-              <div class="mb-3 form-check d-flex justify-content-between">
+              <div class="input-control mb-3 form-check d-flex justify-content-between">
                 <div>
-                  <input type="checkbox" class="form-check-input" id="check-remember">
+                  <input type="checkbox" class="form-check-input" id="checkRemember">
                   <label class="form-check-label" for="checkRemember">Recordarme</label>
                 </div>
                 <a href="">Olvide mi contraseña</a>
