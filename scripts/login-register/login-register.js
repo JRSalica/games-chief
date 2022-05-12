@@ -1,5 +1,4 @@
 import{cleanRegisterInputs, cleanLoginInputs, registerValidation, loginValidation} from './accessValidations.js';
-import{checkIsAuth} from '../general-scripts/sessionChecks.js';
 
 const loginSection = document.getElementById('login-section');
 const registerSection = document.getElementById('register-section');
@@ -10,7 +9,6 @@ const registerForm = document.getElementById('register-form');
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
-checkIsAuth();
 registerForm.addEventListener('submit', registerUser);
 loginForm.addEventListener('submit', loginUser);
 

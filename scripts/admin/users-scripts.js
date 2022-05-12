@@ -1,13 +1,8 @@
-import{checkIsAuth} from '../general-scripts/sessionChecks.js';
-
 let users = JSON.parse(localStorage.getItem('users')) || [];
-checkIsAuth();
 
 // createUsers();
 renderUsersTable();
 renderAdminInfo();
-
-
 
 
 // Elimina un usuario
@@ -39,7 +34,7 @@ function modifyUser(username) {
   modifyUserForm.onsubmit = function (e) {
     e.preventDefault();
     users.forEach((user) => {
-      if (user.username == username) {
+      if (user.username.toLowerCase() == username.toLowerCase()) {
         const userElements = e.target.elements;
         user.role = userElements.roleModify.value;
         user.status = userElements.statusModify.value;
@@ -70,14 +65,15 @@ function renderUser(user) {
   const usersTableBody = document.getElementById('users-table-body');
   usersTableBody.innerHTML += `
       <tr>
+        <td><img src=></td>
         <td>${user.username}</td>
         <td>${user.email}</td>
         <td>${user.role}</td>
         <td>${user.status}</td>
         <td>
         <div class="d-flex justify-content-evenly">
-          <button class="btn p-0" id="modify-${user.username.toLowerCase()}" onclick="modifyUser(${user.username})"><i class="bi bi-pencil text-warning"></i></button>
-          <button class="btn p-0" id="delete-${user.username.toLowerCase()}" onclick="deleteUser(${user.username})"><i class="bi bi-trash text-danger"></i></button>
+          <button class="btn p-0" onclick="modifyUser('${user.username.toLowerCase()}')"><i class="bi bi-pencil text-warning"></i></button>
+          <button class="btn p-0" onclick="deleteUser('${user.username.toLowerCase()}')"><i class="bi bi-trash text-danger"></i></button>
         </div>
       </td>
       </tr>
@@ -100,12 +96,12 @@ function renderAdminInfo(){
 
 // Crea usuarios de forma provisional
 // function createUsers(){
-//   let currentUser = {avatar: 'https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x', userName: 'JRSalica', mail:'salicajorge@gmail.com', role:'admin', status:'approved'};
+//   let currentUser = {avatar: 'https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x', username: 'JRSalica', email:'salicajorge@gmail.com', role:'admin', status:'approved'};
 //   let usersArr = [
 //     currentUser, 
-//     {avatar: 'https://gravatar.com/avatar/cfe3c204bd9f5cb4fcbd61cf109d947c?s=100&d=robohash&r=x', userName: 'JRSickness', mail:'jrsick@gmail.com', role:'user', status:'suspend'},
-//     {avatar: 'https://gravatar.com/avatar/8c66a907354c524c525441815415b338?s=100&d=robohash&r=x', userName: 'JRSystems', mail:'jrsystems.jr@gmail.com', role:'user', status:'pending'},
-//     {avatar: 'https://gravatar.com/avatar/1ba8e6babcb532aa831a055c68aaff25?s=100&d=robohash&r=x', userName: 'JRSoul', mail:'soulofjr@gmail.com', role:'user', status:'approved'},
+//     {avatar: 'https://gravatar.com/avatar/cfe3c204bd9f5cb4fcbd61cf109d947c?s=100&d=robohash&r=x', username: 'JRSickness', email:'jrsick@gmail.com', role:'user', status:'suspend'},
+//     {avatar: 'https://gravatar.com/avatar/8c66a907354c524c525441815415b338?s=100&d=robohash&r=x', username: 'JRSystems', email:'jrsystems.jr@gmail.com', role:'user', status:'pending'},
+//     {avatar: 'https://gravatar.com/avatar/1ba8e6babcb532aa831a055c68aaff25?s=100&d=robohash&r=x', username: 'JRSoul', email:'soulofjr@gmail.com', role:'user', status:'approved'},
 //   ];
 
 //   localStorage.setItem('users', JSON.stringify(usersArr));

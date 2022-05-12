@@ -1,3 +1,5 @@
+checkIsAuth();
+
 // Comprueba si hay un usuario logeado
 function checkIsAuth(){
   let currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -33,5 +35,3 @@ function showSessionItems(currentUser){
     adminItem.classList.add('d-none');
   }
 }
-
-export{checkIsAuth};
