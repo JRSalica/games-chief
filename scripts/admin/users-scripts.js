@@ -1,11 +1,13 @@
 import{checkIsAuth} from '../general-scripts/sessionChecks.js';
 
-checkIsAuth();
 let users = JSON.parse(localStorage.getItem('users')) || [];
+checkIsAuth();
 
 // createUsers();
 renderUsersTable();
 renderAdminInfo();
+
+
 
 
 // Elimina un usuario
@@ -56,7 +58,9 @@ function renderUsersTable() {
   usersTableBody.innerHTML = '';
   let users = JSON.parse(localStorage.getItem('users')) || [];
   users.forEach((user) => {
+    // contador
     renderUser(user);
+    // document.getElementById(`modify-${user.username.toLowerCase()}`).onclick = modifyUser(user.username);
   });
   changeUsersListInfo(`${users.length} usuarios registrados.`);
 }
@@ -72,12 +76,14 @@ function renderUser(user) {
         <td>${user.status}</td>
         <td>
         <div class="d-flex justify-content-evenly">
-          <button class="btn p-0" onclick="modifyUser('${user.username}')"><i class="bi bi-pencil text-warning"></i></button>
-          <button class="btn p-0" onclick="deleteUser('${user.username}')"><i class="bi bi-trash text-danger"></i></button>
+          <button class="btn p-0" id="modify-${user.username.toLowerCase()}" onclick="modifyUser(${user.username})"><i class="bi bi-pencil text-warning"></i></button>
+          <button class="btn p-0" id="delete-${user.username.toLowerCase()}" onclick="deleteUser(${user.username})"><i class="bi bi-trash text-danger"></i></button>
         </div>
       </td>
       </tr>
       `;
+    
+
 }
 
 // Cambia el texto de informacion de la tabla

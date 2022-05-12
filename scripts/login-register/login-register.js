@@ -45,10 +45,8 @@ function loginUser(ev){
     });
     if(loginElements.checkRemember.checked){
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      console.log(loginElements.checkRemember.checked, 'local');
     } else {
       sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-      console.log(loginElements.checkRemember.checked, 'session');
     }
     if(currentUser.role == 'user'){
       window.location.href = '/index.html';
@@ -56,7 +54,6 @@ function loginUser(ev){
     cleanLoginInputs();
   }
 }
-
 
 // Cambia entre los formularios
 registerLink.addEventListener('click', () =>{
