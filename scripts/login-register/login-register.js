@@ -1,5 +1,4 @@
 import{cleanRegisterInputs, cleanLoginInputs, registerValidation, loginValidation} from './accessValidations.js';
-import{checkIsAuth} from '../general-scripts/sessionChecks.js';
 
 const loginSection = document.getElementById('login-section');
 const registerSection = document.getElementById('register-section');
@@ -10,7 +9,6 @@ const registerForm = document.getElementById('register-form');
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
-checkIsAuth();
 registerForm.addEventListener('submit', registerUser);
 loginForm.addEventListener('submit', loginUser);
 
@@ -21,6 +19,7 @@ function registerUser(ev){
   } else{
       const registerElements = ev.target.elements;
       const user = {
+        avatar: 'https://gravatar.com/avatar/7162cc546151effba2045da4f88efb25?s=100&d=robohash&r=x',
         username: registerElements.userNameRegister.value,
         email: registerElements.emailRegister.value,
         password: registerElements.passwordRegister.value,
@@ -45,10 +44,8 @@ function loginUser(ev){
     });
     if(loginElements.checkRemember.checked){
       localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      console.log(loginElements.checkRemember.checked, 'local');
     } else {
       sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
-      console.log(loginElements.checkRemember.checked, 'session');
     }
     if(currentUser.role == 'user'){
       window.location.href = '/index.html';
@@ -56,7 +53,6 @@ function loginUser(ev){
     cleanLoginInputs();
   }
 }
-
 
 // Cambia entre los formularios
 registerLink.addEventListener('click', () =>{

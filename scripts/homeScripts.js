@@ -1,3 +1,7 @@
-import { checkIsAuth } from "./general-scripts/sessionChecks.js";
+function renderAllGamesCards(){
+  const games = JSON.parse(localStorage.getItem('games')) || [];
+  const allTabPill = document.getElementById();
 
-checkIsAuth();
+  allTabPill.innerHTML = ``;
+
+}

@@ -16,10 +16,14 @@ function addGame(){
       const game = {
         code: generateGameCode(),
         name: gameElements.name.value,
-        description: gameElements.description.value,
         category: gameElements.category.value,
-        published: gameElements.checkPublished.checked,
+        description: gameElements.description.value,
+        price: gameElements.price.value,
+        dev: gameElements.dev.value,
+        year: gameElements.year.value,
+        platform: gameElements.platform.value,
         videoUrl: gameElements.trailerUrl.value,
+        published: gameElements.checkPublished.checked,
         starred: false,
       };  
 
@@ -61,11 +65,11 @@ function modifyGame(code) {
     e.preventDefault();
     games.forEach((game) => {
       if(gameValidation('modify')){
-        if (game.code == code) {
+        if(game.code == code) {
           const gameElements = e.target.elements;
           game.name = gameElements.nameModify.value;
-          game.description = gameElements.descriptionModify.value;
           game.category = gameElements.categoryModify.value;
+          game.description = gameElements.descriptionModify.value;
           game.videoUrl = gameElements.trailerUrlModify.value;
           game.published = gameElements.checkPublishedModify.checked;
           games[game.code] = game;
@@ -176,23 +180,17 @@ function getGameIsStarred(game){
 // Comprueba la categoria del juego y retorna su componente grafico
 function getCategoryColorName(game){
   switch(game.category){
-    case 'survival':
-      return`<td class="${game.category} text-danger fw-bold">Supervivencia</td>`
-
     case 'shooter':
-      return`<td class="${game.category} text-warning fw-bold">Disparos</td>`
+      return`<td class="${game.category} fw-bold"><span class="badge bg-danger ">Disparos</span></td>`
+
+    case 'puzzle':
+      return`<td class="${game.category} fw-bold"><span class="badge bg-warning text-black">Puzzle</span></td>`
 
     case 'strategy':
-    return`<td class="${game.category} text-info fw-bold">Estrategia</td>`
-
-    case 'simulation':
-      return`<td class="${game.category} text-primary fw-bold">Simulacion</td>`
-
-    case 'rpg':
-        return`<td class="${game.category} text-success fw-bold">RPG</td>`
+    return`<td class="${game.category} fw-bold"><span class="badge bg-info text-black">Estrategia</span></td>`
 
     default:
-      return `<td class="${game.category} fw-bold">Otro</td>`
+      return `<td class="${game.category} fw-bold"><span class="badge bg-dark">Otro</span></td>`
   }
 }
 
