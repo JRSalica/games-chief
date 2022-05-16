@@ -103,35 +103,60 @@
                           </div>
                           <div class="modal-body">
                             <form id="addGameForm">
-                              <div class="input-control mb-3">
-                                <label for="name" class="form-label">Nombre:</label>
-                                <input type="text" name="nameAdd" id="name" class="form-control name-add" oninput="validateName('add')" minlength="2" maxlength="20" required>
-                                <div class="error"></div>
-                              </div>
-                              <div class="input-control mb-3">
-                                <label for="description" class="form-label">Descripcion</label>
-                                <textarea name="descriptionAdd" id="description" class="form-control description-add" oninput="validateDescription('add')" minlength="10" maxlength="100" required></textarea>
-                                <div class="error"></div>
-                              </div>
-                              <div class="input-control mb-3">
-                                <label for="category" class="form-label">Categoria:</label>
-                                <select id="category" class="form-select" required>
-                                  <option value="survival">Supervivencia</option>
-                                  <option value="shooter">Disparos</option>
-                                  <option value="strategy">Estrategia</option>
-                                  <option value="simulation">Simulacion</option>
-                                  <option value="rpg">RPG</option>
-                                  <option selected value="other">Otro</option>
-                                </select>
-                              </div>
-                              <div class="input-control mb-3">
-                                <label for="trailerUrl" class="form-label">URL del Trailer</label>
-                                <input type="text" name="trailerUrlAdd" id="trailerUrl" class="form-control trailer-url-add" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" oninput="validateTrailerUrl('add')" required>
-                                <div class="error"></div>
-                              </div>
-                              <div class="input-control form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="checkPublished">
-                                <label class="form-check-label" for="checkPublished">Publicar juego.</label>
+                              <div class="row">
+                                <div class="input-control col-6 mb-3">
+                                  <label for="name" class="form-label">Nombre:</label>
+                                  <input type="text" name="nameAdd" id="name" class="form-control name-add" oninput="validateName('add')" minlength="2" maxlength="20" required>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-6 mb-3">
+                                  <label for="category" class="form-label">Categoria:</label>
+                                  <select id="category" class="form-select" required>
+                                    <option value="shooter">Disparos</option>
+                                    <option value="puzzle">Puzzle</option>
+                                    <option value="strategy">Estrategia</option>
+                                    <option selected value="other">Otro</option>
+                                  </select>
+                                </div>
+                                <div class="input-control col-6 mb-3">
+                                  <label for="name" class="form-label">Precio:</label>
+                                  <input type="number" name="priceAdd" id="price" class="form-control price-add" min="1" max="1000" required>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-6 mb-3">
+                                  <label for="name" class="form-label">Desarrollador:</label>
+                                  <input type="text" name="devAdd" id="dev" class="form-control dev-add" minlength="2" maxlength="20" required>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-6 mb-3">
+                                  <label for="year" class="form-label">Año:</label>
+                                  <input type="number" name="yearAdd" id="year" class="form-control year-add" min="1995" max="2022" required>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-6 mb-3">
+                                  <label for="platform" class="form-label">Plataforma:</label>
+                                  <select id="platform" class="form-select" required>
+                                    <option value="pc">PC</option>
+                                    <option value="ps5">PS5</option>
+                                    <option value="xbox">XBOX</option>
+                                    <option value="vr">VR</option>
+                                    <option selected value="other">Otro</option>
+                                  </select>
+                                </div>
+                                <div class="input-control col-12 mb-3">
+                                  <label for="description" class="form-label">Descripcion</label>
+                                  <textarea name="descriptionAdd" id="description" class="form-control description-add" oninput="validateDescription('add')" minlength="10" maxlength="500" required></textarea>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-12 mb-3">
+                                  <label for="trailerUrl" class="form-label">URL del Trailer</label>
+                                  <input type="text" name="trailerUrlAdd" id="trailerUrl" class="form-control trailer-url-add" pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" oninput="validateTrailerUrl('add')" required>
+                                  <div class="error"></div>
+                                </div>
+                                <div class="input-control col-12">
+                                  <input class="form-check-input" type="checkbox" id="checkPublished">
+                                  <label class="form-check-label" for="checkPublished">Publicar juego.</label>
+                                </div>
                               </div>
                             </form>
                           </div>
@@ -300,6 +325,7 @@
                         <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
                             <tr>
+                              <th>Avatar</th>
                               <th>Usuario</th>
                               <th>Email</th>
                               <th>Rol</th>

@@ -19,6 +19,7 @@ function registerUser(ev){
   } else{
       const registerElements = ev.target.elements;
       const user = {
+        avatar: 'https://gravatar.com/avatar/7162cc546151effba2045da4f88efb25?s=100&d=robohash&r=x',
         username: registerElements.userNameRegister.value,
         email: registerElements.emailRegister.value,
         password: registerElements.passwordRegister.value,
