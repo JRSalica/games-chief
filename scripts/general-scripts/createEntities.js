@@ -63,6 +63,7 @@ function createGames(){
 
 // Crea usuarios de forma provisional
 function createUsers(){
+  let users = JSON.parse(localStorage.getItem('users')) || [];
   currentAdmin = {avatar: 'https://gravatar.com/avatar/49336876fa3410db4538cd94c91c9ee7?s=100&d=robohash&r=x', username: 'TheChief', email:'gameschief@email.com', password:'gameschief2022', role:'admin', status:'approved'};
   if(users.length == 0){
     let usersArr = [

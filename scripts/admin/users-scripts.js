@@ -61,7 +61,7 @@ function renderUser(user) {
   const usersTableBody = document.getElementById('users-table-body');
   usersTableBody.innerHTML += `
       <tr>
-        <td><img src="${user.avatar}" alt="user avatar" class="w-25 rounded-circle bg-dark" /></td>
+        <td><img src="${user.avatar}" alt="user avatar" class="img-fluid rounded-circle bg-dark" /></td>
         <td>${user.username}</td>
         <td>${user.email}</td>
         <td>${user.role}</td>

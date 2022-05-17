@@ -73,7 +73,7 @@
               <!-- ADMIN PROFILE -->
               <div class="admin-info-block">
                 <div class="d-flex flex-column align-items-center py-4 px-2">
-                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x" alt="admin avatar" class="img-fluid rounded-circle bg-dark" id="admin-avatar">
+                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x" alt="admin avatar" class=" rounded-circle bg-dark" id="admin-avatar">
                   <h2 class="mb-0 mt-3 fs-4" id="admin-info-text"></h2>
                 </div>
               </div>
@@ -170,8 +170,8 @@
                   </div>
                   <!-- GAMES LIST MAIN -->
                   <div>
-                    <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h2 class="align-self-center fs-4 mb-0 ps-1" id="games-table-info-text"></h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between pb-2 px-4 py-3">
+                      <h2 class="fs-4 mb-3 mb-md-0 ps-1" id="games-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
                           <div class="input-group flex-nowrap">
@@ -192,7 +192,7 @@
                     </div>
                     <!-- GAMES TABLE -->
                     <div class="px-4 py-3">
-                      <div class="table-responsive">
+                      <div class="table-responsive text-nowrap">
                         <table id="games-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
                             <tr>
@@ -307,20 +307,15 @@
                   </div>
                   <!-- USERS LIST MAIN -->
                   <div>
-                    <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h2 class="align-self-center fs-4 mb-0 ps-1" id="users-table-info-text"></h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between pb-2 px-4 py-3">
+                      <h2 class="fs-4 mb-3 mb-md-0 ps-1" id="users-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
                           <input class="form-control me-2" type="search" placeholder="Usuario">
                           <button class="btn btn-outline-primary text-white"><i class="bi bi-search"></i></button>
                         </form>
                       </div>
-                      <div class="search-types">
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-funnel"></i></button>
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-sort-down"></i></button>
-                      </div>
-                    </div>
-                    <div class="px-4 py-3">
+                    <div class="py-3">
                       <div class="table-responsive">
                         <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
