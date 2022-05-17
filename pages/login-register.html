@@ -20,7 +20,6 @@
     <script src="../../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../scripts/general-scripts/logoutUser.js" defer></script>
     <link rel="stylesheet" href="../../styles/general-styles.css">
-    <link rel="stylesheet" href="../styles/login-register-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Acceder</title>
   </head>
@@ -67,17 +66,17 @@
     <main class="my-md-4">
       <div class="container access-container">
         <div class="access-row row d-flex justify-content-center align-items-center">
-          <div class="login-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 py-4 d-block" id="login-section">
+          <div class="login-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 pt-5 pb-0 py-md-4 d-block align-self-stretch align-self-md-center " id="login-section">
             <h2 class="mb-3 mt-2">Acceder:</h2>
             <form class="mb-4" id="login-form">
               <div class="input-control mb-3">
                 <label for="email-login" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" placeholder="Tu email">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password-login" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="passwordLogin">
+                <input type="password" class="form-control" id="passwordLogin" placeholder="Tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3 form-check d-flex justify-content-between">
@@ -85,7 +84,7 @@
                   <input type="checkbox" class="form-check-input" id="checkRemember">
                   <label class="form-check-label" for="checkRemember">Recordarme</label>
                 </div>
-                <a href="">Olvide mi contraseña</a>
+                <a href="./404error.html">Olvide mi contraseña</a>
               </div>
               <button type="submit" class="btn btn-success">Ingresar</button>
             </form>
@@ -96,22 +95,22 @@
             <form class="mb-4" id="register-form">
               <div class="input-control mb-3">
                 <label for="username-register" class="form-label">Nombre de usuario:</label>
-                <input type="text" class="form-control" id="userNameRegister">
+                <input type="text" class="form-control" id="userNameRegister" placeholder="Solo letras y numeros">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="email-register" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="ejemplo@email.com">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password-register" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="passwordRegister">
+                <input type="password" class="form-control" id="passwordRegister" placeholder="Ingresa tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password2-register" class="form-label">Repite tu contraseña:</label>
-                <input type="password" class="form-control" id="password2Register">
+                <input type="password" class="form-control" id="password2Register" placeholder="Repite tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3 form-check">
@@ -128,12 +127,12 @@
         </div>
       </div>    
     </main>
-    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
+    <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
       <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
+        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
+        <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
       </div>
       <div class="nav col-md-3 me-3 justify-content-end">
         <ul class="d-flex flex-row mb-0 list-unstyled">

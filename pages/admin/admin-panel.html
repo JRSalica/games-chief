@@ -21,7 +21,6 @@
     <script src="../../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../../scripts/general-scripts/logoutUser.js" defer></script>
     <link rel="stylesheet" href="../../styles/general-styles.css">
-    <link rel="stylesheet" href="../../styles/admin-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Administracion</title>
   </head>
@@ -65,7 +64,7 @@
         </div>
       </nav>
     </header>
-    <main class="my-4">
+    <main class="my-md-4">
       <section class="admin-panel-section">
 				<div class="admin-panel-container general-container container">
           <div class="row">
@@ -309,10 +308,10 @@
                   <!-- USERS LIST MAIN -->
                   <div>
                     <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h2 class="align-self-center fs-5" id="users-table-info-text"></h2>
+                      <h2 class="align-self-center fs-4 mb-0 ps-1" id="users-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
-                          <input class="form-control me-2" type="search" placeholder="Nombre del usuario">
+                          <input class="form-control me-2" type="search" placeholder="Usuario">
                           <button class="btn btn-outline-primary text-white"><i class="bi bi-search"></i></button>
                         </form>
                       </div>
@@ -340,7 +339,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- MODAL PARA ELIMINAR JUEGO -->
+                  <!-- MODAL PARA ELIMINAR USUARIO -->
                   <div class="modal fade" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
@@ -399,9 +398,9 @@
         </div>
 			</section>
     </main>
-    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
+    <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
       <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
+        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
         <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>

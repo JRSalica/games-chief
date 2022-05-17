@@ -1,5 +1,6 @@
 const games = JSON.parse(localStorage.getItem('games')) || [];
 
+createGames()
 renderGamesTable();
 
 // Agregar juego
@@ -392,4 +393,63 @@ function loadModifyInputs(code){
       checkPublishedInput.checked = game.published;
     }
   });
+}
+
+function createGames(){
+  let gamesArr = [
+    {
+      code: 0, 
+      name: 'Half-Life', 
+      category: 'shooter',
+      description:'El Dr Gordon Freeman no habla ni una sola palabra, pero tiene un infierno de historia para contarte, una historia revolucionaria que puede no ser todo lo que parece, contada no a través de las escenas, sino del entorno visual.', 
+      price:'100', 
+      dev:'Valve',
+      year: '1998',
+      platform: 'pc',
+      videoUrl: 'https://www.youtube.com/embed/wtIp8jOo8_o',
+      published: true,
+      starred: false,
+    }, 
+    {
+      code: 1, 
+      name: 'Portal', 
+      category: 'puzzle',
+      description:'Chell, y su nuevo amigo robot, Wheatley, se enfrentan a más puzzles concebidos por GLaDOS, una I.A. con el único propósito de probar la Pistola de Portales y vengarse de Chell por los sucesos de Portal.', 
+      price:'200', 
+      dev:'Valve',
+      year: '2007',
+      platform: 'pc',
+      videoUrl:"https://www.youtube.com/embed/tax4e4hBBZc",
+      published: true,
+      starred: false,
+    },
+    {
+      code: 2, 
+      name: 'Half Life Alyx', 
+      category: 'shooter',
+      description:'Half-Life: Alyx es el regreso de Valve a la serie Half-Life. Es la historia de una lucha imposible contra una despiadada raza alienígena conocida como los Combine. Ambientado entre los acontecimientos de Half-Life y Half-Life 2, Alyx Vance y su padre Eli montan una resistencia temprana a la brutal ocupación de la Tierra por parte de los Combine. ', 
+      price:'1000', 
+      dev:'Valve',
+      year: '2020',
+      platform: 'vr',
+      videoUrl:"https://www.youtube.com/embed/O2W0N3uKXmo",
+      published: true,
+      starred: true,
+    },
+    {
+      code: 3, 
+      name: 'Age Of Empires IV', 
+      category: 'strategy',
+      description:'Age of Empires IV te ofrece una experiencia de estrategia en tiempo real evolucionado a una nueva generación. Poniéndote en el centro de épicas batallas históricas que dieron forma al mundo.', 
+      price:'600', 
+      dev:'Microsoft',
+      year: '2021',
+      platform: 'xbox',
+      videoUrl:"https://www.youtube.com/embed/QFlVNtGJVDU",
+      published: true,
+      starred: false,
+    },
+  ];
+
+  localStorage.setItem('games', JSON.stringify(gamesArr));
 }
