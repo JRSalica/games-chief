@@ -19,6 +19,7 @@
     <script src="./scripts/homeScripts.js" defer></script>
     <script src="./scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="./scripts/general-scripts/logoutUser.js" defer></script>
+    <link rel="stylesheet" href="../../styles/general-styles.css">
     <link rel="stylesheet" href="../../styles/index-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Games Chief</title>
@@ -46,7 +47,7 @@
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="./pages/contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="./pages/About us/about-us.html">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" href="./pages/about-us.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
@@ -86,21 +87,21 @@
         </div>
       </section>
       <!-- GAMES SECTION -->
-      <div class="games-container container my-4 p-4">
+      <div class="games-container general-container container my-4 p-4">
         <div class="mb-5 px-4">
           <h2 class="mb-3">Nuestro catalogo:</h2>
           <ul class="nav nav-pills" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-              <button class="btn btn-success d-flex justify-content-center me-1 me-md-4" id="pills-all-games-tab" data-bs-toggle="pill" data-bs-target="#pills-all-games" type="button" role="tab" aria-controls="pills-all-games" aria-selected="true"><i class="bi bi-controller pe-md-2"></i><span class="d-none d-md-block">Todos</span></button>
+              <button class="btn btn-success d-flex justify-content-center me-2 me-md-3" id="pills-all-games-tab" data-bs-toggle="pill" data-bs-target="#pills-all-games" type="button" role="tab" aria-controls="pills-all-games" aria-selected="true"><i class="bi bi-controller pe-md-2"></i><span class="d-none d-md-block">Todos</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="btn btn-danger d-flex justify-content-center mx-1 mx-md-4" id="pills-shooter-games-tab" data-bs-toggle="pill" data-bs-target="#pills-shooter-games" type="button" role="tab" aria-controls="pills-shooter-games" aria-selected="false"><i class="bi bi-bullseye pe-md-2"></i><span class="d-none d-md-block">Disparos</span></button>
+              <button class="btn btn-danger d-flex justify-content-center mx-2 mx-md-3" id="pills-shooter-games-tab" data-bs-toggle="pill" data-bs-target="#pills-shooter-games" type="button" role="tab" aria-controls="pills-shooter-games" aria-selected="false"><i class="bi bi-bullseye pe-md-2"></i><span class="d-none d-md-block">Disparos</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="btn btn-warning d-flex justify-content-center mx-1 mx-md-4" id="pills-puzzle-games-tab" data-bs-toggle="pill" data-bs-target="#pills-puzzle-games" type="button" role="tab" aria-controls="pills-puzzle-games" aria-selected="false"><i class="bi bi-puzzle pe-md-2 text-black"></i><span class="d-none d-md-block text-black">Puzzle</span></button>
+              <button class="btn btn-warning d-flex justify-content-center mx-2 mx-md-3" id="pills-puzzle-games-tab" data-bs-toggle="pill" data-bs-target="#pills-puzzle-games" type="button" role="tab" aria-controls="pills-puzzle-games" aria-selected="false"><i class="bi bi-puzzle pe-md-2 text-black"></i><span class="d-none d-md-block text-black">Puzzle</span></button>
             </li>
             <li class="nav-item" role="presentation">
-              <button class="btn btn-info d-flex justify-content-center mx-1 mx-md-4" id="pills-strategy-games-tab" data-bs-toggle="pill" data-bs-target="#pills-strategy-games" type="button" role="tab" aria-controls="pills-strategy-games" aria-selected="false"><i class="bi bi-pie-chart pe-md-2 text-black"></i><span class="d-none d-md-block text-black">Estrategia</span></button>
+              <button class="btn btn-info d-flex justify-content-center mx-2 mx-md-3" id="pills-strategy-games-tab" data-bs-toggle="pill" data-bs-target="#pills-strategy-games" type="button" role="tab" aria-controls="pills-strategy-games" aria-selected="false"><i class="bi bi-pie-chart pe-md-2 text-black"></i><span class="d-none d-md-block text-black">Estrategia</span></button>
             </li>
           </ul>
         </div>
@@ -382,140 +383,8 @@
             </div>
           </div>
         </div>
-        <!-- <div class="row d-flex justify-content-around pb-4">
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-1-shooter.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Modern Warfare</h3>
-                <p class="badge bg-danger">Shooter</p>
-              </div>
-              <p class="card-text">Sumergete en una narrativa increíblemente cruda, descarnada y provocativa que aporta una intensidad sin igual y arroja luz sobre la naturaleza cambiante de la guerra moderna.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-2-shooter.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Half Life</h3>
-                <p class="badge bg-danger">Shooter</p>
-              </div>
-              <p class="card-text">El Dr Gordon Freeman no habla ni una sola palabra, pero tiene un infierno de historia para contarte, una historia revolucionaria que puede no ser todo lo que parece, contada no a través de las escenas, sino del entorno visual.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="./pages/game-info.html?code=1" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-shooter.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h5 class="card-title">Rainbow Six Siege</h5>
-                <p class="badge bg-danger">Shooter</p>
-              </div>
-              <p class="card-text">Inspirado en la realidad de los operativos antiterroristas, te invita a dominar el arte de la destrucción. Los intensos enfrentamientos, las tácticas en equipo, y la acción explosiva son el centro de la experiencia. </p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-        </div>
-        <div class="row d-flex justify-content-around pb-4">
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-1-puzzle.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Portal 2</h3>
-                <p class="badge bg-warning">Puzzle</p>
-              </div>
-              <p class="card-text">Chell, y su nuevo amigo robot, Wheatley, se enfrentan a más puzzles concebidos por GLaDOS, una I.A. con el único propósito de probar la Pistola de Portales y vengarse de Chell por los sucesos de Portal.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-2-puzzle.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">The Turing Test</h3>
-                <p class="badge bg-warning">Puzzle</p>
-              </div>
-              <p class="card-text">Explora los fenómenos de la conciencia y desafía el significado de la intuición humana. Toma el control de Ava Turing, una ingeniera de la ISA, y avanza a través de una historia de introspección y moralidad.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-puzzle.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Q.U.B.E. 2</h3>
-                <p class="badge bg-warning">Puzzle</p>
-              </div>
-              <p class="card-text">Una arqueóloga varada ha despertado entre las ruinas de un antiguo paisaje alienígena. Con la lejana ayuda de otro superviviente, debes manipular la estructura de este misterioso mundo y encontrar el camino de vuelta a casa.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-        </div>
-        <div class="row d-flex justify-content-around pb-4">
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-1-strategy.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Age Of Empires IV</h3>
-                <p class="badge bg-info">Strategy</p>
-              </div>
-              <p class="card-text">Age of Empires IV te ofrece una experiencia de estrategia en tiempo real evolucionado a una nueva generación. Poniéndote en el centro de épicas batallas históricas que dieron forma al mundo.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-2-strategy.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Warhammer</h3>
-                <p class="badge bg-info">Strategy</p>
-              </div>
-              <p class="card-text">Se acerca un cataclismo. Reúne tus fuerzas y entra en el Reino del Caos, una dimensión de horror alucinante donde se decidirá el destino del mundo. ¿Conquistarás a tus Daemons o los comandarás?</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-strategy.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Frozenheim</h3>
-                <p class="badge bg-info">Strategy</p>
-              </div>
-              <p class="card-text">Dirige a tu clan vikingo a través de las dificultades del norte helado, estación tras estación, año tras año. Construye y sobrevive. Zarpa, explora y conquista. Gana el favor de Odín y asegura tu lugar en el Valhalla.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
-            </div>
-          </div>
-        </div> -->
       </div>
-      <div class="services-container container my-4 p-4">
+      <div class="services-container general-container container my-4 p-4">
         <div class="row">
           <h2>Prestigio digno de un <span class="fw-bolder">jefe</span>.</h2>
           <p class="fs-5">En <span class="text-success fw-bold">Game Chiefs</span> somos conscientes de lo que busca todo fanatico de los videojuegos, por eso trabajamos constantemente en poder ofrecerte lo mejor.</p>

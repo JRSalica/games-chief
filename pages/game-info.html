@@ -19,6 +19,7 @@
     <script src="../scripts/game-info/game-info-scripts.js"></script>
     <script src="../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../scripts/general-scripts/logoutUser.js" defer></script>
+    <link rel="stylesheet" href="../../styles/general-styles.css">
     <link rel="stylesheet" href="../../styles/game-info-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Games Chief</title>
@@ -44,19 +45,19 @@
           </button>
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="./pages/contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="./pages/About us/about-us.html">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
+              <li class="nav-item"><a class="nav-link" href="./about-us.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
-                <li class="nav-item"><a class="nav-link text-success" href="./pages/admin/admin-panel.html">Admin</a></li>
+                <li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a></li>
               </div>
               <div id="logout-item">
-                <li class="nav-item"><a href="./index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
               </div>
               <div id="login-item">
-                <li class="nav-item"><a class="nav-link" href="./pages/login-register.html">Ingresar</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
               </div>
             </ul>
           </div>
@@ -69,27 +70,25 @@
         <div class="col-md-12 card border-0">
           <img id="cover-image" alt="game info front image" class="card-img">
           <div class="container-fluid card-img-overlay caption-back row gx-0">
-            <div class="col-8 ps-lg-5 d-flex flex-column justify-content-end">
-              <h2 id="name-tag" class="display-5">Nombre</h2>
-              <div>
-                <p class="badge bg-danger fs-6 w-25"><span id="category-tag" class="d-none d-sm-block">Disparos</span></p>
-                <p class="badge bg-dark fs-6 w-25"><span class="d-none d-sm-block">PC</span></p>
+            <div class="col-8 ps-lg-4 mb-md-1 d-flex flex-column justify-content-end">
+              <h2 id="name-tag" class="display-5"></h2>
+              <div class="d-flex">
+                <div id="category-badge" class="me-2">
+                </div>
+                <div id="platform-badge">
+                </div>
               </div>
-              <p id="description-tag" class="lead my-3 d-none d-lg-block ">Chell, y su nuevo amigo robot, Wheatley, se enfrentan a más puzzles concebidos por GLaDOS, una I.A. con el único propósito de probar la Pistola de Portales y vengarse de Chell por los sucesos de Portal.
-              </p>
+              <p id="description-tag" class="lead my-2 d-none d-lg-block"></p>
             </div>
           </div>
         </div>
       </section>
-      <section class="game-info-container container my-4">
-        <div class="game-info-block row px-4 pt-4">
+      <section class="game-info-container container mb-4 mt-md-4">
+        <div class="game-info-block general-container row px-4 pt-4">
           <div class="col-12 col-lg-9 game-info-content pe-lg-4">
             <!-- VIDEO CONTAINER -->
             <div class="video-container mb-4">
-              <iframe class="img-fluid" id="video-url"
-                  title="YouTube video player" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <iframe id="video-url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <!-- TEXTO DESCRIPTIVO GENERICO -->
             <article class="generic-text-info mb-3">
@@ -111,13 +110,13 @@
             <section id="gameImagesCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img id="carousel-image-1" ="d-block w-100" alt="...">
+                  <img id="carousel-image-1" class="d-block w-100" alt="carousel game image 1">
                 </div>
                 <div class="carousel-item">
-                  <img id="carousel-image-2" class="d-block w-100" alt="...">
+                  <img id="carousel-image-2" class="d-block w-100" alt="carousel game image 2">
                 </div>
                 <div class="carousel-item">
-                  <img id="carousel-image-3" class="d-block w-100" alt="...">
+                  <img id="carousel-image-3" class="d-block w-100" alt="carousel game image 3">
                 </div>
               </div>
               <button class="carousel-control-prev" type="button" data-bs-target="#gameImagesCarousel" data-bs-slide="prev">
@@ -132,26 +131,29 @@
           </div>
           <!-- INFORMACION TECNICA -->
           <aside class="col-12 col-lg-3 game-info-features mb-3 ps-lg-3 py-4">
-            <button id="price-tag" class="btn btn-lg btn-success mb-4">Comprar - $200</button>
+            <div class="buttons-container d-flex justify-content-around">
+              <a href="./404error.html" id="price-tag" class="btn btn-lg btn-success mb-4">Comprar - $200</a>
+              <a href="./404error.html" class="btn btn-lg btn-primary mb-4"><i class="bi bi-file-plus-fill"></i></a>
+            </div>
             <!-- INFORMACION GENERAL -->
             <div class="general-information pt-4 border-top">
               <h3 class="pb-3">Informacion general:</h3>
               <ul class="list-unstyled mb-4">
                 <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Plataforma</h4> 
+                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-controller"></i> Plataforma</h4> 
                   <p id="platform-tag" class="fs-6">&gt</p>
                 </li>
                 <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Año</h4> 
-                  <p id="year-tag" class="fs-6">&gt 2011</p>
+                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-dice-6"></i> Categoria</h4> 
+                  <p id="category-tag"class="fs-6">&gt </p>
                 </li>
                 <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Categoria</h4> 
-                  <p id="category-tag "class="fs-6">&gt Puzzle</p>
+                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-building"></i> Desarrollador</h4> 
+                  <p id="dev-tag" class="fs-6">&gt </p>
                 </li>
                 <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Desarrollador</h4> 
-                  <p id="dev-tag" class="fs-6">&gt Valve</p>
+                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-calendar"></i> Año</h4> 
+                  <p id="year-tag" class="fs-6">&gt </p>
                 </li>
               </ul>
             </div>
@@ -161,74 +163,75 @@
                 <h3 class="pb-3">Requerimentos del sistema:</h3>
                 <li class="pb-3">
                   <h4 class="fs-6 text-uppercase fw-bold">Sistema Operativo</h4> 
-                  <p class="fs-6">&gt Windows 7 / Vista / XP (o superior)</p>
+                  <p class="fs-6"><i class="bi bi-windows pe-2"></i>&gt Windows 7 / Vista / XP (o superior)</p>
                 </li>
                 <li class="pb-3">
                   <h4 class="fs-6 text-uppercase fw-bold">Procesador</h4> 
-                  <p class="fs-6">&gt 3.0 GHz P4, Dual Core 2.0 (o superior) o AMD64X2 (o superior)</p>
+                  <p class="fs-6"><i class="bi bi-cpu pe-2"></i>&gt 3.0 GHz P4, Dual Core 2.0 (o superior) o AMD64X2 (o superior)</p>
                 </li>
                 <li class="pb-3">
                   <h4 class="fs-6 text-uppercase fw-bold">Memoria</h4> 
-                  <p class="fs-6">&gt 2 GB de RAM</p>
+                  <p class="fs-6"><i class="bi bi-memory pe-2"></i>&gt 2 GB de RAM</p>
                 </li>
                 <li class="pb-3">
                   <h4 class="fs-6 text-uppercase fw-bold">Graficos</h4> 
-                  <p class="fs-6">&gt La tarjeta de vídeo debe tener 128 MB o más y ser compatible con Pixel Shader 2.0b (ATI Radeon X800 o superior / Intel HD Graphics 2000 o superior).</p>
+                  <p class="fs-6"><i class="bi bi-gpu-card pe-2"></i>&gt La tarjeta de vídeo debe tener 128 MB o más y ser compatible con Pixel Shader 2.0b (ATI Radeon X800 o superior / Intel HD Graphics 2000 o superior).</p>
                 </li>
                 <li class="pb-3">
                   <h4 class="fs-6 text-uppercase fw-bold">Almacenamiento</h4> 
-                  <p class="fs-6">&gt 8 GB de espacio disponible</p>
+                  <p class="fs-6"><i class="bi bi-hdd pe-2"></i>&gt 8 GB de espacio disponible</p>
                 </li>
               </ul>
             </div>
           </aside>
         </div>
       </section>
-      <section class="similar-games-container container mb-4">
+      <!-- OTROS JUEGOS -->
+      <section class="similar-games-container general-container container mb-md-4">
         <div class="row d-flex justify-content-around my-4">
           <div class="col-12">
-            <h2 class="pb-3 px-4">Juegos similares:</h2>
+            <h2 class="pb-3 px-4">Quizas te interese:</h2>
           </div>
           <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-1-shooter.jpg" class="card-img-top" alt="...">
+            <img src="/assets/images/games-store-main/game-3-puzzle.jpg" class="card-img-top" alt="game card image">
             <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Modern Warfare</h3>
-                <p class="badge bg-danger">Shooter</p>
+              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
+                <h3 class="card-title fs-5">Q.U.B.E. 2</h3>
+                <p class="badge bg-warning text-black"><i class="bi bi-puzzle pe-2 text-black"></i>Puzzle</p>
               </div>
-              <p class="card-text">Sumergete en una narrativa increíblemente cruda, descarnada y provocativa que aporta una intensidad sin igual y arroja luz sobre la naturaleza cambiante de la guerra moderna.</p>
+              <p class="card-text">Una arqueóloga varada ha despertado entre las ruinas de un antiguo paisaje alienígena. Con la lejana ayuda de otro superviviente, debes manipular la estructura de este misterioso mundo y encontrar el camino de vuelta a casa.</p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
+              <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
+              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
             </div>
           </div>
           <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-2-shooter.jpg" class="card-img-top" alt="...">
+            <img src="/assets/images/games-store-main/game-2-strategy.jpg" class="card-img-top" alt="game card image">
             <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <h3 class="card-title fs-5">Half Life</h3>
-                <p class="badge bg-danger">Shooter</p>
+              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
+                <h3 class="card-title fs-5">Warhammer</h3>
+                <p class="badge bg-info text-black"><i class="bi bi-pie-chart pe-2 text-black"></i>Estrategia</p>
               </div>
-              <p class="card-text">El Dr Gordon Freeman no habla ni una sola palabra, pero tiene un infierno de historia para contarte, una historia revolucionaria que puede no ser todo lo que parece, contada no a través de las escenas, sino del entorno visual.</p>
+              <p class="card-text">Se acerca un cataclismo. Reúne tus fuerzas y entra en el Reino del Caos, una dimensión de horror alucinante donde se decidirá el destino del mundo. ¿Conquistarás a tus Daemons o los comandarás?</p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="./pages/game-info.html?code=1" class="btn btn-success float-end">Ver mas</a>
+              <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
+              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
             </div>
           </div>
           <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-shooter.jpg" class="card-img-top" alt="...">
+            <img src="/assets/images/games-store-main/game-3-shooter.jpg" class="card-img-top" alt="game card image">
             <div class="card-body">
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
                 <h5 class="card-title">Rainbow Six Siege</h5>
-                <p class="badge bg-danger">Shooter</p>
+                <p class="badge bg-danger"><i class="bi bi-bullseye pe-2"></i>Disparos</p>
               </div>
               <p class="card-text">Inspirado en la realidad de los operativos antiterroristas, te invita a dominar el arte de la destrucción. Los intensos enfrentamientos, las tácticas en equipo, y la acción explosiva son el centro de la experiencia. </p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0">PC, PS5</p>
-              <a href="#" class="btn btn-success float-end">Ver mas</a>
+              <p class="badge bg-dark mb-0"><i class="bi bi-xbox pe-2"></i>XBOX</p>
+              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
             </div>
           </div>
         </div>
@@ -239,7 +242,7 @@
         <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="" width="100"></a>
+        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
       </div>
       <div class="nav col-md-3 me-3 justify-content-end">
         <ul class="d-flex flex-row mb-0 list-unstyled">

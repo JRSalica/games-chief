@@ -19,6 +19,7 @@
     <script src="../scripts/game-info/game-info-scripts.js"></script>
     <script src="../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../scripts/general-scripts/logoutUser.js" defer></script>
+    <link rel="stylesheet" href="../../styles/general-styles.css">
     <link rel="stylesheet" href="../styles/404-styles.css" />
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Pagina no encontrada</title>
@@ -44,19 +45,19 @@
           </button>
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="#">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="./pages/contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="./pages/About us/about-us.html">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
+              <li class="nav-item"><a class="nav-link" href="../pages/About us/about-us.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
-                <li class="nav-item"><a class="nav-link text-success" href="./pages/admin/admin-panel.html">Admin</a></li>
+                <li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a></li>
               </div>
               <div id="logout-item">
-                <li class="nav-item"><a href="./index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
               </div>
               <div id="login-item">
-                <li class="nav-item"><a class="nav-link" href="./pages/login-register.html">Ingresar</a></li>
+                <li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
               </div>
             </ul>
           </div>
@@ -66,8 +67,8 @@
     <main>
       <div class="container">
         <div class="error-row row d-flex justify-content-center align-items-center">
-          <div class="error-container col-12 col-md-8 p-4">
-            <h1>Pagina no encontrada.</h1>
+          <div class="error-container general-container col-12 col-md-8 p-4">
+            <h1><i class="bi bi-exclamation-circle text-danger pe-2"></i>Pagina no encontrada.</h1>
             <p>La pagina solicitada no existe, te redirigiremos automaticamente al inicio en 10 segundos. O puedes hacerlo por tu cuenta haciendo click <a href="../index.html" class="text-success">aqui!</a></p>
           </div>
         </div>
