@@ -28,6 +28,13 @@ function registerUser(ev){
       }
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Te has registrado exitosamente, tu cuenta sera activada a la brevedad.',
+        showConfirmButton: false,
+        timer: 5000
+      });
       cleanRegisterInputs();
   } 
 }
@@ -48,8 +55,33 @@ function loginUser(ev){
       sessionStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
     if(currentUser.role == 'user'){
-      window.location.href = '/index.html';
-    } else window.location.href = '/pages/admin/admin-panel.html';
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `Bienvenido ${currentUser.username}! Seras redirigido al inicio en breve.`,
+        showConfirmButton: false,
+        color: '#E2E8F0',
+        background: '#1B202B',
+        timer: 3000
+      });
+      setTimeout(() =>{
+        window.location.href = '/index.html';
+      }, 4000);
+
+    } else {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `Bienvenido ${currentUser.username}! Seras redirigido al panel de administracion en breve.`,
+        color: '#E2E8F0',
+        background: '#1B202B',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      setTimeout(() =>{
+        window.location.href = '/pages/admin/admin-panel.html';
+      }, 4000);
+    }
     cleanLoginInputs();
   }
 }

@@ -16,6 +16,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="/scripts/login-register/login-register.js" defer></script>
     <script src="../../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../scripts/general-scripts/logoutUser.js" defer></script>
@@ -46,14 +47,14 @@
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="/index.html">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="./contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="./about-us.html">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" href="./pages/404error.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
                 <li class="nav-item"><a class="nav-link" href="./admin/admin-panel.html">Admin</a></li>
               </div>
               <div id="logout-item">
-                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger">Salir</a></li>
               </div>
               <div id="login-item">
                 <li class="nav-item"><a class="nav-link active" href="./login-register.html">Ingresar</a></li>
@@ -66,7 +67,7 @@
     <main class="my-md-4">
       <div class="container access-container">
         <div class="access-row row d-flex justify-content-center align-items-center">
-          <div class="login-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 pt-5 pb-0 py-md-4 d-block align-self-stretch align-self-md-center " id="login-section">
+          <div class="login-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 pt-5 pb-0 py-md-4 d-block align-self-stretch align-self-md-center" id="login-section">
             <h2 class="mb-3 mt-2">Acceder:</h2>
             <form class="mb-4" id="login-form">
               <div class="input-control mb-3">
