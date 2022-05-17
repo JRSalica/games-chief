@@ -11,6 +11,19 @@
 }
 
 
+/******************/
+/* NAVBAR STYLES */
+
+header, footer{
+  background-color: var(--secondary-dark)
+}
+
+.navbar .active{
+  border-bottom: 1px solid var(--primary-light);
+  font-weight: bolder;
+}
+
+
 /*******************/
 /* GENERAL STYLES */
 
@@ -27,19 +40,6 @@ body {
   box-shadow: 0px 0px 32px 0px rgba(41,48,55,0.45);
   color: var(--primary-light);
   text-shadow: 3px 5px 4px rgba(0, 0, 0, 0.23);
-}
-
-
-/******************/
-/* NAVBAR STYLES */
-
-header, footer{
-  background-color: var(--secondary-dark)
-}
-
-.navbar .active{
-  border-bottom: 1px solid var(--primary-light);
-  font-weight: bolder;
 }
 
 
@@ -105,7 +105,7 @@ main{
 /**************************/
 /* 404 ERROR PAGE STYLES */
 
-.error-row{
+.access-row, .error-row{
   min-height: calc(100vh - 223px);
 }
 

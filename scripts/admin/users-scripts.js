@@ -85,8 +85,11 @@ function changeUsersListInfo(text) {
 }
 
 function renderAdminInfo(){
-  let adminInfoText = document.getElementById('admin-info-text');
+  const adminAvatar = document.getElementById('admin-avatar');
+  const adminInfoText = document.getElementById('admin-info-text');
   let currentAdmin = JSON.parse(localStorage.getItem('currentUser')) || {};
+
+  adminAvatar.setAttribute('src', currentAdmin.avatar);
   adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.username}</span>`;
 }
 
