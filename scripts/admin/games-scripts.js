@@ -1,6 +1,5 @@
 const games = JSON.parse(localStorage.getItem('games')) || [];
 
-createGames()
 renderGamesTable();
 
 // Agregar juego

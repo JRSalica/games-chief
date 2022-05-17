@@ -1,9 +1,7 @@
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
-createUsers();
 renderUsersTable();
 renderAdminInfo();
-
 
 // Elimina un usuario
 function deleteUser(username) {
@@ -93,19 +91,5 @@ function renderAdminInfo(){
   adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.username}</span>`;
 }
 
-// Crea usuarios de forma provisional
-function createUsers(){
-  currentAdmin = {avatar: 'https://gravatar.com/avatar/49336876fa3410db4538cd94c91c9ee7?s=100&d=robohash&r=x', username: 'TheChief', email:'gameschief@email.com', password:'gameschief2022', role:'admin', status:'approved'};
-  if(users.length == 0){
-    let usersArr = [
-      currentAdmin,
-      {avatar: 'https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x', username: 'JRSalica', email:'salicajorge@email.com', password:'gameschief2022', role:'admin', status:'approved'}, 
-      {avatar: 'https://gravatar.com/avatar/cfe3c204bd9f5cb4fcbd61cf109d947c?s=100&d=robohash&r=x', username: 'JRSickness', email:'jrsick@email.com', password:'gameschief2022', role:'user', status:'suspended'},
-      {avatar: 'https://gravatar.com/avatar/8c66a907354c524c525441815415b338?s=100&d=robohash&r=x', username: 'JRSystems', email:'jrsystems.jr@email.com', password:'gameschief2022', role:'user', status:'pending'},
-      {avatar: 'https://gravatar.com/avatar/1ba8e6babcb532aa831a055c68aaff25?s=100&d=robohash&r=x', username: 'JRSoul', email:'soulofjr@email.com', password:'gameschief2022', role:'user', status:'approved'},
-    ];
-    localStorage.setItem('currentUser', JSON.stringify(currentAdmin));
-    localStorage.setItem('users', JSON.stringify(usersArr));
-  }
-}
+
 
