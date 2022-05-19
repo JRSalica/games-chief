@@ -16,10 +16,11 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="/scripts/login-register/login-register.js" defer></script>
     <script src="../../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../scripts/general-scripts/logoutUser.js" defer></script>
-    <link rel="stylesheet" href="../styles/login-register-styles.css" />
+    <link rel="stylesheet" href="../../styles/general-styles.css">
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Acceder</title>
   </head>
@@ -28,7 +29,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark py-0">
         <div class="container-fluid">
           <div class="d-flex border-end py-3">
-            <img src="../../assets/images/icons/game-chief-logo.svg" alt="" width="45" height="" class="d-inline-block align-text-top">
+            <img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="45" height="" class="d-inline-block align-text-top">
             <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
           </div>
           <button
@@ -45,38 +46,38 @@
           <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="/index.html">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" href="./contact.html">Contacto</a></li>
+              <li class="nav-item"><a class="nav-link" href="../pages/about-us.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
-                <li class="nav-item"><a class="nav-link" href="#">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="./admin/admin-panel.html">Admin</a></li>
               </div>
               <div id="logout-item">
-                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
+                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger">Salir</a></li>
               </div>
               <div id="login-item">
-                <li class="nav-item"><a class="nav-link active" href="#">Ingresar</a></li>
+                <li class="nav-item"><a class="nav-link active" href="./login-register.html">Ingresar</a></li>
               </div>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    <main class="my-4">
+    <main class="my-md-4">
       <div class="container access-container">
         <div class="access-row row d-flex justify-content-center align-items-center">
-          <div class="login-section col col-4 px-5 py-4 d-block" id="login-section">
+          <div class="login-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 pt-5 pb-0 py-md-4 d-block align-self-stretch align-self-md-center" id="login-section">
             <h2 class="mb-3 mt-2">Acceder:</h2>
             <form class="mb-4" id="login-form">
               <div class="input-control mb-3">
                 <label for="email-login" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailLogin" aria-describedby="emailHelp" placeholder="Tu email">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password-login" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="passwordLogin">
+                <input type="password" class="form-control" id="passwordLogin" placeholder="Tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3 form-check d-flex justify-content-between">
@@ -84,33 +85,33 @@
                   <input type="checkbox" class="form-check-input" id="checkRemember">
                   <label class="form-check-label" for="checkRemember">Recordarme</label>
                 </div>
-                <a href="">Olvide mi contraseña</a>
+                <a href="./404error.html">Olvide mi contraseña</a>
               </div>
               <button type="submit" class="btn btn-success">Ingresar</button>
             </form>
             <p class="text-center">No tienes cuenta?<button class="btn btn-link px-1" id="register-link">Registrate aqui.</button></p>
           </div>
-          <div class="register-section col col-4 px-5 pt-4 pb-3 d-none" id="register-section">
+          <div class="register-section general-container col-12 col-sm-9 col-md-7 col-lg-5 col-xl-4 px-5 py-5 py-md-4 pb-3 d-none" id="register-section">
             <h2 class="mb-3 mt-2">Registrate:</h2>
             <form class="mb-4" id="register-form">
               <div class="input-control mb-3">
                 <label for="username-register" class="form-label">Nombre de usuario:</label>
-                <input type="text" class="form-control" id="userNameRegister">
+                <input type="text" class="form-control" id="userNameRegister" placeholder="Solo letras y numeros">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="email-register" class="form-label">Email:</label>
-                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="emailRegister" aria-describedby="emailHelp" placeholder="ejemplo@email.com">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password-register" class="form-label">Contraseña:</label>
-                <input type="password" class="form-control" id="passwordRegister">
+                <input type="password" class="form-control" id="passwordRegister" placeholder="Ingresa tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3">
                 <label for="password2-register" class="form-label">Repite tu contraseña:</label>
-                <input type="password" class="form-control" id="password2Register">
+                <input type="password" class="form-control" id="password2Register" placeholder="Repite tu contraseña">
                 <div class="error"></div>
               </div>
               <div class="input-control mb-3 form-check">
@@ -127,12 +128,12 @@
         </div>
       </div>    
     </main>
-    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
+    <footer class="container-fluid d-flex  justify-content-between align-items-center py-4">
       <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
+        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="" width="100"></a>
+        <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
       </div>
       <div class="nav col-md-3 me-3 justify-content-end">
         <ul class="d-flex flex-row mb-0 list-unstyled">
@@ -142,5 +143,12 @@
         </ul>
       </div>
     </footer>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("oZSVLP6UBWgxrvqLV");
+      })();
+    </script>
   </body>
 </html>

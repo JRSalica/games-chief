@@ -16,11 +16,12 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../scripts/admin/games-scripts.js" defer></script>
     <script src="../../scripts/admin/users-scripts.js" defer></script>
     <script src="../../scripts/general-scripts/sessionChecks.js" defer></script>
     <script src="../../scripts/general-scripts/logoutUser.js" defer></script>
-    <link rel="stylesheet" href="../../styles/admin-styles.css" />
+    <link rel="stylesheet" href="../../styles/general-styles.css">
     <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
     <title>Administracion</title>
   </head>
@@ -29,7 +30,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark py-0">
         <div class="container-fluid">
           <div class="d-flex border-end py-3">
-            <img src="../../assets/images/icons/game-chief-logo.svg" alt="" width="45" height="" class="d-inline-block align-text-top" />
+            <img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="45" class="d-inline-block align-text-top" />
             <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
           </div>
           <button
@@ -47,7 +48,7 @@
             <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" aria-current="page" href="../../index.html">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="../contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
+              <li class="nav-item"><a class="nav-link" href="../../pages/about-us.html">Nosotros</a></li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
               <div id="admin-item">
@@ -64,16 +65,16 @@
         </div>
       </nav>
     </header>
-    <main class="my-4">
+    <main class="my-md-4">
       <section class="admin-panel-section">
-				<div class="admin-panel-container container">
+				<div class="admin-panel-container general-container container">
           <div class="row">
             <!-- ADMIN PANEL OPTIONS -->
             <div class="admin-aside-col col col-sm-12 col-lg-2 p-0 pb-4 pb-lg-0">
               <!-- ADMIN PROFILE -->
               <div class="admin-info-block">
                 <div class="d-flex flex-column align-items-center py-4 px-2">
-                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=400&d=robohash&r=x" alt="admin avatar" class="w-50 rounded-circle bg-dark">
+                  <img src="https://gravatar.com/avatar/a02f0cd317c4805ecc316db0e3741327?s=100&d=robohash&r=x" alt="admin avatar" class=" rounded-circle bg-dark" id="admin-avatar">
                   <h2 class="mb-0 mt-3 fs-4" id="admin-info-text"></h2>
                 </div>
               </div>
@@ -170,8 +171,8 @@
                   </div>
                   <!-- GAMES LIST MAIN -->
                   <div>
-                    <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h2 class="align-self-center fs-4 mb-0 ps-1" id="games-table-info-text"></h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between pb-2 px-4 py-3">
+                      <h2 class="fs-4 mb-3 mb-md-0 ps-1" id="games-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
                           <div class="input-group flex-nowrap">
@@ -192,7 +193,7 @@
                     </div>
                     <!-- GAMES TABLE -->
                     <div class="px-4 py-3">
-                      <div class="table-responsive">
+                      <div class="table-responsive text-nowrap">
                         <table id="games-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
                             <tr>
@@ -307,20 +308,15 @@
                   </div>
                   <!-- USERS LIST MAIN -->
                   <div>
-                    <div class="d-flex justify-content-between pb-2 px-4 py-3">
-                      <h2 class="align-self-center fs-5" id="users-table-info-text"></h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between pb-2 px-4 py-3">
+                      <h2 class="fs-4 mb-3 mb-md-0 ps-1" id="users-table-info-text"></h2>
                       <div>
                         <form class="d-flex">
-                          <input class="form-control me-2" type="search" placeholder="Nombre del usuario">
+                          <input class="form-control me-2" type="search" placeholder="Usuario">
                           <button class="btn btn-outline-primary text-white"><i class="bi bi-search"></i></button>
                         </form>
                       </div>
-                      <div class="search-types">
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-funnel"></i></button>
-                        <button class="btn btn-outline-primary text-white"><i class="bi bi-sort-down"></i></button>
-                      </div>
-                    </div>
-                    <div class="px-4 py-3">
+                    <div class="py-3">
                       <div class="table-responsive">
                         <table id="users-table" class="table table-bordered table-light table-striped table-hover text-center">
                           <thead class="table-dark">
@@ -339,7 +335,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- MODAL PARA ELIMINAR JUEGO -->
+                  <!-- MODAL PARA ELIMINAR USUARIO -->
                   <div class="modal fade" id="deleteUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                       <div class="modal-content">
@@ -398,12 +394,12 @@
         </div>
 			</section>
     </main>
-    <footer class="container-fluid d-flex flex-wrap justify-content-between align-items-center py-3">
+    <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
       <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white">© 2022 Games Chief</p>
+        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
       </div>
       <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="" width="100"></a>
+        <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
       </div>
       <div class="nav col-md-3 me-3 justify-content-end">
         <ul class="d-flex flex-row mb-0 list-unstyled">

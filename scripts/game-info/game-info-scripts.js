@@ -16,6 +16,8 @@ window.addEventListener('load', ()=> {
     const devTag = document.getElementById('dev-tag');
     const yearTag = document.getElementById('year-tag');
     const platformTag = document.getElementById('platform-tag');
+    const categoryBadge = document.getElementById('category-badge');
+    const platformBadge = document.getElementById('platform-badge');
     const videoUrl = document.getElementById('video-url');
     let selectedGame = null;
 
@@ -28,12 +30,14 @@ window.addEventListener('load', ()=> {
     loadImages(selectedGame.code);
 
     nameTag.innerHTML = selectedGame.name;
-    categoryTag.innerHTML = selectedGame.category;
+    categoryTag.innerHTML = `&gt ${selectedGame.category}`;
     descriptionTag.innerHTML = selectedGame.description;
-    priceTag.innerHTML = `Comprar - $${selectedGame.price.toUpperCase()}`;
+    priceTag.innerHTML = `<i class="bi bi-cart-plus-fill pe-2"></i>Comprar - $${selectedGame.price}`;
     devTag.innerHTML = `&gt ${selectedGame.dev}`;
     yearTag.innerHTML = `&gt ${selectedGame.year}`;
     platformTag.innerHTML = `&gt ${selectedGame.platform.toUpperCase()}`;
+    categoryBadge.innerHTML = loadCategoryElement(selectedGame.category);
+    platformBadge.innerHTML = loadPlatformElement(selectedGame.platform);
     videoUrl.setAttribute('src', selectedGame.videoUrl);
   }
 
@@ -70,38 +74,37 @@ window.addEventListener('load', ()=> {
     }
   }
 
-  // Crea juegos de forma provisional
-// function createGames(){
-//   let gamesArr = [
-//     {
-//       code: 1, 
-//       name: 'Half-Life', 
-//       category: 'shooter',
-//       description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est optio omnis facilis deleniti similique, possimus nemo beatae et asperiores quisquam! Expedita non, perspiciatis minima a repellat commodi quos ratione architecto. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam beatae ea molestias aspernatur nisi, tempora voluptate eos libero quae debitis soluta maiores accusamus ipsa commodi. Facilis minima ducimus est quaerat.', 
-//       price:'100', 
-//       developer:'Valve',
-//       year: '1998',
-//       platform: 'PC',
-//       rating: 'M',
-//       coverUrl: 'https://upload.wikimedia.org/wikipedia/en/f/fa/Half-Life_Cover_Art.jpg',
-//       trailerUrl: 'https://www.youtube.com/embed/wtIp8jOo8_o',
-//     }, 
-//     {
-//       code: 2, 
-//       name: 'Portal', 
-//       category: 'puzzle',
-//       description:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Est optio omnis facilis deleniti similique, possimus nemo beatae et asperiores quisquam! Expedita non, perspiciatis minima a repellat commodi quos ratione architecto architecto.', 
-//       price:'200', 
-//       developer:'ValvE',
-//       year: '2007',
-//       platform: 'PC/Xbox',
-//       rating: 'A',
-//       coverUrl: 'https://i1.theportalwiki.net/img/thumb/b/b8/PortalBoxart.jpg/617px-PortalBoxart.jpg',
-//       trailerUrl: 'https://www.youtube.com/embed/zQhCTRHYBZQ',
-//     },
-//   ];
+function loadCategoryElement(category){
+  switch(category){
+    case 'shooter':
+      return`<p class="badge bg-danger fs-6"><i class="bi bi-bullseye pe-2"></i>Disparos</p>`
 
-//   localStorage.setItem('gamesStorage', JSON.stringify(gamesArr));
-// }
+    case 'puzzle':
+      return`<p class="badge bg-warning text-black fs-6"><i class="bi bi-puzzle pe-2 text-black"></i>Puzzle</p>`
 
+    case 'strategy':
+    return`<p class="badge bg-info text-black fs-6"><i class="bi bi-pie-chart pe-2 text-black"></i>Estrategia</p>`
 
+    default:
+      return`<p class="badge bg-dark fs-6"><i class="bi bi-controller pe-2"></i>Otro</p>`;
+  }
+}
+
+function loadPlatformElement(platform){
+  switch(platform){
+    case 'pc':
+      return`<p class="badge bg-dark fs-6"><i class="bi bi-pc-display pe-2"></i>PC</p>`
+
+    case 'ps5':
+      return`<p class="badge bg-dark fs-6"><i class="bi bi-playstation pe-2"></i>PS5</p>`
+
+    case 'xbox':
+    return`<p class="badge bg-dark fs-6"><i class="bi bi-xbox pe-2 "></i>XBOX</p>`
+
+    case 'vr':
+    return`<p class="badge bg-dark fs-6"><i class="bi bi-headset-vr pe-2"></i>VR</p>`
+
+    default:
+      return`<p class="badge bg-dark fs-6"><i class="bi bi-controller pe-2"></i>Otro</p>`;
+  }
+}
