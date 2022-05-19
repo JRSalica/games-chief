@@ -12,6 +12,7 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 registerForm.addEventListener('submit', registerUser);
 loginForm.addEventListener('submit', loginUser);
 
+// Registra un usuario
 function registerUser(ev){
   ev.preventDefault();
   if(!registerValidation()){
@@ -28,17 +29,12 @@ function registerUser(ev){
       }
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));
-      Swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Te has registrado exitosamente, tu cuenta sera activada a la brevedad.',
-        showConfirmButton: false,
-        timer: 5000
-      });
+      sendEmail(ev);
       cleanRegisterInputs();
   } 
 }
 
+// Logea un usuario
 function loginUser(ev){
   ev.preventDefault();
   const loginElements = ev.target.elements;
@@ -84,6 +80,24 @@ function loginUser(ev){
     }
     cleanLoginInputs();
   }
+}
+
+// Envia un mail luego del proceso de registro exitoso
+function sendEmail(event) {
+  const el = event.target.elements;
+
+  event.preventDefault();
+  params = {
+      from_name: `dgarciasantillan@gmail.com`,
+      userName:  el.userNameRegister.value,
+      title: 'Bienvenido a Games Chief',
+      message: `Su registro en Games Chief ha sido exitoso. Su cuenta será activada en unos minutos.`,
+      email: el.emailRegister.value,
+      reply_to: `dgarciasantillan@gmail.com`
+  }
+  emailjs.send('service_q7q1nh5', 'template_t663w15', params)
+          .then((resp)=> swal("Subscripción correcta", "Se realizó correctamente la subscripción a Games Chief", "success"))
+          .catch((error) => swal("Error", "No se pudo enviar el correo", "error"));
 }
 
 // Cambia entre los formularios
