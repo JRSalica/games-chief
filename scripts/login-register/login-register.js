@@ -87,7 +87,7 @@ function sendEmail(event) {
   const el = event.target.elements;
 
   event.preventDefault();
-  params = {
+  const params = {
       from_name: `dgarciasantillan@gmail.com`,
       userName:  el.userNameRegister.value,
       title: 'Bienvenido a Games Chief',
@@ -97,7 +97,7 @@ function sendEmail(event) {
   }
   emailjs.send('service_q7q1nh5', 'template_t663w15', params)
           .then((resp)=> swal("Subscripción correcta", "Se realizó correctamente la subscripción a Games Chief", "success"))
-          .catch((error) => swal("Error", "No se pudo enviar el correo", "error"));
+          .catch((error) => swal("Error", "No se pudo enviar el correo", "error"))
 }
 
 // Cambia entre los formularios
