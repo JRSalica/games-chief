@@ -1,3 +1,5 @@
+
+
 const games = JSON.parse(localStorage.getItem('games')) || [];
 
 renderGamesTable();
