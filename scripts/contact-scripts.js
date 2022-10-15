@@ -12,6 +12,6 @@ function register(event) {
   };
 
   emailjs.send('service_cocsh87', 'template_jbus0xp', params)
-    .then((resp) => swal ("El mensaje ha sido enviado correctamente.","En breve nos pondremos en contacto para resolver su consulta", "success"))
-    .catch((error) => swal ("Error", "No se pudo enviar el correo, por favor verifique los datos", "error"));
+    .then((resp) => swal('El mensaje ha sido enviado correctamente.', 'En breve nos pondremos en contacto para resolver su consulta', 'success'))
+    .catch((error) => swal('Error', 'No se pudo enviar el correo, por favor verifique los datos', 'error'));
 }

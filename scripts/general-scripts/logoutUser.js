@@ -1,7 +1,7 @@
 // Logout
 const logoutLink = document.getElementById('logout-link').addEventListener('click', logoutUser);
 
-function logoutUser(){
+function logoutUser() {
   sessionStorage.removeItem('currentUser');
   localStorage.removeItem('currentUser');
   Swal.fire({
@@ -13,7 +13,7 @@ function logoutUser(){
     background: '#1B202B',
     timer: 3000
   });
-  setTimeout(() =>{
+  setTimeout(() => {
     window.location.href = '/index.html';
   }, 4000);
 }
