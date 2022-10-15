@@ -5,15 +5,15 @@ const games = JSON.parse(localStorage.getItem('games')) || [];
 renderGamesTable();
 
 // Agregar juego
-function addGame(){
+function addGame() {
   cleanInputs();
   const addGameForm = document.getElementById('addGameForm');
   var addGameModal = new bootstrap.Modal(document.getElementById('addGameModal'));
   addGameModal.show();
 
-  addGameForm.onsubmit = (e) =>{
+  addGameForm.onsubmit = (e) => {
     e.preventDefault();
-    if(gameValidation('add')){
+    if (gameValidation('add')) {
       const gameElements = e.target.elements;
       const game = {
         code: generateGameCode(),
@@ -27,14 +27,14 @@ function addGame(){
         videoUrl: gameElements.trailerUrl.value,
         published: gameElements.checkPublished.checked,
         starred: false,
-      };  
+      };
 
       games.push(game);
       localStorage.setItem('games', JSON.stringify(games));
       renderGamesTable();
       addGameModal.hide();
     }
-  } 
+  }
 }
 
 // Elimina un juego
@@ -66,8 +66,8 @@ function modifyGame(code) {
   modifyGameForm.onsubmit = function (e) {
     e.preventDefault();
     games.forEach((game) => {
-      if(gameValidation('modify')){
-        if(game.code == code) {
+      if (gameValidation('modify')) {
+        if (game.code == code) {
           const gameElements = e.target.elements;
           game.name = gameElements.nameModify.value;
           game.category = gameElements.categoryModify.value;
@@ -126,11 +126,11 @@ function searchGames() {
     if ((game.name.toLowerCase().indexOf(gameName.toLowerCase()) > -1) && gameCategory == 'all') {
       renderGame(game);
       foundGames++;
-    }else if((game.name.toLowerCase().indexOf(gameName.toLowerCase()) > -1) && (game.category.toLowerCase().indexOf(gameCategory.toLowerCase()) > -1)){
+    } else if ((game.name.toLowerCase().indexOf(gameName.toLowerCase()) > -1) && (game.category.toLowerCase().indexOf(gameCategory.toLowerCase()) > -1)) {
       renderGame(game);
       foundGames++;
     }
-    
+
   });
 
   if (foundGames != games.length) {
@@ -170,26 +170,26 @@ function renderGame(game) {
 }
 
 // Comprueba si un juego esta publicado y retorna su componente grafico
-function getGameIsPublished(game){
+function getGameIsPublished(game) {
   return (game.published) ? '<i class="bi bi-check-circle-fill text-primary"></i>' : '<i class="bi bi-check-circle text-primary"></i>';
 }
 
 // Comprueba si un juego esta publicado y retorna su componente grafico
-function getGameIsStarred(game){
-  return (game.starred) ? `<button class="btn p-0"><i class="bi bi-patch-check-fill text-success text-success"></i></button>` : `<button class="btn p-0" onclick="starGame(${game.code})"><i class="bi bi-patch-check text-success"></i></button>`; 
+function getGameIsStarred(game) {
+  return (game.starred) ? `<button class="btn p-0"><i class="bi bi-patch-check-fill text-success text-success"></i></button>` : `<button class="btn p-0" onclick="starGame(${game.code})"><i class="bi bi-patch-check text-success"></i></button>`;
 }
 
 // Comprueba la categoria del juego y retorna su componente grafico
-function getCategoryColorName(game){
-  switch(game.category){
+function getCategoryColorName(game) {
+  switch (game.category) {
     case 'shooter':
-      return`<td class="${game.category} fw-bold"><span class="badge bg-danger ">Disparos</span></td>`
+      return `<td class="${game.category} fw-bold"><span class="badge bg-danger ">Disparos</span></td>`
 
     case 'puzzle':
-      return`<td class="${game.category} fw-bold"><span class="badge bg-warning text-black">Puzzle</span></td>`
+      return `<td class="${game.category} fw-bold"><span class="badge bg-warning text-black">Puzzle</span></td>`
 
     case 'strategy':
-    return`<td class="${game.category} fw-bold"><span class="badge bg-info text-black">Estrategia</span></td>`
+      return `<td class="${game.category} fw-bold"><span class="badge bg-info text-black">Estrategia</span></td>`
 
     default:
       return `<td class="${game.category} fw-bold"><span class="badge bg-dark">Otro</span></td>`
@@ -222,7 +222,7 @@ function sortTable(n) {
     // Empezamos sin intercambios
     switching = false;
     rows = table.rows;
-    /* Iteramos las filas de las tablas, excepto las cabeceras */ 
+    /* Iteramos las filas de las tablas, excepto las cabeceras */
     for (i = 1; i < rows.length - 1; i++) {
       // Empezamos diciendo que no deberia haber intercambios
       shouldSwitch = false;
@@ -261,35 +261,35 @@ function sortTable(n) {
 }
 
 //Confirma que los inputs esten validados para agregar un juego
-function gameValidation(operationType){
+function gameValidation(operationType) {
   return (validateName(operationType) && validateDescription(operationType) && validateTrailerUrl(operationType)) ? true : false;
 }
 
 //Valida el input para el nombre
-function validateName(operationType){
-  
+function validateName(operationType) {
+
   const gameName = (operationType == 'add') ? document.querySelector('.name-add') : document.querySelector('.name-modify')
   const gameCode = (operationType == 'modify') ? document.getElementById('code').value : null;
   const actualGame = (operationType == 'modify') ? games.find(game => game.code == gameCode) : null;
   let nameValidated = false;
   let gameExists = false;
 
-  games.forEach(game =>{
-      if(game.name.toLowerCase() == gameName.value.toLowerCase()){
-        gameExists = true;
-        if(operationType == 'modify' && game.code == actualGame.code){
-          gameExists = false;
-        }
+  games.forEach(game => {
+    if (game.name.toLowerCase() == gameName.value.toLowerCase()) {
+      gameExists = true;
+      if (operationType == 'modify' && game.code == actualGame.code) {
+        gameExists = false;
       }
-    });
+    }
+  });
 
-  if(gameExists){
+  if (gameExists) {
     setError(operationType, gameName, 'Ya existe un juego con ese nombre.');
     nameValidated = false;
-  } else if(gameName.value === ''){
+  } else if (gameName.value === '') {
     setError(operationType, gameName, 'Debe ingresar un nombre');
     nameValidated = false;
-  } else if(gameName.value.length < 2){
+  } else if (gameName.value.length < 2) {
     setError(operationType, gameName, 'El nombre debe ser mas largo.');
     nameValidated = false;
   } else {
@@ -301,14 +301,14 @@ function validateName(operationType){
 }
 
 //Valida el input para la descripcion
-function validateDescription(operationType){
+function validateDescription(operationType) {
   const gameDescription = (operationType == 'add') ? document.querySelector('.description-add') : document.querySelector('.description-modify');
   let descriptionValidated = false;
 
-  if(gameDescription.value === ''){
+  if (gameDescription.value === '') {
     setError(operationType, gameDescription, 'Ingrese una descripcion.');
     descriptionValidated = false;
-  } else if(gameDescription.value.length < 10){
+  } else if (gameDescription.value.length < 10) {
     setError(operationType, gameDescription, 'Ingrese una descripcion mas larga.');
     descriptionValidated = false;
   } else {
@@ -319,26 +319,26 @@ function validateDescription(operationType){
 }
 
 //Valida el input para el URL
-function validateTrailerUrl(operationType){
+function validateTrailerUrl(operationType) {
   const gameURL = (operationType == 'add') ? document.querySelector('.trailer-url-add') : document.querySelector('.trailer-url-modify');
   const regexForYT = /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
   let urlValidated = false;
 
-  if(gameURL.value === ''){
+  if (gameURL.value === '') {
     setError(operationType, gameURL, 'Ingrese un enlace.');
     urlValidated = false;
-  } else if(!(regexForYT.test(String(gameURL.value.toLowerCase())))){
+  } else if (!(regexForYT.test(String(gameURL.value.toLowerCase())))) {
     setError(operationType, gameURL, 'No ingreso un enlace valido.');
     urlValidated = false;
   } else {
     setSuccess(operationType, gameURL);
     urlValidated = true;
-  } 
+  }
   return urlValidated;
 }
 
 // Cambia el estado del elemento a no validado
-function setError(operationType, element, message){
+function setError(operationType, element, message) {
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
   const operationButton = (operationType == 'add') ? document.querySelector('.add-game-button') : document.querySelector('.modify-game-button');
@@ -351,7 +351,7 @@ function setError(operationType, element, message){
 }
 
 // Cambia el estado del elemento a validado
-function setSuccess(operationType, element){
+function setSuccess(operationType, element) {
   const inputControl = element.parentElement;
   const errorDisplay = inputControl.querySelector('.error');
   const operationButton = (operationType == 'add') ? document.querySelector('.add-game-button') : document.querySelector('.modify-game-button');
@@ -364,7 +364,7 @@ function setSuccess(operationType, element){
 }
 
 // Vacia los campos al agregar un juego
-function cleanInputs(){
+function cleanInputs() {
   document.getElementById('name').value = '';
   document.getElementById('name').classList.remove('is-valid');
   document.getElementById('description').value = '';
@@ -375,7 +375,7 @@ function cleanInputs(){
 }
 
 // Carga los campos con los valores del juego a modificar
-function loadModifyInputs(code){
+function loadModifyInputs(code) {
   const games = JSON.parse(localStorage.getItem('games')) || [];
   let codeInput = document.getElementById('code');
   let nameInput = document.getElementById('nameModify');
@@ -384,8 +384,8 @@ function loadModifyInputs(code){
   let trailerUrlInput = document.getElementById('trailerUrlModify');
   let checkPublishedInput = document.getElementById('checkPublishedModify');
 
-  games.forEach(game =>{
-    if(game.code == code){
+  games.forEach(game => {
+    if (game.code == code) {
       codeInput.value = game.code;
       nameInput.value = game.name;
       descriptionInput.value = game.description;
@@ -396,57 +396,57 @@ function loadModifyInputs(code){
   });
 }
 
-function createGames(){
+function createGames() {
   let gamesArr = [
     {
-      code: 0, 
-      name: 'Half-Life', 
+      code: 0,
+      name: 'Half-Life',
       category: 'shooter',
-      description:'El Dr Gordon Freeman no habla ni una sola palabra, pero tiene un infierno de historia para contarte, una historia revolucionaria que puede no ser todo lo que parece, contada no a través de las escenas, sino del entorno visual.', 
-      price:'100', 
-      dev:'Valve',
+      description: 'El Dr Gordon Freeman no habla ni una sola palabra, pero tiene un infierno de historia para contarte, una historia revolucionaria que puede no ser todo lo que parece, contada no a través de las escenas, sino del entorno visual.',
+      price: '100',
+      dev: 'Valve',
       year: '1998',
       platform: 'pc',
       videoUrl: 'https://www.youtube.com/embed/wtIp8jOo8_o',
       published: true,
       starred: false,
-    }, 
+    },
     {
-      code: 1, 
-      name: 'Portal', 
+      code: 1,
+      name: 'Portal',
       category: 'puzzle',
-      description:'Chell, y su nuevo amigo robot, Wheatley, se enfrentan a más puzzles concebidos por GLaDOS, una I.A. con el único propósito de probar la Pistola de Portales y vengarse de Chell por los sucesos de Portal.', 
-      price:'200', 
-      dev:'Valve',
+      description: 'Chell, y su nuevo amigo robot, Wheatley, se enfrentan a más puzzles concebidos por GLaDOS, una I.A. con el único propósito de probar la Pistola de Portales y vengarse de Chell por los sucesos de Portal.',
+      price: '200',
+      dev: 'Valve',
       year: '2007',
       platform: 'pc',
-      videoUrl:"https://www.youtube.com/embed/tax4e4hBBZc",
+      videoUrl: "https://www.youtube.com/embed/tax4e4hBBZc",
       published: true,
       starred: false,
     },
     {
-      code: 2, 
-      name: 'Half Life Alyx', 
+      code: 2,
+      name: 'Half Life Alyx',
       category: 'shooter',
-      description:'Half-Life: Alyx es el regreso de Valve a la serie Half-Life. Es la historia de una lucha imposible contra una despiadada raza alienígena conocida como los Combine. Ambientado entre los acontecimientos de Half-Life y Half-Life 2, Alyx Vance y su padre Eli montan una resistencia temprana a la brutal ocupación de la Tierra por parte de los Combine. ', 
-      price:'1000', 
-      dev:'Valve',
+      description: 'Half-Life: Alyx es el regreso de Valve a la serie Half-Life. Es la historia de una lucha imposible contra una despiadada raza alienígena conocida como los Combine. Ambientado entre los acontecimientos de Half-Life y Half-Life 2, Alyx Vance y su padre Eli montan una resistencia temprana a la brutal ocupación de la Tierra por parte de los Combine. ',
+      price: '1000',
+      dev: 'Valve',
       year: '2020',
       platform: 'vr',
-      videoUrl:"https://www.youtube.com/embed/O2W0N3uKXmo",
+      videoUrl: "https://www.youtube.com/embed/O2W0N3uKXmo",
       published: true,
       starred: true,
     },
     {
-      code: 3, 
-      name: 'Age Of Empires IV', 
+      code: 3,
+      name: 'Age Of Empires IV',
       category: 'strategy',
-      description:'Age of Empires IV te ofrece una experiencia de estrategia en tiempo real evolucionado a una nueva generación. Poniéndote en el centro de épicas batallas históricas que dieron forma al mundo.', 
-      price:'600', 
-      dev:'Microsoft',
+      description: 'Age of Empires IV te ofrece una experiencia de estrategia en tiempo real evolucionado a una nueva generación. Poniéndote en el centro de épicas batallas históricas que dieron forma al mundo.',
+      price: '600',
+      dev: 'Microsoft',
       year: '2021',
       platform: 'xbox',
-      videoUrl:"https://www.youtube.com/embed/QFlVNtGJVDU",
+      videoUrl: "https://www.youtube.com/embed/QFlVNtGJVDU",
       published: true,
       starred: false,
     },

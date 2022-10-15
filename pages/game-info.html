@@ -1,256 +1,275 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../scripts/game-info/game-info-scripts.js"></script>
-    <script src="../scripts/general-scripts/sessionChecks.js" defer></script>
-    <script src="../scripts/general-scripts/logoutUser.js" defer></script>
-    <link rel="stylesheet" href="../../styles/general-styles.css">
-    <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
-    <title>Games Chief</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg navbar-dark py-0">
-        <div class="container-fluid">
-          <div class="d-flex border-end py-3">
-            <img src="../../assets/images/icons/game-chief-logo.svg" alt="page-logo" width="45" height="" class="d-inline-block align-text-top">
-            <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../scripts/game-info/game-info-scripts.js"></script>
+  <script src="../scripts/general-scripts/sessionChecks.js" defer></script>
+  <script src="../scripts/general-scripts/logoutUser.js" defer></script>
+  <link rel="stylesheet" href="../../styles/general-styles.css">
+  <link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
+  <title>Games Chief</title>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark py-0">
+      <div class="container-fluid">
+        <div class="d-flex border-end py-3">
+          <img src="../../assets/images/icons/game-chief-logo.svg" alt="page-logo" width="45" height=""
+            class="d-inline-block align-text-top">
+          <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
+            <li class="nav-item"><a class="nav-link" href="../pages/about-us.html">Nosotros</a></li>
+          </ul>
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <div id="admin-item">
+              <li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a>
+              </li>
+            </div>
+            <div id="logout-item">
+              <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger">Salir</a></li>
+            </div>
+            <div id="login-item">
+              <li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <!-- PORTADA CON TITULO Y DESCRIPCION BREVE -->
+    <section class="game-front-container container-fluid px-0">
+      <div class="col-md-12 card border-0">
+        <img id="cover-image" alt="game info front image" class="card-img">
+        <div class="container-fluid card-img-overlay caption-back row gx-0 pb-0 pb-md-3">
+          <div class="col-10 col-md-8 ps-lg-4 mb-md-1 d-flex flex-column justify-content-end">
+            <h2 id="name-tag" class="display-5"></h2>
+            <div class="d-flex">
+              <div id="category-badge" class="me-2">
+              </div>
+              <div id="platform-badge">
+              </div>
+            </div>
+            <p id="description-tag" class="lead my-2 d-none d-lg-block"></p>
           </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link" href="../pages/about-us.html">Nosotros</a></li>
+        </div>
+      </div>
+    </section>
+    <section class="game-info-container container mb-4 mt-md-4">
+      <div class="game-info-block general-container row px-4 pt-4">
+        <div class="col-12 col-lg-9 game-info-content pe-lg-4">
+          <!-- VIDEO CONTAINER -->
+          <div class="video-container mb-4">
+            <iframe id="video-url" title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>
+          <!-- TEXTO DESCRIPTIVO GENERICO -->
+          <article class="generic-text-info mb-3">
+            <h3>Objetivo</h3>
+            <p>En el espacio exterior todavía no hay luchas, ni prejuicios, ni conflictos nacionales. Sus peligros son
+              hostiles para todos nosotros. Su conquista merece lo mejor de toda la humanidad, y su oportunidad para la
+              cooperación pacífica muchos no volverán a presentarse.</p>
+            <p>¿Pero por qué, dicen algunos, la Luna? ¿Por qué elegirla como meta? Y bien pueden preguntar ¿por qué
+              escalar la montaña más alta? ¿Por qué, hace 35 años, volar el Atlántico? ¿Por qué jugar con Rice en Texas?
+            </p>
+          </article>
+          <!-- CARACTERISTICAS GENERICAS -->
+          <article class="game-characteristics">
+            <h3>Caracteristicas</h3>
+            <ul>
+              <li>Los vuelos espaciales nunca tolerarán el descuido, la incapacidad y la negligencia. En algún lugar, de
+                alguna manera, la hemos fastidiado. Podría haber sido en el diseño, la construcción o las pruebas.</li>
+              <li>Sea lo que sea, deberíamos haberlo detectado. Estábamos demasiado entusiasmados con el calendario y
+                bloqueamos todos los problemas que veíamos cada día en nuestro trabajo.</li>
+              <li>La Tierra es el único mundo conocido hasta ahora que alberga vida. No hay ningún otro lugar, al menos
+                en un futuro próximo, al que nuestra especie pueda emigrar. Visitar, sí. Asentarse, todavía no. Nos
+                guste o no, por el momento la Tierra es el lugar en el que nos instalamos.</li>
+              <li>Por estas razones, considero que la decisión tomada el año pasado de cambiar nuestros esfuerzos en el
+                espacio de baja a alta velocidad es una de las decisiones más importantes que se tomarán durante mi
+                mandato en la Presidencia.</li>
             </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <div id="admin-item">
-                <li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a></li>
+          </article>
+          <!-- CAROUSEL -->
+          <section id="gameImagesCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img id="carousel-image-1" class="d-block w-100" alt="carousel game image 1">
               </div>
-              <div id="logout-item">
-                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger">Salir</a></li>
+              <div class="carousel-item">
+                <img id="carousel-image-2" class="d-block w-100" alt="carousel game image 2">
               </div>
-              <div id="login-item">
-                <li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
+              <div class="carousel-item">
+                <img id="carousel-image-3" class="d-block w-100" alt="carousel game image 3">
               </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#gameImagesCarousel"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#gameImagesCarousel"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Siguiente</span>
+            </button>
+          </section>
+        </div>
+        <!-- INFORMACION TECNICA -->
+        <aside class="col-12 col-lg-3 game-info-features mb-3 ps-lg-3 py-4">
+          <div class="buttons-container d-flex justify-content-around">
+            <a href="./404error.html" id="price-tag" class="btn btn-lg btn-success mb-4">Comprar - $200</a>
+            <a href="./404error.html" class="btn btn-lg btn-primary mb-4"><i class="bi bi-file-plus-fill"></i></a>
+          </div>
+          <!-- INFORMACION GENERAL -->
+          <div class="general-information pt-4 border-top">
+            <h3 class="pb-3">Informacion general:</h3>
+            <ul class="list-unstyled mb-4">
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-controller"></i> Plataforma</h4>
+                <p id="platform-tag" class="fs-6">&gt</p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-dice-6"></i> Categoria</h4>
+                <p id="category-tag" class="fs-6">&gt </p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-building"></i> Desarrollador</h4>
+                <p id="dev-tag" class="fs-6">&gt </p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-calendar"></i> Año</h4>
+                <p id="year-tag" class="fs-6">&gt </p>
+              </li>
             </ul>
           </div>
-        </div>
-      </nav>
-    </header>
-    <main>
-      <!-- PORTADA CON TITULO Y DESCRIPCION BREVE -->
-      <section class="game-front-container container-fluid px-0">
-        <div class="col-md-12 card border-0">
-          <img id="cover-image" alt="game info front image" class="card-img">
-          <div class="container-fluid card-img-overlay caption-back row gx-0 pb-0 pb-md-3">
-            <div class="col-10 col-md-8 ps-lg-4 mb-md-1 d-flex flex-column justify-content-end">
-              <h2 id="name-tag" class="display-5"></h2>
-              <div class="d-flex">
-                <div id="category-badge" class="me-2">
-                </div>
-                <div id="platform-badge">
-                </div>
-              </div>
-              <p id="description-tag" class="lead my-2 d-none d-lg-block"></p>
-            </div>
+          <!-- LISTA DE REQUERIMENTOS -->
+          <div class="game-requeriments pt-4 border-top">
+            <ul class="list-unstyled">
+              <h3 class="pb-3">Requerimentos del sistema:</h3>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold">Sistema Operativo</h4>
+                <p class="fs-6"><i class="bi bi-windows pe-2"></i>&gt Windows 7 / Vista / XP (o superior)</p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold">Procesador</h4>
+                <p class="fs-6"><i class="bi bi-cpu pe-2"></i>&gt 3.0 GHz P4, Dual Core 2.0 (o superior) o AMD64X2 (o
+                  superior)</p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold">Memoria</h4>
+                <p class="fs-6"><i class="bi bi-memory pe-2"></i>&gt 2 GB de RAM</p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold">Graficos</h4>
+                <p class="fs-6"><i class="bi bi-gpu-card pe-2"></i>&gt La tarjeta de vídeo debe tener 128 MB o más y ser
+                  compatible con Pixel Shader 2.0b (ATI Radeon X800 o superior / Intel HD Graphics 2000 o superior).</p>
+              </li>
+              <li class="pb-3">
+                <h4 class="fs-6 text-uppercase fw-bold">Almacenamiento</h4>
+                <p class="fs-6"><i class="bi bi-hdd pe-2"></i>&gt 8 GB de espacio disponible</p>
+              </li>
+            </ul>
           </div>
-        </div>
-      </section>
-      <section class="game-info-container container mb-4 mt-md-4">
-        <div class="game-info-block general-container row px-4 pt-4">
-          <div class="col-12 col-lg-9 game-info-content pe-lg-4">
-            <!-- VIDEO CONTAINER -->
-            <div class="video-container mb-4">
-              <iframe id="video-url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <!-- TEXTO DESCRIPTIVO GENERICO -->
-            <article class="generic-text-info mb-3">
-              <h3>Objetivo</h3>
-              <p>En el espacio exterior todavía no hay luchas, ni prejuicios, ni conflictos nacionales. Sus peligros son hostiles para todos nosotros. Su conquista merece lo mejor de toda la humanidad, y su oportunidad para la cooperación pacífica muchos no volverán a presentarse.</p>
-              <p>¿Pero por qué, dicen algunos, la Luna? ¿Por qué elegirla como meta? Y bien pueden preguntar ¿por qué escalar la montaña más alta? ¿Por qué, hace 35 años, volar el Atlántico? ¿Por qué jugar con Rice en Texas?</p>
-            </article>
-            <!-- CARACTERISTICAS GENERICAS -->
-            <article class="game-characteristics">
-              <h3>Caracteristicas</h3>
-              <ul>
-                <li>Los vuelos espaciales nunca tolerarán el descuido, la incapacidad y la negligencia. En algún lugar, de alguna manera, la hemos fastidiado. Podría haber sido en el diseño, la construcción o las pruebas.</li>
-                <li>Sea lo que sea, deberíamos haberlo detectado. Estábamos demasiado entusiasmados con el calendario y bloqueamos todos los problemas que veíamos cada día en nuestro trabajo.</li>
-                <li>La Tierra es el único mundo conocido hasta ahora que alberga vida. No hay ningún otro lugar, al menos en un futuro próximo, al que nuestra especie pueda emigrar. Visitar, sí. Asentarse, todavía no. Nos guste o no, por el momento la Tierra es el lugar en el que nos instalamos.</li>
-                <li>Por estas razones, considero que la decisión tomada el año pasado de cambiar nuestros esfuerzos en el espacio de baja a alta velocidad es una de las decisiones más importantes que se tomarán durante mi mandato en la Presidencia.</li>
-              </ul>
-            </article>
-            <!-- CAROUSEL -->
-            <section id="gameImagesCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img id="carousel-image-1" class="d-block w-100" alt="carousel game image 1">
-                </div>
-                <div class="carousel-item">
-                  <img id="carousel-image-2" class="d-block w-100" alt="carousel game image 2">
-                </div>
-                <div class="carousel-item">
-                  <img id="carousel-image-3" class="d-block w-100" alt="carousel game image 3">
-                </div>
-              </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#gameImagesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#gameImagesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
-            </section>
-          </div>
-          <!-- INFORMACION TECNICA -->
-          <aside class="col-12 col-lg-3 game-info-features mb-3 ps-lg-3 py-4">
-            <div class="buttons-container d-flex justify-content-around">
-              <a href="./404error.html" id="price-tag" class="btn btn-lg btn-success mb-4">Comprar - $200</a>
-              <a href="./404error.html" class="btn btn-lg btn-primary mb-4"><i class="bi bi-file-plus-fill"></i></a>
-            </div>
-            <!-- INFORMACION GENERAL -->
-            <div class="general-information pt-4 border-top">
-              <h3 class="pb-3">Informacion general:</h3>
-              <ul class="list-unstyled mb-4">
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-controller"></i> Plataforma</h4> 
-                  <p id="platform-tag" class="fs-6">&gt</p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-dice-6"></i> Categoria</h4> 
-                  <p id="category-tag"class="fs-6">&gt </p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-building"></i> Desarrollador</h4> 
-                  <p id="dev-tag" class="fs-6">&gt </p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold"><i class="bi bi-calendar"></i> Año</h4> 
-                  <p id="year-tag" class="fs-6">&gt </p>
-                </li>
-              </ul>
-            </div>
-            <!-- LISTA DE REQUERIMENTOS -->
-            <div class="game-requeriments pt-4 border-top">
-              <ul class="list-unstyled">
-                <h3 class="pb-3">Requerimentos del sistema:</h3>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Sistema Operativo</h4> 
-                  <p class="fs-6"><i class="bi bi-windows pe-2"></i>&gt Windows 7 / Vista / XP (o superior)</p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Procesador</h4> 
-                  <p class="fs-6"><i class="bi bi-cpu pe-2"></i>&gt 3.0 GHz P4, Dual Core 2.0 (o superior) o AMD64X2 (o superior)</p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Memoria</h4> 
-                  <p class="fs-6"><i class="bi bi-memory pe-2"></i>&gt 2 GB de RAM</p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Graficos</h4> 
-                  <p class="fs-6"><i class="bi bi-gpu-card pe-2"></i>&gt La tarjeta de vídeo debe tener 128 MB o más y ser compatible con Pixel Shader 2.0b (ATI Radeon X800 o superior / Intel HD Graphics 2000 o superior).</p>
-                </li>
-                <li class="pb-3">
-                  <h4 class="fs-6 text-uppercase fw-bold">Almacenamiento</h4> 
-                  <p class="fs-6"><i class="bi bi-hdd pe-2"></i>&gt 8 GB de espacio disponible</p>
-                </li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-      </section>
-      <!-- OTROS JUEGOS -->
-      <section class="similar-games-container general-container container mb-md-4">
-        <div class="row d-flex justify-content-around my-4">
-          <div class="col-12">
-            <h2 class="pb-3 px-4">Quizas te interese:</h2>
-          </div>
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-puzzle.jpg" class="card-img-top" alt="game card image">
-            <div class="card-body">
-              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
-                <h3 class="card-title fs-5">Q.U.B.E. 2</h3>
-                <p class="badge bg-warning text-black"><i class="bi bi-puzzle pe-2 text-black"></i>Puzzle</p>
-              </div>
-              <p class="card-text">Una arqueóloga varada ha despertado entre las ruinas de un antiguo paisaje alienígena. Con la lejana ayuda de otro superviviente, debes manipular la estructura de este misterioso mundo y encontrar el camino de vuelta a casa.</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
-              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-2-strategy.jpg" class="card-img-top" alt="game card image">
-            <div class="card-body">
-              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
-                <h3 class="card-title fs-5">Warhammer</h3>
-                <p class="badge bg-info text-black"><i class="bi bi-pie-chart pe-2 text-black"></i>Estrategia</p>
-              </div>
-              <p class="card-text">Se acerca un cataclismo. Reúne tus fuerzas y entra en el Reino del Caos, una dimensión de horror alucinante donde se decidirá el destino del mundo. ¿Conquistarás a tus Daemons o los comandarás?</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
-              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
-            </div>
-          </div>
-          <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
-            <img src="/assets/images/games-store-main/game-3-shooter.jpg" class="card-img-top" alt="game card image">
-            <div class="card-body">
-              <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
-                <h5 class="card-title">Rainbow Six Siege</h5>
-                <p class="badge bg-danger"><i class="bi bi-bullseye pe-2"></i>Disparos</p>
-              </div>
-              <p class="card-text">Inspirado en la realidad de los operativos antiterroristas, te invita a dominar el arte de la destrucción. Los intensos enfrentamientos, las tácticas en equipo, y la acción explosiva son el centro de la experiencia. </p>
-            </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
-              <p class="badge bg-dark mb-0"><i class="bi bi-xbox pe-2"></i>XBOX</p>
-              <a href="../pages/404error.html" class="btn btn-success float-end"><i class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
-      <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
+        </aside>
       </div>
-      <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
+    </section>
+    <!-- OTROS JUEGOS -->
+    <section class="similar-games-container general-container container mb-md-4">
+      <div class="row d-flex justify-content-around my-4">
+        <div class="col-12">
+          <h2 class="pb-3 px-4">Quizas te interese:</h2>
+        </div>
+        <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
+          <img src="/assets/images/games-store-main/game-3-puzzle.jpg" class="card-img-top" alt="game card image">
+          <div class="card-body">
+            <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
+              <h3 class="card-title fs-5">Q.U.B.E. 2</h3>
+              <p class="badge bg-warning text-black"><i class="bi bi-puzzle pe-2 text-black"></i>Puzzle</p>
+            </div>
+            <p class="card-text">Una arqueóloga varada ha despertado entre las ruinas de un antiguo paisaje alienígena.
+              Con la lejana ayuda de otro superviviente, debes manipular la estructura de este misterioso mundo y
+              encontrar el camino de vuelta a casa.</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
+            <a href="../pages/404error.html" class="btn btn-success float-end"><i
+                class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
+          </div>
+        </div>
+        <div class="col-10 col-lg-4 col-xl-3 card game-card px-0 mx-0 mb-3">
+          <img src="/assets/images/games-store-main/game-2-strategy.jpg" class="card-img-top" alt="game card image">
+          <div class="card-body">
+            <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
+              <h3 class="card-title fs-5">Warhammer</h3>
+              <p class="badge bg-info text-black"><i class="bi bi-pie-chart pe-2 text-black"></i>Estrategia</p>
+            </div>
+            <p class="card-text">Se acerca un cataclismo. Reúne tus fuerzas y entra en el Reino del Caos, una dimensión
+              de horror alucinante donde se decidirá el destino del mundo. ¿Conquistarás a tus Daemons o los comandarás?
+            </p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <p class="badge bg-dark mb-0"><i class="bi bi-pc-display pe-2"></i>PC</p>
+            <a href="../pages/404error.html" class="btn btn-success float-end"><i
+                class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
+          </div>
+        </div>
+        <div class="col-10 col-lg-3 card game-card px-0 mx-0 mb-3">
+          <img src="/assets/images/games-store-main/game-3-shooter.jpg" class="card-img-top" alt="game card image">
+          <div class="card-body">
+            <div class="d-flex justify-content-between flex-row flex-lg-column flex-xl-row">
+              <h5 class="card-title">Rainbow Six Siege</h5>
+              <p class="badge bg-danger"><i class="bi bi-bullseye pe-2"></i>Disparos</p>
+            </div>
+            <p class="card-text">Inspirado en la realidad de los operativos antiterroristas, te invita a dominar el arte
+              de la destrucción. Los intensos enfrentamientos, las tácticas en equipo, y la acción explosiva son el
+              centro de la experiencia. </p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <p class="badge bg-dark mb-0"><i class="bi bi-xbox pe-2"></i>XBOX</p>
+            <a href="../pages/404error.html" class="btn btn-success float-end"><i
+                class="bi bi-arrow-right-circle-fill me-md-2"></i>Ver mas</a>
+          </div>
+        </div>
       </div>
-      <div class="nav col-md-3 me-3 justify-content-end">
-        <ul class="d-flex flex-row mb-0 list-unstyled">
-          <li class="ms-3"><i class="bi bi-github text-white fs-3"></i></li>
-          <li class="ms-3"><i class="bi bi-instagram text-white fs-3"></i></li>
-          <li class="ms-3"><i class="bi bi-facebook text-white fs-3"></i></li>
-        </ul>
-      </div>
-    </footer>
-  </body>
+    </section>
+  </main>
+  <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
+    <div class="col-md-3 ms-3 d-flex align-items-center">
+      <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games
+          Chief</span></p>
+    </div>
+    <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
+      <a href="../../index.html" class="link-dark text-decoration-none"><img
+          src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
+    </div>
+    <div class="nav col-md-3 me-3 justify-content-end">
+      <ul class="d-flex flex-row mb-0 list-unstyled">
+        <li class="ms-3"><i class="bi bi-github text-white fs-3"></i></li>
+        <li class="ms-3"><i class="bi bi-instagram text-white fs-3"></i></li>
+        <li class="ms-3"><i class="bi bi-facebook text-white fs-3"></i></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+
 </html>

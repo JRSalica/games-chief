@@ -1,180 +1,154 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../scripts/general-scripts/sessionChecks.js" defer></script>
-    <script src="../scripts/general-scripts/logoutUser.js" defer></script>
-    <link rel="stylesheet" href="../../styles/general-styles.css">
-		<link rel="stylesheet" href="../styles/about-us-styles.css" />
-		<link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
-		<title>Nosotros</title>
-	</head>
-	<body>
-		<header>
-      <nav class="navbar navbar-expand-lg navbar-dark py-0">
-        <div class="container-fluid">
-          <div class="d-flex border-end py-3">
-            <img src="../../assets/images/icons/game-chief-logo.svg" alt="page-logo" width="45" height="" class="d-inline-block align-text-top">
-            <a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
-          </div>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
-              <li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
-              <li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
-              <li class="nav-item"><a class="nav-link active" href="./about-us.html">Nosotros</a></li>
-            </ul>
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <div id="admin-item">
-                <li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a></li>
-              </div>
-              <div id="logout-item">
-                <li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger" onclick="logoutUser()">Salir</a></li>
-              </div>
-              <div id="login-item">
-                <li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
-              </div>
-            </ul>
-          </div>
-        </div>
-      </nav>
-		</header>
-		<main>
-			<div class="general-container container p-4">
-				<div class="upperPart">
-					<div class="text1">
-						<div class="title">
-							<h1>Sobre Game Chiefs</h1>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="../scripts/general-scripts/sessionChecks.js" defer></script>
+	<script src="../scripts/general-scripts/logoutUser.js" defer></script>
+	<link rel="stylesheet" href="../../styles/general-styles.css">
+	<link rel="stylesheet" href="../styles/about-us-styles.css" />
+	<link rel="shortcut icon" href="../../assets/images/icons/game-chief-icon.png" type="image/x-icon">
+	<title>Nosotros</title>
+</head>
+
+<body>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark py-0">
+			<div class="container-fluid">
+				<div class="d-flex border-end py-3">
+					<img src="../../assets/images/icons/game-chief-logo.svg" alt="page-logo" width="45" height=""
+						class="d-inline-block align-text-top">
+					<a class="navbar-brand fs-3 pe-2" href="/index.html">Games Chief</a>
+				</div>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse ps-2" id="navbarSupportedContent">
+					<ul class="navbar-nav ms-3 me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
+						<li class="nav-item"><a class="nav-link" href="../pages/contact.html">Contacto</a></li>
+						<li class="nav-item"><a class="nav-link active" href="./about-us.html">Nosotros</a></li>
+					</ul>
+					<ul class="navbar-nav mb-2 mb-lg-0">
+						<div id="admin-item">
+							<li class="nav-item"><a class="nav-link text-success" href="../pages/admin/admin-panel.html">Admin</a>
+							</li>
 						</div>
-						<div class="content mb-4">
-							<p class="fs-5">
-								Somos un grupo de ávidos jugadores cuyo objetivo era apostar
-								fuerte en la creación de un mercado argentino de videojuegos.
-								Entendimos que era necesaria una empresa Argentina que sea capaz
-								de ofrecer productos de alta calidad, atención dedicada y con
-								garantía real en todos los productos. En Game Chiefs conocemos muy
-								bien el mercado americano y local. Seleccionamos nuestros
-								productos a través de personal muy calificado. Nuestros empleados
-								son apasionados de los videojuegos, fanáticos de la tecnología y
-								sumamente informados.
-							</p>
-							<p class="fs-5">
-								El futuro de los videojuegos va más allá del entretenimiento, ¡y
-								es un privilegio ayudar a darle forma! Estamos construyendo un
-								marketplace seguro, asequible y sostenible para todos los
-								jugadores de hoy y mañana.
-							</p>
-							<h2 class="mt-5 mb-3">Misión</h2>
-							<p class="fs-5">
-								Estamos en la mision de ayudar a todos en descubrir la alegría de
-								los videjuegos.
-							</p>
-							<p class="fs-5">
-								Acercar el entretenimiento digital a todas las personas de una
-								manera simple y económica, mejorando su calidad de vida a través
-								del ocio y el confort. Renovamos todos los días el compromiso con
-								nuestros clientes facilitando las innovaciones más relevantes en
-								el mercado del entretenimiento a nivel global.
-							</p>
+						<div id="logout-item">
+							<li class="nav-item"><a href="../index.html" id="logout-link" class="nav-link text-danger"
+									onclick="logoutUser()">Salir</a></li>
 						</div>
+						<div id="login-item">
+							<li class="nav-item"><a class="nav-link" href="../pages/login-register.html">Ingresar</a></li>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<main>
+		<div class="general-container container p-4">
+			<div class="upperPart">
+				<div class="text1">
+					<div class="title">
+						<h1>Sobre Game Chiefs</h1>
 					</div>
-					<div class="image">
-						<img
-						src="../assets/images/about-us/deco-aside.png"
-							alt="img"
-						/>
+					<div class="content mb-4">
+						<p class="fs-5">
+							Somos un grupo de ávidos jugadores cuyo objetivo era apostar
+							fuerte en la creación de un mercado argentino de videojuegos.
+							Entendimos que era necesaria una empresa Argentina que sea capaz
+							de ofrecer productos de alta calidad, atención dedicada y con
+							garantía real en todos los productos. En Game Chiefs conocemos muy
+							bien el mercado americano y local. Seleccionamos nuestros
+							productos a través de personal muy calificado. Nuestros empleados
+							son apasionados de los videojuegos, fanáticos de la tecnología y
+							sumamente informados.
+						</p>
+						<p class="fs-5">
+							El futuro de los videojuegos va más allá del entretenimiento, ¡y
+							es un privilegio ayudar a darle forma! Estamos construyendo un
+							marketplace seguro, asequible y sostenible para todos los
+							jugadores de hoy y mañana.
+						</p>
+						<h2 class="mt-5 mb-3">Misión</h2>
+						<p class="fs-5">
+							Estamos en la mision de ayudar a todos en descubrir la alegría de
+							los videjuegos.
+						</p>
+						<p class="fs-5">
+							Acercar el entretenimiento digital a todas las personas de una
+							manera simple y económica, mejorando su calidad de vida a través
+							del ocio y el confort. Renovamos todos los días el compromiso con
+							nuestros clientes facilitando las innovaciones más relevantes en
+							el mercado del entretenimiento a nivel global.
+						</p>
 					</div>
 				</div>
-				<div class="lowerPart mt-3">
-					<div class="text2">
-						<h2>Equipo fundador</h2>
+				<div class="image">
+					<img src="../assets/images/about-us/deco-aside.png" alt="img" />
+				</div>
+			</div>
+			<div class="lowerPart mt-3">
+				<div class="text2">
+					<h2>Equipo fundador</h2>
+				</div>
+				<div class="nosotros">
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-1.jpeg" alt="Jorge" />
+						Jorge
 					</div>
-					<div class="nosotros">
-						<div class="equipo">
-							<img
-							src="../assets/images/about-us/member-1.jpeg"
-								alt="Jorge"
-							/>
-							Jorge
-						</div>
-						<div class="equipo">
-							<img
-							src="../assets/images/about-us/member-2.jpeg"
-								alt="Diego"
-							/>
-							Diego
-						</div>
-						<div class="equipo">
-							<img
-							src="../assets/images/about-us/member-3.jpeg"
-								alt="Emma"
-							/>
-							Emma
-						</div>
-						<div class="equipo">
-							<img
-							src="../assets/images/about-us/member-4.jpeg"
-								alt="Facu M"
-							/>
-							Facu M
-						</div>
-						<div class="equipo">
-							<img
-							src="../assets/images/about-us/member-5.jpeg"
-								alt="Fede"
-							/>
-							Fede
-						</div>
-						<div class="equipo">
-							<img
-								src="../assets/images/about-us/member-6.jpeg"
-								alt="Facu F"
-							/>
-							Facu F
-						</div>
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-2.jpeg" alt="Diego" />
+						Diego
+					</div>
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-3.jpeg" alt="Emma" />
+						Emma
+					</div>
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-4.jpeg" alt="Facu M" />
+						Facu M
+					</div>
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-5.jpeg" alt="Fede" />
+						Fede
+					</div>
+					<div class="equipo">
+						<img src="../assets/images/about-us/member-6.jpeg" alt="Facu F" />
+						Facu F
 					</div>
 				</div>
 			</div>
-		</main>
-    <footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
-      <div class="col-md-3 ms-3 d-flex align-items-center">
-        <p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games Chief</span></p>
-      </div>
-      <div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
-        <a href="../../index.html" class="link-dark text-decoration-none"><img src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
-      </div>
-      <div class="nav col-md-3 me-3 justify-content-end">
-        <ul class="d-flex flex-row mb-0 list-unstyled">
-          <li class="ms-3"><i class="bi bi-github text-white fs-3"></i></li>
-          <li class="ms-3"><i class="bi bi-instagram text-white fs-3"></i></li>
-          <li class="ms-3"><i class="bi bi-facebook text-white fs-3"></i></li>
-        </ul>
-      </div>
-    </footer>
-	</body>
+		</div>
+	</main>
+	<footer class="container-fluid d-flex  justify-content-between align-items-center py-3">
+		<div class="col-md-3 ms-3 d-flex align-items-center">
+			<p class="mb-0 fs-5 text-white d-flex flex-column flex-sm-row"><span class="pe-2">© 2022</span> <span>Games
+					Chief</span></p>
+		</div>
+		<div class="col-md-3 d-flex align-items-center justify-content-center mb-md-0 ">
+			<a href="../../index.html" class="link-dark text-decoration-none"><img
+					src="../../assets/images/icons/game-chief-logo.svg" alt="page logo" width="100"></a>
+		</div>
+		<div class="nav col-md-3 me-3 justify-content-end">
+			<ul class="d-flex flex-row mb-0 list-unstyled">
+				<li class="ms-3"><i class="bi bi-github text-white fs-3"></i></li>
+				<li class="ms-3"><i class="bi bi-instagram text-white fs-3"></i></li>
+				<li class="ms-3"><i class="bi bi-facebook text-white fs-3"></i></li>
+			</ul>
+		</div>
+	</footer>
+</body>
+
 </html>

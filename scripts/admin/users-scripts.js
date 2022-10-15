@@ -61,15 +61,15 @@ function renderUser(user) {
   const usersTableBody = document.getElementById('users-table-body');
   usersTableBody.innerHTML += `
       <tr>
-        <td><img src="${user.avatar}" alt="user avatar" class="img-fluid rounded-circle bg-dark" /></td>
+        <td><img src='${user.avatar}' alt='user avatar' class='img-fluid rounded-circle bg-dark w-25' /></td>
         <td>${user.username}</td>
         <td>${user.email}</td>
         <td>${user.role}</td>
         <td>${user.status}</td>
         <td>
-        <div class="d-flex justify-content-evenly">
-          <button class="btn p-0" onclick="modifyUser('${user.username.toLowerCase()}')"><i class="bi bi-pencil text-warning"></i></button>
-          <button class="btn p-0" onclick="deleteUser('${user.username.toLowerCase()}')"><i class="bi bi-trash text-danger"></i></button>
+        <div class='d-flex justify-content-evenly'>
+          <button class='btn p-0' onclick='modifyUser('${user.username.toLowerCase()}')'><i class='bi bi-pencil text-warning'></i></button>
+          <button class='btn p-0' onclick='deleteUser('${user.username.toLowerCase()}')'><i class='bi bi-trash text-danger'></i></button>
         </div>
       </td>
       </tr>
@@ -82,13 +82,13 @@ function changeUsersListInfo(text) {
   tableInfoText.innerHTML = text;
 }
 
-function renderAdminInfo(){
+function renderAdminInfo() {
   const adminAvatar = document.getElementById('admin-avatar');
   const adminInfoText = document.getElementById('admin-info-text');
   let currentAdmin = JSON.parse(localStorage.getItem('currentUser')) || {};
 
   adminAvatar.setAttribute('src', currentAdmin.avatar);
-  adminInfoText.innerHTML = `Hola <span class="text-success">${currentAdmin.username}</span>`;
+  adminInfoText.innerHTML = `Hola <span class='text-success'>${currentAdmin.username}</span>`;
 }
 
 
